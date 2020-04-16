@@ -12,10 +12,7 @@ extension Service {
     
     public func fetchMovieWith(query: String, completion: @escaping ((Movie?, Error?) -> Void)) {
         get(Request(
-            endpoint: "",
-            parameters: ["t": query],
-            priority: .high,
-            qualityOfService: .default)
+            parameters: ["t": query])
         ) { (response) in
             let movie: Movie? = try? StorageClient.map(object: response.data)
             DispatchQueue.main.async {

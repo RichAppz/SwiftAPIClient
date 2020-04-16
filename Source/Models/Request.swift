@@ -43,7 +43,7 @@ open class Request {
     //==========================================
     
     public init(
-        endpoint: String,
+        endpoint: String = "",
         parameters: [String: Any]? = nil,
         priority: Operation.QueuePriority? = .high,
         qualityOfService: QualityOfService? = .default) {
