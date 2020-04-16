@@ -32,6 +32,7 @@ extension Service {
             return
         }
         
+        #if os(iOS) || os(macOS)
         // Check network connection
         let hasConnection = checkConnection(
             storageKeyAddition: request.storageKeyAddition,
@@ -39,6 +40,7 @@ extension Service {
             arrayResponse: false,
             closure: closure)
         if !hasConnection { return }
+        #endif
         
         get(
             Request(
@@ -87,6 +89,7 @@ extension Service {
             return
         }
         
+        #if os(iOS) || os(macOS)
         // Check network connection
         let hasConnection = checkConnection(
             storageKeyAddition: request.storageKeyAddition,
@@ -94,6 +97,7 @@ extension Service {
             arrayResponse: true,
             closure: closure)
         if !hasConnection { return }
+        #endif
         
         get(
             Request(
@@ -141,6 +145,7 @@ extension Service {
             return
         }
         
+        #if os(iOS) || os(macOS)
         // Check network connection
         let hasConnection = checkConnection(
             storageKeyAddition: request.storageKeyAddition,
@@ -148,6 +153,7 @@ extension Service {
             arrayResponse: false,
             closure: closure)
         if !hasConnection { return }
+        #endif
         
         post(
             Request(
@@ -195,6 +201,7 @@ extension Service {
             return
         }
         
+        #if os(iOS) || os(macOS)
         // Check network connection
         let hasConnection = checkConnection(
             storageKeyAddition: request.storageKeyAddition,
@@ -202,6 +209,7 @@ extension Service {
             arrayResponse: true,
             closure: closure)
         if !hasConnection { return }
+        #endif
         
         post(
             Request(
@@ -242,12 +250,14 @@ extension Service {
         
         let path: String = request.fullPath
         
+        #if os(iOS) || os(macOS)
         // Check network connection
         let hasConnection = checkConnection(
             storageKeyAddition: request.storageKeyAddition,
             notification: request.notification,
             arrayResponse: true)
         if !hasConnection { return }
+        #endif
         
         delete(
             Request(
@@ -271,12 +281,14 @@ extension Service {
         
         let path: String = request.fullPath
         
+        #if os(iOS) || os(macOS)
         // Check network connection
         let hasConnection = checkConnection(
             storageKeyAddition: request.storageKeyAddition,
             notification: request.notification,
             arrayResponse: true)
         if !hasConnection { return }
+        #endif
         
         put(
             Request(
@@ -290,6 +302,7 @@ extension Service {
         }
     }
     
+    #if os(iOS) || os(macOS)
     /**
      Check to see if there is a network connection - if there is not it will complete the closures available for the request
      - Parameter notification: Notification.Name? = nil
@@ -342,5 +355,6 @@ extension Service {
         arrayResponse: Bool) -> Bool {
         return NetworkStatusService.hasConnection
     }
+    #endif
     
 }

@@ -81,7 +81,7 @@ class NetworkOperation: ConcurrentOperation {
             encoding = JSONEncoding.default
         }
         
-        #if os(iOS) || os(macOS) || os(tvOS)
+        #if os(iOS) || os(macOS)
         if !NetworkStatusService.hasConnection {
             completion?(Response.init(data: nil, headers: nil, error: RequestError.noConnection))
             return

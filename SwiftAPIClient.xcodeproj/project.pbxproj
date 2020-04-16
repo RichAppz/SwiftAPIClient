@@ -30,6 +30,7 @@
 		CB4362EE2448593B008E93CB /* Service+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4362EC2448593B008E93CB /* Service+Extension.swift */; };
 		CB4362EF2448593B008E93CB /* Service+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4362EC2448593B008E93CB /* Service+Extension.swift */; };
 		CB4362F02448593B008E93CB /* Service+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4362EC2448593B008E93CB /* Service+Extension.swift */; };
+		CB4362F42448605F008E93CB /* ClosureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBE3BC622EF2711001C53F1 /* ClosureService.swift */; };
 		CB63B7BC2265C6CE00AEF270 /* SecureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB63B7BB2265C6CE00AEF270 /* SecureService.swift */; };
 		CB689ECA2275FFD40069D63D /* CoderModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB689EC92275FFD40069D63D /* CoderModule.swift */; };
 		CB9DAF052242788D0024AF0F /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9DAF042242788D0024AF0F /* Response.swift */; };
@@ -74,7 +75,6 @@
 		CB9DAF6622428F000024AF0F /* Service+Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9DAF6522428F000024AF0F /* Service+Movie.swift */; };
 		CBB535FE22DF262A005978B4 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB535FD22DF262A005978B4 /* FileManager+Extension.swift */; };
 		CBBE3BC722EF2711001C53F1 /* ClosureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBE3BC622EF2711001C53F1 /* ClosureService.swift */; };
-		CBBE3BC822EF2711001C53F1 /* ClosureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBE3BC622EF2711001C53F1 /* ClosureService.swift */; };
 		CBBE3BC922EF2711001C53F1 /* ClosureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBE3BC622EF2711001C53F1 /* ClosureService.swift */; };
 		CBBE3BCA22EF2711001C53F1 /* ClosureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBE3BC622EF2711001C53F1 /* ClosureService.swift */; };
 		CBBE3BCC22EF274C001C53F1 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBE3BCB22EF274C001C53F1 /* Dictionary+Extension.swift */; };
@@ -892,7 +892,6 @@
 				CBBE3BCD22EF274C001C53F1 /* Dictionary+Extension.swift in Sources */,
 				CB2BFE0122CBE5E600D2FFBD /* CoderModule.swift in Sources */,
 				CB2BFE0922CBF09000D2FFBD /* SecureService.swift in Sources */,
-				CBBE3BC822EF2711001C53F1 /* ClosureService.swift in Sources */,
 				CB9DAF27224279FF0024AF0F /* Service.swift in Sources */,
 				CB4362E424485681008E93CB /* RequestModel.swift in Sources */,
 				CB9DAF062242788D0024AF0F /* Response.swift in Sources */,
@@ -900,6 +899,7 @@
 				CB9DAF22224279EB0024AF0F /* ConcurrentOperation.swift in Sources */,
 				CB4362E9244856A4008E93CB /* String+Extension.swift in Sources */,
 				CB9DAF18224279460024AF0F /* NetworkOperation.swift in Sources */,
+				CB4362F42448605F008E93CB /* ClosureService.swift in Sources */,
 				CB4362EE2448593B008E93CB /* Service+Extension.swift in Sources */,
 				CBBE3BD722EF294F001C53F1 /* Response+Extension.swift in Sources */,
 				CBBE3BD222EF27CA001C53F1 /* Data+Extension.swift in Sources */,
