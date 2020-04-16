@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1100"
+   LastUpgradeVersion = "1140"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CBC83A832242755A004757BF"
-               BuildableName = "SimpleAPIClient.framework"
-               BlueprintName = "SimpleAPIClient watchOS"
-               ReferencedContainer = "container:SimpleAPIClient.xcodeproj">
+               BlueprintIdentifier = "CBC83A902242756F004757BF"
+               BuildableName = "SwiftAPIClient.framework"
+               BlueprintName = "SwiftAPIClient tvOS"
+               ReferencedContainer = "container:SwiftAPIClient.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,10 +50,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CBC83A832242755A004757BF"
-            BuildableName = "SimpleAPIClient.framework"
-            BlueprintName = "SimpleAPIClient watchOS"
-            ReferencedContainer = "container:SimpleAPIClient.xcodeproj">
+            BlueprintIdentifier = "CBC83A902242756F004757BF"
+            BuildableName = "SwiftAPIClient.framework"
+            BlueprintName = "SwiftAPIClient tvOS"
+            ReferencedContainer = "container:SwiftAPIClient.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

@@ -1,6 +1,6 @@
 //
 //  Request.swift
-//  SimpleAPIClient
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -28,9 +28,9 @@ import Alamofire
 
 open class Request {
     
-    //================================================================================
+    //==========================================
     // MARK: Properties
-    //================================================================================
+    //==========================================
     
     open var rootUrl: String?
     open var endpoint: String
@@ -38,11 +38,16 @@ open class Request {
     open var priority: Operation.QueuePriority
     open var qualityOfService: QualityOfService
     
-    //================================================================================
+    //==========================================
     // MARK: Initialization
-    //================================================================================
+    //==========================================
     
-    public init(endpoint: String, parameters: [String: Any]? = nil, priority: Operation.QueuePriority?, qualityOfService: QualityOfService?) {
+    public init(
+        endpoint: String,
+        parameters: [String: Any]? = nil,
+        priority: Operation.QueuePriority? = .high,
+        qualityOfService: QualityOfService? = .default) {
+        
         self.endpoint = endpoint
         self.parameters = parameters
         self.priority = priority ?? .veryHigh

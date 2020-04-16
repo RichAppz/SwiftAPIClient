@@ -4,30 +4,30 @@ use_frameworks!
 inhibit_all_warnings!
 
 def pods
-    pod 'Alamofire'
+    pod 'Alamofire', '4.9.1'
     pod 'CryptoSwift'
 end
 
-target 'SimpleAPIClient iOS' do
+target 'SwiftAPIClient iOS' do
     platform :ios, '11'
     pods
     
-    target 'SimpleAPIClient iOS Tests' do
+    target 'SwiftAPIClient iOS Tests' do
       inherit! :search_paths
     end
 end
 
-target 'SimpleAPIClient tvOS' do
+target 'SwiftAPIClient tvOS' do
     platform :tvos, '11'
     pods
 end
 
-target 'SimpleAPIClient watchOS' do
+target 'SwiftAPIClient watchOS' do
     platform :watchos, '4'
     pods
 end
 
-target 'SimpleAPIClient macOS' do
+target 'SwiftAPIClient macOS' do
     platform :osx, '10.14'
     pods
 end

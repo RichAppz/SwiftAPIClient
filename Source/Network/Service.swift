@@ -1,6 +1,6 @@
 //
 //  Service.swift
-//  SimpleAPIClient
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -28,19 +28,24 @@ import Alamofire
 
 public typealias OperationResponse = (Response) -> Void
 
+public enum ServiceRequestError: Error {
+    case authenticationFailed
+    case authenticationNotRequired
+}
+
 public protocol Service {
     
-    //================================================================================
+    //==========================================
     // MARK: Properties
-    //================================================================================
+    //==========================================
     
     var rootURL: String { get }
     var headers: [String: String] { get set }
     var networkQueue: OperationQueue { get }
     
-    //================================================================================
+    //==========================================
     // MARK: Functions
-    //================================================================================
+    //==========================================
     
     func get(_ request: Request, completion: OperationResponse?)
     func post(_ request: Request, completion: OperationResponse?)

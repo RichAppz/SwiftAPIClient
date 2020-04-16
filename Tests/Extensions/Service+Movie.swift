@@ -1,6 +1,6 @@
 //
 //  Service+Movie.swift
-//  SimpleAPIClient iOS Tests
+//  SwiftAPIClient iOS Tests
 //
 //  Created by Rich Mucha on 20/03/2019.
 //  Copyright © 2019 RichAppz Limited. All rights reserved.
@@ -22,6 +22,15 @@ extension Service {
                 completion(movie, response.error)
             }
         }
+    }
+    
+    public func stdRequestFetchMovieWith(query: String, completion: @escaping ((Movie?, Error?) -> Void)) {
+        stdGetRequest(
+            RequestModel(
+                params: ["t": query],
+                storageType: .fileManager),
+            completion: completion
+        )
     }
     
 }

@@ -1,6 +1,6 @@
 //
-//  Extension+Response.swift
-//  SimpleAPIClient
+//  Response+Extension.swift
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -28,11 +28,11 @@ import Foundation
 extension Response {
     
     /**
-         Parses a single Model parameter from the API Response, this will use a standard set up of persisting/retrieving the data to the FileManager.
-         If the response has an error, any stored data with be parsed back, otherwise a normal map with occur
+     Parses a single Model parameter from the API Response, this will use a standard set up of persisting/retrieving the data to the FileManager.
+     If the response has an error, any stored data with be parsed back, otherwise a normal map with occur
      
-         - Returns: Model
-         */
+     - Returns: Model
+     */
     func stdPersistentParse<T: Model>() throws -> T? {
         if error != nil {
             #if os(iOS) || os(macOS) || os(tvOS)
@@ -46,11 +46,11 @@ extension Response {
     }
     
     /**
-         Parses a Model array from the API Response, this will use a standard set up of persisting/retrieving the data to the FileManager.
-         If the response has an error, any stored data with be parsed back, otherwise a normal map with occur
+     Parses a Model array from the API Response, this will use a standard set up of persisting/retrieving the data to the FileManager.
+     If the response has an error, any stored data with be parsed back, otherwise a normal map with occur
      
-         - Returns: Array<Model>
-         */
+     - Returns: Array<Model>
+     */
     func stdPersistentParse<T: Model>() throws -> [T]? {
         if error != nil {
             #if os(iOS) || os(macOS) || os(tvOS)
@@ -64,4 +64,3 @@ extension Response {
     }
     
 }
-

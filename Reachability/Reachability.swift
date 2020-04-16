@@ -39,7 +39,11 @@ public enum ReachabilityError: Error {
 
 public let ReachabilityChangedNotification = NSNotification.Name("ReachabilityChangedNotification")
 
-func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutableRawPointer?) {
+func callback(
+    reachability: SCNetworkReachability,
+    flags: SCNetworkReachabilityFlags,
+    info: UnsafeMutableRawPointer?) {
+    
     guard let info = info else { return }
     
     let reachability = Unmanaged<Reachability>.fromOpaque(info).takeUnretainedValue()
@@ -50,9 +54,9 @@ func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFl
 
 public class Reachability {
 
-    //================================================================================
+    //==========================================
     // MARK: Properties
-    //================================================================================
+    //==========================================
     
     public typealias NetworkReachable = (Reachability) -> ()
     public typealias NetworkUnreachable = (Reachability) -> ()
@@ -100,9 +104,9 @@ public class Reachability {
     
     fileprivate let reachabilitySerialQueue = DispatchQueue(label: "uk.co.ashleymills.reachability")
     
-    //================================================================================
+    //==========================================
     // MARK: Initialization
-    //================================================================================
+    //==========================================
     
     required public init(reachabilityRef: SCNetworkReachability) {
         reachableOnWWAN = true
@@ -137,9 +141,9 @@ public class Reachability {
 
 public extension Reachability {
     
-    //================================================================================
+    //==========================================
     // MARK: Notifier methods
-    //================================================================================
+    //==========================================
     
     func startNotifier() throws {
         guard let reachabilityRef = reachabilityRef, !notifierRunning else { return }
@@ -227,8 +231,10 @@ fileprivate extension Reachability {
         let block = isReachable ? whenReachable : whenUnreachable
         block?(self)
         
-        NotificationCenter.default.post(name: ReachabilityChangedNotification, object:self)
-        
+        NotificationCenter.default.post(
+            name: ReachabilityChangedNotification,
+            object: self
+        )
         previousFlags = flags
     }
     

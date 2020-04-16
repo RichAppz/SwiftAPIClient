@@ -1,6 +1,6 @@
 //
 //  Response.swift
-//  SimpleAPIClient
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -27,17 +27,17 @@ import Foundation
 
 public struct Response {
     
-    //================================================================================
+    //==========================================
     // MARK: Properties
-    //================================================================================
+    //==========================================
     
     public let data: Data?
     public let headers: [String: Any]?
     public let error: Error?
     
-    //================================================================================
+    //==========================================
     // MARK: Initialisation
-    //================================================================================
+    //==========================================
     
     public init(data: Data?, headers: [String: Any]?, error: Error?) {
         self.data = data

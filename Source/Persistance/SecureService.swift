@@ -1,6 +1,6 @@
 //
 //  SecureService.swift
-//  SimpleAPIClient iOS
+//  SwiftAPIClient iOS
 //
 //  Created by Rich Mucha on 16/04/2019.
 //  Copyright © 2019 RichAppz Limited. All rights reserved.
@@ -14,9 +14,9 @@ public class SecureService {
     private var key: String?
     private var iv: String?
     
-    //================================================================================
+    //==========================================
     // MARK: Singleton
-    //================================================================================
+    //==========================================
     
     static let shared = SecureService()
     private init() {
@@ -29,12 +29,12 @@ public class SecureService {
         }
     }
     
-    //================================================================================
+    //==========================================
     // MARK: Helpers
-    //================================================================================
+    //==========================================
     
     public static func AESEncryptToString(_ data: Data) throws -> String? {
-        guard let keyString = shared.key, let ivString = shared.iv else {
+        guard let keyString = shared.key, let ivString = shared.iv, let dataString = data.string else {
             debugPrint("  [*] WARNING - Encryption has not been used - passing string")
             return data.string
         }
@@ -42,13 +42,13 @@ public class SecureService {
         let key: [UInt8] = Array(keyString.utf8) as [UInt8]
         let iv: [UInt8] = Array(ivString.utf8) as [UInt8]
         let aes = try AES(key: key, blockMode: CBC(iv: iv), padding: .pkcs5)
-        let encrypted = try aes.encrypt(Array(data.string.utf8))
+        let encrypted = try aes.encrypt(Array(dataString.utf8))
         
         return encrypted.toBase64()
     }
     
     public static func AESEncryptToData(_ data: Data) throws -> Data? {
-        guard let keyString = shared.key, let ivString = shared.iv else {
+        guard let keyString = shared.key, let ivString = shared.iv, let dataString = data.string else {
             debugPrint("  [*] WARNING - Encryption has not been used - passing string")
             return data
         }
@@ -56,7 +56,7 @@ public class SecureService {
         let key: [UInt8] = Array(keyString.utf8) as [UInt8]
         let iv: [UInt8] = Array(ivString.utf8) as [UInt8]
         let aes = try AES(key: key, blockMode: CBC(iv: iv), padding: .pkcs5)
-        let encrypted = try aes.encrypt(Array(data.string.utf8))
+        let encrypted = try aes.encrypt(Array(dataString.utf8))
         
         return Data(encrypted)
     }
@@ -76,7 +76,7 @@ public class SecureService {
     }
     
     public static func AESDecrypt(_ data: Data) throws -> Data? {
-        guard let keyString = shared.key, let ivString = shared.iv else {
+        guard let keyString = shared.key, let ivString = shared.iv, let dataString = data.string else {
             debugPrint("  [*] WARNING - Encryption has not been used - passing data")
             return data
         }
@@ -84,7 +84,7 @@ public class SecureService {
         let key: [UInt8] = Array(keyString.utf8) as [UInt8]
         let iv: [UInt8] = Array(ivString.utf8) as [UInt8]
         let aes = try AES(key: key, blockMode: CBC(iv: iv), padding: .pkcs5)
-        let decrypted = try aes.decrypt(Array(data.string.utf8))
+        let decrypted = try aes.decrypt(Array(dataString.utf8))
         
         return Data(decrypted)
     }

@@ -1,6 +1,6 @@
 //
-//  Extension+Dictionary.swift
-//  SimpleAPIClient
+//  Data+Extension.swift
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -25,41 +25,36 @@
 
 import Foundation
 
-public extension Dictionary {
+public extension Data {
     
     /**
-        Converts Dictionary to `PrettyPrinted` JSON String - useful for debugging
-     
-        - Returns: <Optional> String
-         */
-    var jsonString: String? {
-        guard let theJSONData = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else {
-            return nil
-        }
-        
-        return String(data: theJSONData, encoding: .ascii)
+     Data to String
+     - Returns: String
+     */
+    var string: String? {
+        return String(data: self, encoding: .utf8)
     }
     
     /**
-         Converts Dictionary to Data
-
-         - Returns: <Optional> Data
-         */
-    var data: Data? {
-        return try? JSONSerialization.data(withJSONObject: self as Any, options: [.prettyPrinted])
+     Data to JSON Dictionary
+     - Returns: Dictionary<String, Any>
+     */
+    var json: [String: Any]? {
+        return try? JSONSerialization.jsonObject(
+            with: self,
+            options: JSONSerialization.ReadingOptions.allowFragments
+            ) as? [String: Any]
     }
     
-}
-
-public extension Array {
-    
     /**
-         Converts Array to Data
-     
-         - Returns: <Optional> Data
-         */
-    var data: Data? {
-        return try? JSONSerialization.data(withJSONObject: self as Any, options: [.prettyPrinted])
+     Data to JSON Array
+     - Returns: Dictionary<Array<String, Any>>
+     */
+    var jsonArray: [[String: Any]]? {
+        return try? JSONSerialization.jsonObject(
+            with: self,
+            options: JSONSerialization.ReadingOptions.allowFragments
+            ) as? [[String: Any]]
     }
     
 }

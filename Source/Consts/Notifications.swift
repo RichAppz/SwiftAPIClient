@@ -1,6 +1,6 @@
 //
 //  Notifications.swift
-//  SimpleAPIClient
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -28,4 +28,4 @@ import Foundation
 /**
  Triggered upon a 401 response from an API
  */
-public let kUnauthorisedRequest = Notification.Name(rawValue: "com.simpleapiclient.unauthorised.notification")
+public let kUnauthorisedRequest = Notification.Name(rawValue: "com.SwiftAPIClient.unauthorised.notification")

@@ -1,5 +1,5 @@
 //
-//  SimpleAPIClient.h
+//  SwiftAPIClient.h
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -24,5 +24,5 @@
 
 #import <Cocoa/Cocoa.h>
 
-FOUNDATION_EXPORT double SimpleAPIClientVersionNumber;
-FOUNDATION_EXPORT const unsigned char SimpleAPIClientVersionString[];
+FOUNDATION_EXPORT double SwiftAPIClientVersionNumber;
+FOUNDATION_EXPORT const unsigned char SwiftAPIClientVersionString[];

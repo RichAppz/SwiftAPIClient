@@ -1,6 +1,6 @@
 //
 //  Model.swift
-//  SimpleAPIClient
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -27,13 +27,9 @@ import Foundation
 
 public protocol Model: Codable {
     
-    //================================================================================
-    // MARK: Properties
-    //================================================================================
-    
     /**
-         Enables the StorageClient to be able to create a unique stroe for the particular Model
-         */
+     Enables the StorageClient to be able to create a unique stroe for the particular Model
+     */
     static var storageIdentifier: String { get }
     
 }

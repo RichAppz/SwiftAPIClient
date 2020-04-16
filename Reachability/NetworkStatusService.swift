@@ -1,6 +1,6 @@
 //
 //  NetworkStatusService.swift
-//  SimpleAPIClient
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -31,9 +31,9 @@ public protocol NetworkObserver: class {
 
 public class NetworkStatusService {
     
-    //================================================================================
+    //==========================================
     // MARK: Properties
-    //================================================================================
+    //==========================================
     
     fileprivate struct _NetworkObserver {
         
@@ -44,7 +44,7 @@ public class NetworkStatusService {
         }
         
         var isValid: Bool {
-            get { return observer != nil }
+            return observer != nil
         }
         
     }
@@ -54,14 +54,12 @@ public class NetworkStatusService {
     fileprivate var observers = [_NetworkObserver]()
     
     fileprivate var isOnline: Bool {
-        get {
-            return self.reachability?.currentReachabilityStatus != .notReachable
-        }
+        return self.reachability?.currentReachabilityStatus != .notReachable
     }
     
-    //================================================================================
+    //==========================================
     // MARK: Singleton
-    //================================================================================
+    //==========================================
     
     internal static let shared = NetworkStatusService()
     internal init() {
@@ -72,19 +70,22 @@ public class NetworkStatusService {
             debugPrint(error.localizedDescription)
         }
         
-        NotificationCenter.default.addObserver(forName: ReachabilityChangedNotification, object: reachability, queue: nil, using: { notification in
-            DispatchQueue.main.async {
-                for wrapper in self.observers {
-                    wrapper.fire()
+        NotificationCenter.default.addObserver(
+            forName: ReachabilityChangedNotification,
+            object: reachability,
+            queue: nil, using: { _ in
+                DispatchQueue.main.async {
+                    for wrapper in self.observers {
+                        wrapper.fire()
+                    }
+                    self.observers = self.observers.filter { $0.isValid }
                 }
-                self.observers = self.observers.filter { $0.isValid }
-            }
         })
     }
     
-    //================================================================================
+    //==========================================
     // MARK: Helpers
-    //================================================================================
+    //==========================================
     
     /**
      Confirms if the device has a network connection available

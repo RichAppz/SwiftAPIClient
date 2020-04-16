@@ -1,6 +1,6 @@
 //
-//  Extension+Error.swift
-//  SimpleAPIClient
+//  Dictionary+Extension.swift
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -25,15 +25,38 @@
 
 import Foundation
 
-public extension DateFormatter {
+public extension Dictionary {
     
-    static let iso8601Full: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        return formatter
-    }()
+    /**
+     Converts Dictionary to `PrettyPrinted` JSON String - useful for debugging
+     - Returns: <Optional> String
+      */
+    var jsonString: String? {
+        guard let theJSONData = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else {
+            return nil
+        }
+        
+        return String(data: theJSONData, encoding: .ascii)
+    }
+    
+    /**
+     Converts Dictionary to Data
+     - Returns: <Optional> Data
+     */
+    var data: Data? {
+        return try? JSONSerialization.data(withJSONObject: self as Any, options: [.prettyPrinted])
+    }
+    
+}
+
+public extension Array {
+    
+    /**
+     Converts Array to Data
+     - Returns: <Optional> Data
+     */
+    var data: Data? {
+        return try? JSONSerialization.data(withJSONObject: self as Any, options: [.prettyPrinted])
+    }
     
 }

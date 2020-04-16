@@ -1,6 +1,6 @@
 //
 //  NetworkOperation.swift
-//  SimpleAPIClient
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -39,9 +39,9 @@ public enum RequestError: Int, Error {
 
 class NetworkOperation: ConcurrentOperation {
     
-    //================================================================================
+    //==========================================
     // MARK: Properties
-    //================================================================================
+    //==========================================
     
     let networkRequest: URLConvertible
     let parameters: [String: Any]?
@@ -51,9 +51,9 @@ class NetworkOperation: ConcurrentOperation {
     var manager: SessionManager?
     weak var request: Alamofire.Request?
     
-    //================================================================================
+    //==========================================
     // MARK: Initialization
-    //================================================================================
+    //==========================================
     
     /**
          Creates a NetworkOperation with the parameters required for the endpoint.
@@ -71,9 +71,9 @@ class NetworkOperation: ConcurrentOperation {
         super.init()
     }
     
-    //================================================================================
+    //==========================================
     // MARK: Overrides
-    //================================================================================
+    //==========================================
     
     override func main() {
         var encoding: ParameterEncoding = URLEncoding.default
@@ -96,11 +96,6 @@ class NetworkOperation: ConcurrentOperation {
                 responseSerializer: DataRequest.dataResponseSerializer(),
                 completionHandler: { (response) in
                     if let statusCode = response.response?.statusCode, statusCode > 200 {
-                        // Posting notification for unauthorised request to allow instant pickup
-                        if statusCode == 401 {
-                            NotificationCenter.default.post(name: kUnauthorisedRequest, object: ["response": response])
-                        }
-                        
                         let responseData = response.result.value as Data?
                         self.completion?(Response.init(
                             data: responseData,

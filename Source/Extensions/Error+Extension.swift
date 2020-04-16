@@ -1,6 +1,6 @@
 //
-//  Extension+Data.swift
-//  SimpleAPIClient
+//  Error+Extension.swift
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -25,39 +25,22 @@
 
 import Foundation
 
-public extension Data {
+public extension Error {
     
     /**
-         Data to String
-     
-         - Returns: String
-         */
-    var string: String {
-        return String(data: self, encoding: .utf8) ?? ""
+     Obtains the network error code from Error by NSError parameters
+     - Returns: Int
+     */
+    var code: Int {
+        return (self as NSError).code
     }
     
     /**
-         Data to JSON Dictionary
-     
-         - Returns: Dictionary<String, Any>
-         */
-    var json: [String: Any]? {
-        return try? JSONSerialization.jsonObject(
-            with: self,
-            options: JSONSerialization.ReadingOptions.allowFragments
-            ) as? [String: Any]
-    }
-    
-    /**
-         Data to JSON Array
-     
-         - Returns: Dictionary<Array<String, Any>>
-         */
-    var jsonArray: [[String: Any]]? {
-        return try? JSONSerialization.jsonObject(
-            with: self,
-            options: JSONSerialization.ReadingOptions.allowFragments
-            ) as? [[String: Any]]
+     Confirms if the error is because of a `Network Connection Issue`
+     - Returns: Bool
+     */
+    var isConnectionError: Bool {
+        return self as? RequestError == RequestError.noConnection
     }
     
 }

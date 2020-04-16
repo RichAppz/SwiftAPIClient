@@ -1,6 +1,6 @@
 //
 //  StorageClient.swift
-//  SimpleAPIClient
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -36,21 +36,22 @@ public enum StorageClientError: Error {
 
 internal let kUserDefaultExtension = ".client.store"
 
-@objcMembers public class StorageClient {
+public class StorageClient {
     
-    //================================================================================
+    //==========================================
     // MARK: Data
-    //================================================================================
+    //==========================================
     
     var data: [String: String] = [:] {
         didSet { StorageClient.save() }
     }
     
-    //================================================================================
+    //==========================================
     // MARK: Singleton
-    //================================================================================
+    //==========================================
     
     static let shared = StorageClient()
+    
     private init() {
         #if os(iOS) || os(macOS) || os(tvOS)
         do {
@@ -61,47 +62,44 @@ internal let kUserDefaultExtension = ".client.store"
         #endif
     }
     
-    //================================================================================
+    //==========================================
     // MARK: Mapping Functions
-    //================================================================================
+    //==========================================
     
     /**
-         Maps response data from a network request directly into a Model Array using decodable, during this action the method will also handle the data persistance.
-         
-         - Parameter object:            Data
-         - Parameter storageKey:    <Optional>String - this is only required if a non default location needs to be used
-         - Parameter storageType:  StorageType - a choice of where the persistance is to be store - StorageType.userDefaults / StorageType.fileManager / StorageType.none
-         - Returns: Array<Model>
-         - Throws: DecodingError
-         */
+     Maps response data from a network request directly into a Model Array using decodable, during this action the method will also hand  the data persistance.
+     - Parameter object: Data?
+     - Parameter storageKey: <Optional>String - this is only required if a non default location needs to be used
+     - Parameter storageType: StorageType - a choice of where the persistance is to be store - StorageType.userDefaults  StorageType.fileManager / StorageType.none
+     - Returns: Array<Model>
+     - Throws: DecodingError
+     */
     public static func map<T: Model>(object: Data?, storageKey: String? = nil, storageType: StorageType = .fileManager) throws -> [T]? {
         guard let object = object else { return nil }
-        store(object, storageIdentifier: T.storageIdentifier, storageKey: storageKey, storageType: storageType)
+        try store(object, storageIdentifier: T.storageIdentifier, storageKey: storageKey, storageType: storageType)
         
         return try CoderModule.decoder.decode([T].self, from: object)
     }
     
     /**
-         Maps response data from a network request directly into a Model using decodable, during this action the method will also handle the data persistance.
-         
-         - Parameter object:            Data
-         - Parameter storageKey:    <Optional>String - this is only required if a non default location needs to be used
-         - Parameter storageType:  StorageType - a choice of where the persistance is to be store - StorageType.userDefaults / StorageType.fileManager / StorageType.none
-         - Returns: Array<Model>
-         - Throws: DecodingError
-         */
+     Maps response data from a network request directly into a Model using decodable, during this action the method will also handle the da   persistance.
+     - Parameter object: Data?
+     - Parameter storageKey: <Optional>String - this is only required if a non default location needs to be used
+     - Parameter storageType:  StorageType - a choice of where the persistance is to be store - StorageType.userDefaults      StorageType.fileManager / StorageType.none
+     - Returns: Array<Model>
+     - Throws: DecodingError
+     */
     public static func map<T: Model>(object: Data?, storageKey: String? = nil, storageType: StorageType = .fileManager) throws -> T? {
         guard let object = object else { return nil }
-        store(object, storageIdentifier: T.storageIdentifier, storageKey: storageKey, storageType: storageType)
+        try store(object, storageIdentifier: T.storageIdentifier, storageKey: storageKey, storageType: storageType)
         
         return try CoderModule.decoder.decode(T.self, from: object)
     }
     
     /**
-         Clears all the data that has been saved by the client from the FileManger, UserDefaults and the Singleton itself
-     
-         - Throws: FileManagerError
-         */
+     Clears all the data that has been saved by the client from the FileManger, UserDefaults and the Singleton itself
+     - Throws: FileManagerError
+     */
     public static func clear() throws {
         #if os(iOS) || os(macOS) || os(tvOS)
         try FileManager.removePlist(named: kPlistFilename)
@@ -112,32 +110,106 @@ internal let kUserDefaultExtension = ".client.store"
         shared.data = [:]
     }
     
-    //================================================================================
-    // MARK: Helpers
-    //================================================================================
+    //==========================================
+    // MARK: Retrieve Functions
+    //==========================================
     
-    private static func store(
+    #if os(iOS) || os(macOS) || os(tvOS)
+    /**
+     Model array retrieval from any type of storage if available
+     - Parameter storageKey: <Optional>String - this is only required if a non default location needs to be used
+     - Returns: Array<Model>
+     - Throws: DecodingError
+     */
+    public static func retrieve<T: Model>(storageKey: String? = nil) throws -> [T]? {
+        let additional = storageKey?.isEmpty ?? true ? "" : String(format: ".%@", storageKey!)
+        let storageId = String(format: "%@%@%@", T.storageIdentifier, additional, kUserDefaultExtension)
+        
+        if
+            let dataString = UserDefaults.standard.string(forKey: storageId),
+            let data = try SecureService.AESDecrypt(dataString) {
+            return try? CoderModule.decoder.decode([T].self, from: data)
+        }
+        
+        if
+            let dataString = shared.data[storageId],
+            let data = try SecureService.AESDecrypt(dataString) {
+            return try? CoderModule.decoder.decode([T].self, from: data)
+        }
+        
+        throw StorageClientError.noDataAvailable
+    }
+    
+    /**
+     Model retrieval from any type of storage if available
+     - Parameter storageKey: <Optional>String - this is only required if a non default location needs to be used
+     - Returns: Model
+     - Throws: DecodingError
+     */
+    public static func retrieve<T: Model>(storageKey: String? = nil) throws -> T? {
+        let additional = storageKey?.isEmpty ?? true ? "" : String(format: ".%@", storageKey!)
+        let storageId = String(format: "%@%@%@", T.storageIdentifier, additional, kUserDefaultExtension)
+        
+        if
+            let dataString = UserDefaults.standard.string(forKey: storageId),
+            let data = try SecureService.AESDecrypt(dataString) {
+            return try? CoderModule.decoder.decode(T.self, from: data)
+        }
+        
+        if
+            let directory = shared.data[storageId],
+            let data = try SecureService.AESDecrypt(directory) {
+            return try? CoderModule.decoder.decode(T.self, from: data)
+        }
+        
+        throw StorageClientError.noDataAvailable
+    }
+    #endif
+    
+    //==========================================
+    // MARK: Clear Functions
+    //==========================================
+    
+    public static func remove<T: Model>(objectType: T?, storageKey: String? = nil) throws {
+        let additional = storageKey?.isEmpty ?? true ? "" : String(format: ".%@", storageKey!)
+        let storageId = String(format: "%@%@%@", T.storageIdentifier, additional, kUserDefaultExtension)
+        
+        UserDefaults.standard.removeObject(forKey: storageId)
+        
+    }
+    
+    public static func remove<T: Model>(objectType: [T]?, storageKey: String? = nil) throws {
+        let additional = storageKey?.isEmpty ?? true ? "" : String(format: ".%@", storageKey!)
+        let storageId = String(format: "%@%@%@", T.storageIdentifier, additional, kUserDefaultExtension)
+        
+        UserDefaults.standard.removeObject(forKey: storageId)
+        
+    }
+    
+    //==========================================
+    // MARK: Helpers
+    //==========================================
+    
+    internal static func store(
         _ data: Data?,
         storageIdentifier: String,
         storageKey: String? = nil,
-        storageType: StorageType) {
+        storageType: StorageType) throws {
         guard let data = data else { return }
-        do {
-            #if os(iOS) || os(macOS) || os(tvOS)
-            let storageId = storageKey ?? String(format: "%@%@", storageIdentifier, kUserDefaultExtension)
-            
-            switch storageType {
-            case .fileManager:
-                try fileManagerStore(data, storageIdentifier: storageId)
-            case .userDefaults:
-                try userDefaultStore(data, storageIdentifier: storageId)
-            case .none:
-                break
-            }
-            #endif
-        } catch {
-            debugPrint(error.localizedDescription)
+        
+        #if os(iOS) || os(macOS) || os(tvOS)
+        let additional = storageKey?.isEmpty ?? true ? "" : String(format: ".%@", storageKey!)
+        let storageId = String(format: "%@%@%@", storageIdentifier, additional, kUserDefaultExtension)
+        
+        switch storageType {
+        case .fileManager:
+            try fileManagerStore(data, storageIdentifier: storageId)
+        case .userDefaults:
+            try userDefaultStore(data, storageIdentifier: storageId)
+        case .none:
+            break
         }
+        #endif
     }
     
     private static func userDefaultStore(
@@ -168,66 +240,48 @@ internal let kUserDefaultExtension = ".client.store"
         #endif
     }
     
-    //================================================================================
-    // MARK: Quick Functions
-    //================================================================================
-    
-    #if os(iOS) || os(macOS) || os(tvOS)
-    /**
-         Model array retrieval from any type of storage if available
-     
-         - Parameter storageKey:    <Optional>String - this is only required if a non default location needs to be used
-         - Returns: Array<Model>
-         - Throws: DecodingError
-         */
-    public static func retrieve<T: Model>(storageKey: String? = nil) throws -> [T]? {
-        let storageId = storageKey ?? String(format: "%@%@", T.storageIdentifier, kUserDefaultExtension)
-        
-        let dataString = UserDefaults.standard.value(forKey: storageId)
-        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        
-        if
-            let dataString = dataString as? String,
-            let data = try SecureService.AESDecrypt(dataString) {
-            return try? CoderModule.decoder.decode([T].self, from: data)
-        }
-        
-        if
-            let directory = directory,
-            let fileData = FileManager.default.contents(atPath: directory.appendingPathComponent(storageId).absoluteString),
-            let data = try SecureService.AESDecrypt(fileData) {
-            return try? CoderModule.decoder.decode([T].self, from: data)
-        }
-        
-        throw StorageClientError.noDataAvailable
-    }
+}
+
+public extension Array where Element: Model {
     
     /**
-         Model retrieval from any type of storage if available
-     
-         - Parameter storageKey:    <Optional>String - this is only required if a non default location needs to be used
-         - Returns: Model
-         - Throws: DecodingError
-         */
-    public static func retrieve<T: Model>(storageKey: String? = nil) throws -> T? {
-        let storageId = storageKey ?? String(format: "%@%@", T.storageIdentifier, kUserDefaultExtension)
+     This method will persist the Model Array passed into the memory
+     - Parameter storageKey: <Optional>String - this is only required if a non default location needs to be used
+     - Parameter storageType:  StorageType - a choice of where the persistance is to be store - StorageType.userDefaults      StorageType.fileManager / StorageType.none
+     - Returns: status Bool
+     - Throws: DecodingError
+     */
+    func save(storageKey: String? = nil, storageType: StorageType = .userDefaults) throws {
+        guard let firstObj = first else { return }
         
-        let dataString = UserDefaults.standard.value(forKey: storageId)
-        
-        if
-            let dataString = dataString as? String,
-            let data = try SecureService.AESDecrypt(dataString) {
-            return try? CoderModule.decoder.decode(T.self, from: data)
-        }
-        
-        if
-            let directory = shared.data[storageId],
-            let data = try SecureService.AESDecrypt(directory) {
-            return try? CoderModule.decoder.decode(T.self, from: data)
-        }
-        
-        throw StorageClientError.noDataAvailable
+        let data = try CoderModule.encoder.encode(self)
+        try StorageClient.store(
+            data,
+            storageIdentifier: type(of: firstObj).storageIdentifier,
+            storageKey: storageKey,
+            storageType: storageType
+        )
     }
-    #endif
+    
+}
+
+public extension Optional where Wrapped: Model {
+    
+    /**
+     This method will persist the Model Array passed into the memory
+     - Parameter storageKey: <Optional>String - this is only required if a non default location needs to be used
+     - Parameter storageType:  StorageType - a choice of where the persistance is to be store - StorageType.userDefaults      StorageType.fileManager / StorageType.none
+     - Returns: status Bool
+     - Throws: DecodingError
+     */
+    func save(storageKey: String? = nil, storageType: StorageType = .userDefaults) throws {
+        guard let obj = self else { return }
+        
+        let data = try CoderModule.encoder.encode(self)
+        try StorageClient.store(
+            data,
+            storageIdentifier: type(of: obj).storageIdentifier,
+            storageKey: storageKey, storageType: storageType)
+    }
     
 }

@@ -1,6 +1,6 @@
 //
 //  References.swift
-//  SimpleAPIClient
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -26,11 +26,8 @@
 import Foundation
 
 // MARK: Public References
-public var kMappingServiceErrorDomain: String { return "com.richappz.mapping" }
-public var kServiceAuthenticationErrorDomain: String { return "com.richappz.authentication" }
-public var kStorageLocation: String { return "com.richappz.swiftapiclient" }
-public var kPlistFilename: String { return "com_richappz_swiftapiclient" }
-public var kRequestErrorDomain: String { return "com.richappz.request.error" }
+public let kPlistFilename: String = "com_richappz_swiftapiclient"
+public let kRequestErrorDomain: String = "com.richappz.request.error"
 
 // MARK: Library References
 var kResponseQueue = "com.richappz.queue"

@@ -1,6 +1,6 @@
 //
 //  Movie.swift
-//  SimpleAPIClient iOS Tests
+//  SwiftAPIClient iOS Tests
 //
 //  Created by Rich Mucha on 20/03/2019.
 //  Copyright © 2019 RichAppz Limited. All rights reserved.

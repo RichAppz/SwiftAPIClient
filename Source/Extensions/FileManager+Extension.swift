@@ -1,6 +1,6 @@
 //
-//  Extension+FileManager.swift
-//  SimpleAPIClient
+//  FileManager+Extension.swift
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -37,11 +37,10 @@ internal let plistFilename = "SimpleAPIClient"
 internal extension FileManager {
     
     /**
-         Fetches JSON file from local storage
-     
-         - Parameter name:  String - name of JSON file that is required
-         - Returns: Dictionary<String, String>
-         */
+     Fetches JSON file from local storage
+     - Parameter name:  String - name of JSON file that is required
+     - Returns: Dictionary<String, String>
+     */
     static func fetchPlist(named: String) throws -> [String: String] {
         guard let directory = self.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileManagerError.documentDirectoryMissing
@@ -68,12 +67,11 @@ internal extension FileManager {
     }
     
     /**
-         Saves JSON to local storage
-     
-         - Parameter name:  String - name of JSON file that is required
-         - Parameter dict:      Dictionary<String, String> - json that is required to be saved
-         - Throws: FileManagerError.documentDirectoryMissing, FileManagerError.plistNotSaved
-         */
+     Saves JSON to local storage
+     - Parameter name:  String - name of JSON file that is required
+     - Parameter dict:      Dictionary<String, String> - json that is required to be saved
+     - Throws: FileManagerError.documentDirectoryMissing, FileManagerError.plistNotSaved
+     */
     static func savePlist(named: String, dict: [String: String]) throws {
         guard let directory = self.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileManagerError.documentDirectoryMissing
@@ -86,12 +84,11 @@ internal extension FileManager {
     }
     
     /**
-         Removes JSON from local storage
-     
-         - Parameter name:  String - name of JSON file that is required
-         - Parameter dict:      Dictionary<String, String> - json that is required to be saved
-         - Throws: FileManagerError.documentDirectoryMissing, FileManagerError.deletionFailed
-         */
+     Removes JSON from local storage
+     - Parameter name:  String - name of JSON file that is required
+     - Parameter dict:      Dictionary<String, String> - json that is required to be saved
+     - Throws: FileManagerError.documentDirectoryMissing, FileManagerError.deletionFailed
+     */
     static func removePlist(named: String) throws {
         guard let directory = self.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileManagerError.documentDirectoryMissing

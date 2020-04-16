@@ -1,6 +1,6 @@
 //
 //  CoderModule.swift
-//  SimpleAPIClient
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -45,18 +45,22 @@ public class CoderModule {
     }()
     
     /**
-         Custom decoder that will help map the response data to a specific set of rules: 5 optional date strings, snakeCase > Camel if required
-         ~ if forking the framework you can adjust to your own decode options
+     Custom decoder that will help map the response data to a specific set of rules: 5 optional date strings, snakeCase > Camel if required
+     ~ if forking the framework you can adjust to your own decode options
      
-         - Returns: JSONDecoder
-         */
+     - Returns: JSONDecoder
+     */
     public static var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()
-            let dateString = try container.decode(String.self)
             
+            if let dateTimestamp = try? container.decode(TimeInterval.self) {
+                return Date(timeIntervalSince1970: dateTimestamp)
+            }
+            
+            let dateString = try container.decode(String.self)
             for format in DateType.formats {
                 formatter.dateFormat = format.rawValue
                 if let date = formatter.date(from: dateString) {
@@ -67,6 +71,16 @@ public class CoderModule {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateString)")
         }
         return decoder
+    }()
+    
+    /**
+     Custom encoder that will help map the Model<T> to a specific set of rules:  Camel if required > snakeCase
+     ~ if forking the framework you can adjust to your own decode options
+     
+     - Returns: JSONEncoder
+     */
+    public static var encoder: JSONEncoder = {
+        return JSONEncoder()
     }()
     
 }

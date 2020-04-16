@@ -1,6 +1,6 @@
 //
 //  StorageTests.swift
-//  SimpleAPIClient iOS Tests
+//  SwiftAPIClient iOS Tests
 //
 //  Created by Rich Mucha on 20/03/2019.
 //  Copyright © 2019 RichAppz Limited. All rights reserved.
@@ -8,6 +8,7 @@
 
 import XCTest
 
+// swiftlint:disable line_length
 class StorageTests: XCTestCase {
 
     //================================================================================
@@ -50,7 +51,25 @@ class StorageTests: XCTestCase {
     }
     
     func testMoviesExample() {
-        let movies: [Movie]? = try? StorageClient.map(object: movieJsonArray.data(using: .utf8))
+        let movies: [Movie]? = try? StorageClient.map(object: movieJsonArray.data(using: .utf8), storageKey: "testingMovies" )
+        XCTAssertNotNil(movies)
+        XCTAssert(movies?.count ?? 0 == 2)
+
+        guard let movie = movies?.first(where: { $0.title == "The Green Mile" }) else {
+            XCTFail("No movies returned from storage")
+            return
+        }
+
+        XCTAssert(movie.title == "The Green Mile")
+        XCTAssert(movie.year == "1999")
+        XCTAssert(movie.rated == "R")
+        XCTAssertTrue(movie.genre?.contains("Crime") ?? false)
+        
+        moviesFetchExample(key: "testingMovies")
+    }
+
+    func moviesFetchExample(key: String) {
+        let movies: [Movie]? = try? StorageClient.retrieve(storageKey: key)
         XCTAssertNotNil(movies)
         XCTAssert(movies?.count ?? 0 == 2)
 
@@ -64,5 +83,25 @@ class StorageTests: XCTestCase {
         XCTAssert(movie.rated == "R")
         XCTAssertTrue(movie.genre?.contains("Crime") ?? false)
     }
+    
+    func testSaveMovies() {
+        guard let data = movieJsonArray.data(using: .utf8) else { return }
+        let movies: [Movie]? = try? CoderModule.decoder.decode([Movie].self, from: data)
+        XCTAssertNotNil(movies)
+        XCTAssert(movies?.count ?? 0 == 2)
 
+        guard let movie = movies?.first(where: { $0.title == "The Green Mile" }) else {
+            XCTFail("No movies returned from storage")
+            return
+        }
+
+        XCTAssert(movie.title == "The Green Mile")
+        XCTAssert(movie.year == "1999")
+        XCTAssert(movie.rated == "R")
+        XCTAssertTrue(movie.genre?.contains("Crime") ?? false)
+        
+        try? movies?.save(storageKey: "testMovieManualSave", storageType: .fileManager)
+        moviesFetchExample(key: "testMovieManualSave")
+    }
+    
 }

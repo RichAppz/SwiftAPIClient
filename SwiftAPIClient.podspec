@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.license = 'MIT'
   s.summary = 'Simple API Client for Apple Swift Projects'
   s.homepage = 'https://github.com/RichAppz'
-  s.source = { :git => 'https://github.com/RichAppz/SimpleAPIClient.git', :tag => s.version }
+  s.source = { :git => 'https://github.com/RichAppz/SwiftAPIClient.git', :tag => s.version }
   s.authors = { 'Rich Mucha' => 'rich@richappz.com' }
   
   s.ios.deployment_target = '11.0'

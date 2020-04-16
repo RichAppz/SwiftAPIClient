@@ -1,6 +1,6 @@
 //
-//  Extension+Error.swift
-//  SimpleAPIClient
+//  DateFormatter+Extension.swift
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -25,24 +25,15 @@
 
 import Foundation
 
-public extension Error {
+public extension DateFormatter {
     
-    /**
-     Obtains the network error code from Error by NSError parameters
-     
-     - Returns: Int
-     */
-    var code: Int {
-        return (self as NSError).code
-    }
-    
-    /**
-     Confirms if the error is because of a `Network Connection Issue`
-     
-     - Returns: Bool
-     */
-    var isConnectionError: Bool {
-        return self as? RequestError == RequestError.noConnection
-    }
+    static let iso8601Full: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
     
 }

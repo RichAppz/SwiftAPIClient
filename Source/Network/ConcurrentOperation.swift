@@ -1,6 +1,6 @@
 //
 //  ConcurrentOperation.swift
-//  SimpleAPIClient
+//  SwiftAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
