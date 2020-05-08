@@ -14,15 +14,15 @@ public extension String {
     /**
      Generates a full endpoint with the required parameters
      - Parameter endpoint: String?
-     - Parameter endpointParam: String?
+     - Parameter endpointParams: [Any]?
      - Returns: String
      */
     static func fullPath(
         endpoint: String? = nil,
-        endpointParam: String? = nil) -> String {
+        endpointParams: [Any]? = nil) -> String {
         
-        if let endpointParam = endpointParam {
-            return String(format: endpoint ?? "", endpointParam)
+        if let array = endpointParams?.compactMap({ $0 as? CVarArg }) {
+            return String(format: endpoint ?? "", arguments: array)
         } else {
             return endpoint ?? ""
         }

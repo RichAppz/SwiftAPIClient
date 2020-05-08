@@ -28,7 +28,7 @@ import Foundation
 public struct RequestModel {
     
     let endpoint: String
-    let endpointParam: String?
+    let endpointParams: [Any]?
     let params: [String: Any]
     let storageType: StorageType
     let storageKeyAddition: String?
@@ -38,14 +38,14 @@ public struct RequestModel {
     
     public init(
         endpoint: String = "",
-        endpointParam: String? = nil,
+        endpointParams: [Any]? = nil,
         params: [String: Any] = [:],
         storageType: StorageType = .none,
         storageKeyAddition: String? = nil,
         notification: Notification.Name? = nil) {
         
         self.endpoint = endpoint
-        self.endpointParam = endpointParam
+        self.endpointParams = endpointParams
         self.params = params
         self.storageType = storageType
         self.storageKeyAddition = storageKeyAddition
@@ -61,7 +61,7 @@ public struct RequestModel {
 extension RequestModel {
     
     var fullPath: String {
-        return .fullPath(endpoint: endpoint, endpointParam: endpointParam)
+        return .fullPath(endpoint: endpoint, endpointParams: endpointParams)
     }
     
 }
