@@ -76,9 +76,10 @@ public class StorageClient {
      */
     public static func map<T: Model>(object: Data?, storageKey: String? = nil, storageType: StorageType = .fileManager) throws -> [T]? {
         guard let object = object else { return nil }
+        let models: [T]? = try CoderModule.decoder.decode([T].self, from: object)
         try store(object, storageIdentifier: T.storageIdentifier, storageKey: storageKey, storageType: storageType)
         
-        return try CoderModule.decoder.decode([T].self, from: object)
+        return models
     }
     
     /**
@@ -91,9 +92,33 @@ public class StorageClient {
      */
     public static func map<T: Model>(object: Data?, storageKey: String? = nil, storageType: StorageType = .fileManager) throws -> T? {
         guard let object = object else { return nil }
+        let model: T? = try CoderModule.decoder.decode(T.self, from: object)
         try store(object, storageIdentifier: T.storageIdentifier, storageKey: storageKey, storageType: storageType)
         
-        return try CoderModule.decoder.decode(T.self, from: object)
+        return model
+    }
+    
+    /**
+     Removes `Model` from storage
+     - Parameter model: Model.Type
+     */
+    public static func remove(model: Model.Type) {
+        #if os(iOS) || os(macOS) || os(tvOS)
+        let storageId = String(format: "%@%@", kUserDefaultExtension, model.storageIdentifier)
+        
+        DispatchQueue.main.async {
+            let items = UserDefaults.standard.dictionaryRepresentation().filter({ $0.key.contains(storageId) })
+            items.forEach {
+                UserDefaults.standard.set(nil, forKey: $0.key)
+                shared.data[$0.key] = nil
+            }
+            
+            let storedItems = shared.data.keys.filter({ $0.contains(storageId) })
+            storedItems.forEach {
+                shared.data[$0] = nil
+            }
+        }
+        #endif
     }
     
     /**
@@ -128,13 +153,13 @@ public class StorageClient {
         if
             let dataString = UserDefaults.standard.string(forKey: storageId),
             let data = try SecureService.AESDecrypt(dataString) {
-            return try? CoderModule.decoder.decode([T].self, from: data)
+            return try CoderModule.decoder.decode([T].self, from: data)
         }
         
         if
             let dataString = shared.data[storageId],
             let data = try SecureService.AESDecrypt(dataString) {
-            return try? CoderModule.decoder.decode([T].self, from: data)
+            return try CoderModule.decoder.decode([T].self, from: data)
         }
         
         throw StorageClientError.noDataAvailable
@@ -153,13 +178,13 @@ public class StorageClient {
         if
             let dataString = UserDefaults.standard.string(forKey: storageId),
             let data = try SecureService.AESDecrypt(dataString) {
-            return try? CoderModule.decoder.decode(T.self, from: data)
+            return try CoderModule.decoder.decode(T.self, from: data)
         }
         
         if
             let directory = shared.data[storageId],
             let data = try SecureService.AESDecrypt(directory) {
-            return try? CoderModule.decoder.decode(T.self, from: data)
+            return try CoderModule.decoder.decode(T.self, from: data)
         }
         
         throw StorageClientError.noDataAvailable

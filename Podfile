@@ -4,7 +4,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 def pods
-    pod 'Alamofire', '4.9.1'
+    pod 'Alamofire'
     pod 'CryptoSwift'
 end
 

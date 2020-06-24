@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'SwiftAPIClient'
-  s.version = '2.0.3'
+  s.version = '2.0.4'
   s.license = 'MIT'
   s.summary = 'SwiftAPIClient for Apple Swift Projects'
   s.homepage = 'https://github.com/RichAppz'
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.tvos.source_files = 'Reachability/**/*.{swift}'
   s.swift_versions = '5.0'
   
-  s.dependency 'Alamofire', '4.9.1'
+  s.dependency 'Alamofire'
   s.dependency 'CryptoSwift'
 
 end 

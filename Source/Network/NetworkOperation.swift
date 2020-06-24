@@ -1,6 +1,6 @@
 //
 //  NetworkOperation.swift
-//  SwiftAPIClient
+//  SimpleAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -48,7 +48,7 @@ class NetworkOperation: ConcurrentOperation {
     let completion: OperationResponse?
     var method: HTTPMethod = .get
     
-    var manager: SessionManager?
+    var manager: Session?
     weak var request: Alamofire.Request?
     
     //==========================================
@@ -67,7 +67,7 @@ class NetworkOperation: ConcurrentOperation {
         networkRequest = request
         completion = completionHandler
         parameters = params
-        manager = Alamofire.SessionManager(configuration: config)
+        manager = Alamofire.Session(configuration: config)
         super.init()
     }
     
@@ -81,22 +81,15 @@ class NetworkOperation: ConcurrentOperation {
             encoding = JSONEncoding.default
         }
         
-        #if os(iOS) || os(macOS)
-        if !NetworkStatusService.hasConnection {
-            completion?(Response.init(data: nil, headers: nil, error: RequestError.noConnection))
-            return
-        }
-        #endif
-        
         let queue = DispatchQueue(label: kResponseQueue, qos: .utility, attributes: [.concurrent])
         request = manager?
             .request(networkRequest, method: method, parameters: parameters, encoding: encoding)
             .response(
                 queue: queue,
-                responseSerializer: DataRequest.dataResponseSerializer(),
+                responseSerializer: DataResponseSerializer(),
                 completionHandler: { (response) in
                     if let statusCode = response.response?.statusCode, statusCode > 200 {
-                        let responseData = response.result.value as Data?
+                        let responseData = response.data
                         self.completion?(Response.init(
                             data: responseData,
                             headers: response.response?.allHeaderFields as? [String: Any],
@@ -110,7 +103,7 @@ class NetworkOperation: ConcurrentOperation {
                     }
                     
                     self.completion?(Response.init(
-                        data: response.result.value as Data?,
+                        data: response.data,
                         headers: response.response?.allHeaderFields as? [String: Any],
                         error: response.error
                     ))
