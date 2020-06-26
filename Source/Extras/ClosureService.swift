@@ -1,6 +1,6 @@
 //
 //  ClosureService.swift
-//  SwiftAPIClient
+//  SimpleAPIClient
 //
 //  Copyright (c) 2017-2019 RichAppz Limited (https://richappz.com)
 //
@@ -29,11 +29,11 @@ public typealias ModelObjectCompletionBlock<T: Model> = (T?, Error?) -> Void
 public typealias ModelArrayCompletionBlock<T: Model> = ([T]?, Error?) -> Void
 
 public struct Closure<T: Model>: Equatable {
-    
+
     public let id: String
     public let blockObj: ModelObjectCompletionBlock<T>?
     public let blockArr: ModelArrayCompletionBlock<T>?
-    
+
     /**
      Initialize the model with either the `ModelObjectCompletionBlock` or `ModelArrayCompletionBlock`
      - Parameter url: String - this should be an identifiable solution to the closure that can be referenced at API completion
@@ -48,36 +48,36 @@ public struct Closure<T: Model>: Equatable {
         self.blockObj = blockObj
         self.blockArr = blockArr
     }
-    
+
     static public func == (lhs: Closure, rhs: Closure) -> Bool {
         return lhs.id == rhs.id
     }
-    
+
 }
 
 /**
- This service allows the Client, if required, to stop quick succession API calls requesting the same data. The store
+This service allows the Client, if required, to stop quick succession API calls requesting the same data. The store
  
- - Parameter store:  Array<Any>  - publicly available to allow for testing, use the functions to request the store
- */
+- Parameter store:  Array<Any>  - publicly available to allow for testing, use the functions to request the store
+*/
 public class ClosureService {
-    
+
     //================================================================================
     // MARK: Properties
     //================================================================================
-    
-    public var store = [Any]()
-    
+
+    public var store = ThreadSafeArray<Any>()
+
     //================================================================================
     // MARK: Singleton
     //================================================================================
-    
+
     public static let shared = ClosureService()
-    
+
     //================================================================================
     // MARK: Helpers
     //================================================================================
-    
+
     /**
      Generic <Model> - Checks to see if an existing callback exists in the Singleton store, appends the callback to the array for outside methods to complete
      - Parameter closure:   `Closure<Model>`
@@ -91,7 +91,7 @@ public class ClosureService {
     
     /**
      Generic <Model> - Returns any matching closures that exist in the Singleton store
-     - Parameter closure:   `Closure<Model>`
+     - Parameter closure: `Closure<Model>`
      - Returns: Array(Closure<Model>)
      */
     static func closures<T: Model>(_ closure: Closure<T>) -> [Closure<T>] {
@@ -107,7 +107,7 @@ public class ClosureService {
      */
     static func removeClosures<T: Model>(_ closures: [Closure<T>]) {
         closures.forEach { (closure) in
-            shared.store.removeAll(where: { $0 as? Closure<T> == closure })
+            shared.store.remove(where: { $0 as? Closure<T> == closure })
         }
     }
     
@@ -115,7 +115,7 @@ public class ClosureService {
      Clears the Singleton store
      */
     static func clear() {
-        shared.store = []
+        shared.store = ThreadSafeArray<Any>()
     }
-    
+
 }
