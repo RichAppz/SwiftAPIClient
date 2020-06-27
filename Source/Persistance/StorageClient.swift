@@ -152,13 +152,13 @@ public class StorageClient {
         
         if
             let dataString = UserDefaults.standard.string(forKey: storageId),
-            let data = try SecureService.AESDecrypt(dataString) {
+            let data = try SecureService.decrypt(dataString) {
             return try CoderModule.decoder.decode([T].self, from: data)
         }
         
         if
             let dataString = shared.data[storageId],
-            let data = try SecureService.AESDecrypt(dataString) {
+            let data = try SecureService.decrypt(dataString) {
             return try CoderModule.decoder.decode([T].self, from: data)
         }
         
@@ -177,13 +177,13 @@ public class StorageClient {
         
         if
             let dataString = UserDefaults.standard.string(forKey: storageId),
-            let data = try SecureService.AESDecrypt(dataString) {
+            let data = try SecureService.decrypt(dataString) {
             return try CoderModule.decoder.decode(T.self, from: data)
         }
         
         if
             let directory = shared.data[storageId],
-            let data = try SecureService.AESDecrypt(directory) {
+            let data = try SecureService.decrypt(directory) {
             return try CoderModule.decoder.decode(T.self, from: data)
         }
         
@@ -241,7 +241,7 @@ public class StorageClient {
         _ data: Data,
         storageIdentifier: String) throws {
         
-        let secureData = try SecureService.AESEncryptToString(data)
+        let secureData = SecureService.encryptToString(data)
         DispatchQueue.main.async {
             UserDefaults.standard.set(secureData, forKey: storageIdentifier)
         }
@@ -251,7 +251,7 @@ public class StorageClient {
         _ data: Data,
         storageIdentifier: String) throws {
         
-        let secureData = try SecureService.AESEncryptToString(data)
+        let secureData = SecureService.encryptToString(data)
         shared.data[storageIdentifier] = secureData
     }
     

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'SwiftAPIClient'
-  s.version = '2.0.5'
+  s.version = '2.0.6'
   s.license = 'MIT'
   s.summary = 'SwiftAPIClient for Apple Swift Projects'
   s.homepage = 'https://github.com/RichAppz'
@@ -19,6 +19,6 @@ Pod::Spec.new do |s|
   s.swift_versions = '5.0'
   
   s.dependency 'Alamofire'
-  s.dependency 'CryptoSwift'
+  s.dependency 'RNCryptor', '~> 5.0'
 
 end 

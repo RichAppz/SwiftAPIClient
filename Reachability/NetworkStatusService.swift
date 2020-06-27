@@ -108,7 +108,7 @@ public class NetworkStatusService {
      Removes a NetworkObserver delegate from the Singleton store
      */
     public class func stopObservingNetworkChanges(_ observer: NetworkObserver) {
-        var idx: Int? = nil
+        var idx: Int?
         for (i, wrapper) in shared.observers.enumerated() {
             if wrapper.isValid && wrapper.observer === observer {
                 idx = i

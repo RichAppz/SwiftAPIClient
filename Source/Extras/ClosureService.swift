@@ -57,7 +57,6 @@ public struct Closure<T: Model>: Equatable {
 
 /**
 This service allows the Client, if required, to stop quick succession API calls requesting the same data. The store
- 
 - Parameter store:  Array<Any>  - publicly available to allow for testing, use the functions to request the store
 */
 public class ClosureService {

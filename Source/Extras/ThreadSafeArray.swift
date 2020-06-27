@@ -25,7 +25,6 @@
 
 import Foundation
 
-/// A thread-safe array.
 public class ThreadSafeArray<Element> {
     
     private let queue = DispatchQueue(label: "com.richappz.threadsafe.queue", attributes: .concurrent)
@@ -40,7 +39,9 @@ public class ThreadSafeArray<Element> {
     
 }
 
-// MARK: - Properties
+//================================================================================
+// MARK: Properties
+//================================================================================
 
 public extension ThreadSafeArray {
     
@@ -80,7 +81,9 @@ public extension ThreadSafeArray {
     }
 }
 
-// MARK: - Immutable
+//================================================================================
+// MARK: Immutable
+//================================================================================
 
 public extension ThreadSafeArray {
     
@@ -172,7 +175,7 @@ public extension ThreadSafeArray {
     ///   - initialResult: The value to use as the initial accumulating value.
     ///   - updateAccumulatingResult: A closure that updates the accumulating value with an element of the sequence.
     /// - Returns: The final accumulated value. If the sequence has no elements, the result is initialResult.
-    func reduce<ElementOfResult>(into initialResult: ElementOfResult, _ updateAccumulatingResult: @escaping (inout ElementOfResult, Element) -> ()) -> ElementOfResult {
+    func reduce<ElementOfResult>(into initialResult: ElementOfResult, _ updateAccumulatingResult: @escaping (inout ElementOfResult, Element) -> Void) -> ElementOfResult {
         var result: ElementOfResult?
         queue.sync { result = self.array.reduce(into: initialResult, updateAccumulatingResult) }
         return result ?? initialResult
@@ -206,7 +209,9 @@ public extension ThreadSafeArray {
     }
 }
 
-// MARK: - Mutable
+//================================================================================
+// MARK: Mutable
+//================================================================================
 
 public extension ThreadSafeArray {
     
@@ -260,7 +265,7 @@ public extension ThreadSafeArray {
         queue.async(flags: .barrier) {
             var elements = [Element]()
             
-            while let index = self.array.index(where: predicate) {
+            while let index = self.array.firstIndex(where: predicate) {
                 elements.append(self.array.remove(at: index))
             }
             
@@ -278,6 +283,7 @@ public extension ThreadSafeArray {
             DispatchQueue.main.async { completion?(elements) }
         }
     }
+    
 }
 
 public extension ThreadSafeArray {
@@ -305,9 +311,12 @@ public extension ThreadSafeArray {
             }
         }
     }
+    
 }
 
-// MARK: - Equatable
+//================================================================================
+// MARK: Equatable
+//================================================================================
 
 public extension ThreadSafeArray where Element: Equatable {
     
@@ -322,7 +331,9 @@ public extension ThreadSafeArray where Element: Equatable {
     }
 }
 
-// MARK: - Infix operators
+//================================================================================
+// MARK: Infix operators
+//================================================================================
 
 public extension ThreadSafeArray {
     
@@ -331,7 +342,7 @@ public extension ThreadSafeArray {
     /// - Parameters:
     ///   - left: The collection to append to.
     ///   - right: The element to append to the array.
-    static func +=(left: inout ThreadSafeArray, right: Element) {
+    static func += (left: inout ThreadSafeArray, right: Element) {
         left.append(right)
     }
     
@@ -340,7 +351,8 @@ public extension ThreadSafeArray {
     /// - Parameters:
     ///   - left: The collection to append to.
     ///   - right: The elements to append to the array.
-    static func +=(left: inout ThreadSafeArray, right: [Element]) {
+    static func += (left: inout ThreadSafeArray, right: [Element]) {
         left.append(right)
     }
+    
 }

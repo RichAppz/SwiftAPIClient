@@ -1,20 +1,20 @@
 PODS:
   - Alamofire (5.2.1)
-  - CryptoSwift (1.3.1)
+  - RNCryptor (5.1.0)
 
 DEPENDENCIES:
   - Alamofire
-  - CryptoSwift
+  - RNCryptor (~> 5.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
-    - CryptoSwift
+    - RNCryptor
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
-  CryptoSwift: f12f037f6d0fcd6d48c96db0071b653de64e6c4d
+  RNCryptor: a369134686cd2ad391323cc856b62e591193ba79
 
-PODFILE CHECKSUM: 5bcc45aca63a24b000f22a0e441712e1825bd8fe
+PODFILE CHECKSUM: 715a7b0cb4670ae484f15b82b5152706480ffd8f
 
 COCOAPODS: 1.9.2

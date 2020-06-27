@@ -56,13 +56,12 @@ class NetworkOperation: ConcurrentOperation {
     //==========================================
     
     /**
-         Creates a NetworkOperation with the parameters required for the endpoint.
-     
-         - Parameter request:                    URLConvertible - endpoint
-         - Parameter config:                      URLSessionConfiguration - configuration of the request
-         - Parameter params:                    Dictionary<String: Any> - additional parameters
-         - Parameter completionHandler:  <Optional>OperationResponse
-         */
+     Creates a NetworkOperation with the parameters required for the endpoint.
+     - Parameter request: URLConvertible - endpoint
+     - Parameter config: URLSessionConfiguration - configuration of the request
+     - Parameter params: Dictionary<String: Any> - additional parameters
+     - Parameter completionHandler:  <Optional>OperationResponse
+     */
     init(request: URLConvertible, config: URLSessionConfiguration, params: [String: Any]?, completionHandler: OperationResponse?) {
         networkRequest = request
         completion = completionHandler
