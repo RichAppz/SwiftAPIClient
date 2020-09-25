@@ -19,6 +19,6 @@ Pod::Spec.new do |s|
   s.swift_versions = '5.0'
   
   s.dependency 'Alamofire'
-  s.dependency 'RNCryptor', '~> 5.0'
+  s.dependency 'CryptoSwift'
 
 end 
