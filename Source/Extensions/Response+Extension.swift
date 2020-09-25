@@ -33,15 +33,17 @@ extension Response {
      
      - Returns: Model
      */
-    func stdPersistentParse<T: Model>() throws -> T? {
+    func stdPersistentParse<T: Model>(completion: ((T?) -> Void)) throws {
         if error != nil {
             #if os(iOS) || os(macOS) || os(tvOS)
-            return try StorageClient.retrieve()
+            try StorageClient.retrieve(completion: {
+                completion($0)
+            })
             #else
             return nil
             #endif
         } else {
-            return try StorageClient.map(object: data)
+            completion(try StorageClient.map(object: data))
         }
     }
     
@@ -51,15 +53,17 @@ extension Response {
      
      - Returns: Array<Model>
      */
-    func stdPersistentParse<T: Model>() throws -> [T]? {
+    func stdPersistentParse<T: Model>(completion: (([T]?) -> Void)) throws {
         if error != nil {
             #if os(iOS) || os(macOS) || os(tvOS)
-            return try StorageClient.retrieve()
+            try StorageClient.retrieve(completion: {
+                completion($0)
+            })
             #else
             return nil
             #endif
         } else {
-            return try StorageClient.map(object: data)
+            completion(try StorageClient.map(object: data))
         }
     }
     

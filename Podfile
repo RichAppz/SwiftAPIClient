@@ -5,7 +5,7 @@ inhibit_all_warnings!
 
 def pods
     pod 'Alamofire'
-    pod 'RNCryptor', '~> 5.0'
+    pod 'CryptoSwift'
 end
 
 target 'SwiftAPIClient iOS' do

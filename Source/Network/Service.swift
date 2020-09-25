@@ -31,6 +31,7 @@ public typealias OperationResponse = (Response) -> Void
 public enum ServiceRequestError: Error {
     case authenticationFailed
     case authenticationNotRequired
+    case hasNoConnection
 }
 
 public protocol Service {
@@ -62,6 +63,8 @@ extension Service {
         
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = headers
+        configuration.timeoutIntervalForRequest = 20
+        configuration.timeoutIntervalForResource = 20
         
         let operation = NetworkOperation(
             request: url,

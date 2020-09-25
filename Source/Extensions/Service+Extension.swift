@@ -54,6 +54,7 @@ extension Service {
         let hasConnection = checkConnection(
             storageKeyAddition: request.storageKeyAddition,
             notification: request.notification,
+            requiresConnection: request.storageType == .none,
             arrayResponse: false,
             closure: closure)
         if !hasConnection { return }
@@ -111,6 +112,7 @@ extension Service {
         let hasConnection = checkConnection(
             storageKeyAddition: request.storageKeyAddition,
             notification: request.notification,
+            requiresConnection: request.storageType == .none,
             arrayResponse: true,
             closure: closure)
         if !hasConnection { return }
@@ -167,6 +169,7 @@ extension Service {
         let hasConnection = checkConnection(
             storageKeyAddition: request.storageKeyAddition,
             notification: request.notification,
+            requiresConnection: request.storageType == .none,
             arrayResponse: false,
             closure: closure)
         if !hasConnection { return }
@@ -223,6 +226,7 @@ extension Service {
         let hasConnection = checkConnection(
             storageKeyAddition: request.storageKeyAddition,
             notification: request.notification,
+            requiresConnection: request.storageType == .none,
             arrayResponse: true,
             closure: closure)
         if !hasConnection { return }
@@ -330,29 +334,52 @@ extension Service {
     private func checkConnection<T: Model>(
         storageKeyAddition: String? = nil,
         notification: Notification.Name? = nil,
+        requiresConnection: Bool,
         arrayResponse: Bool,
         closure: Closure<T>) -> Bool {
         
         if !NetworkStatusService.hasConnection {
             DispatchQueue.main.async {
                 if arrayResponse {
-                    let object: [T]? = try? StorageClient.retrieve(storageKey: storageKeyAddition)
-                    ClosureService.closures(closure).forEach({
-                        $0.blockArr?(object, nil)
-                    })
-                    
-                    if let notification = notification {
-                        NotificationCenter.default.post(name: notification, object: object)
+                    guard !requiresConnection else {
+                        ClosureService.closures(closure).forEach({
+                            $0.blockArr?(nil, ServiceRequestError.hasNoConnection)
+                        })
+                        return
                     }
+                    
+                    let completionBlock: (([T]?) -> Void) = { object in
+                        ClosureService.closures(closure).forEach({
+                            $0.blockArr?(object, nil)
+                        })
+                        
+                        if let notification = notification {
+                            NotificationCenter.default.post(name: notification, object: object)
+                        }
+                    }
+                    
+                    try? StorageClient.retrieve(storageKey: storageKeyAddition, completion: completionBlock)
+                    
                 } else {
-                    let object: T? = try? StorageClient.retrieve(storageKey: storageKeyAddition)
-                    ClosureService.closures(closure).forEach({
-                        $0.blockObj?(object, nil)
-                    })
-                    
-                    if let notification = notification {
-                        NotificationCenter.default.post(name: notification, object: object)
+                    guard !requiresConnection else {
+                        ClosureService.closures(closure).forEach({
+                            $0.blockObj?(nil, ServiceRequestError.hasNoConnection)
+                        })
+                        return
                     }
+                    
+                    let completionBlock: ((T?) -> Void) = { object in
+                        ClosureService.closures(closure).forEach({
+                            $0.blockObj?(object, nil)
+                        })
+                        
+                        if let notification = notification {
+                            NotificationCenter.default.post(name: notification, object: object)
+                        }
+                    }
+                    
+                    try? StorageClient.retrieve(storageKey: storageKeyAddition, completion: completionBlock)
+                    
                 }
             }
             return false

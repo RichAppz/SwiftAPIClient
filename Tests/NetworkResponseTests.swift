@@ -36,9 +36,12 @@ class NetworkResponseTests: XCTestCase {
             XCTAssert(movie?.title == query)
             
             do {
-                let sMovie: Movie? = try StorageClient.retrieve()
-                XCTAssert(movie?.title == sMovie?.title)
-                expectation.fulfill()
+                let completionBlock: ((Movie?) -> Void) = {sMovie in
+                    XCTAssert(movie?.title == sMovie?.title)
+                    expectation.fulfill()
+                }
+                
+                try StorageClient.retrieve(completion: completionBlock)
             } catch {
                 debugPrint(error.localizedDescription)
                 XCTFail("Data retrieval failed")
@@ -60,9 +63,12 @@ class NetworkResponseTests: XCTestCase {
             XCTAssert(movie?.title == query)
             
             do {
-                let sMovie: Movie? = try StorageClient.retrieve()
-                XCTAssert(movie?.title == sMovie?.title)
-                expectation.fulfill()
+                let completionBlock: ((Movie?) -> Void) = {sMovie in
+                    XCTAssert(movie?.title == sMovie?.title)
+                    expectation.fulfill()
+                }
+                
+                try StorageClient.retrieve(completion: completionBlock)
             } catch {
                 debugPrint(error.localizedDescription)
                 XCTFail("Data retrieval failed")

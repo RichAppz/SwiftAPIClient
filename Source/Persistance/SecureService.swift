@@ -24,12 +24,12 @@
 //
 
 import Foundation
-import RNCryptor
+import CryptoSwift
 
 public class SecureService {
     
-    private var encryptor: RNCryptor.EncryptorV3?
-    private var decryptor: RNCryptor.DecryptorV3?
+    private var key: String?
+    private var iv: String?
     
     //==========================================
     // MARK: Singleton
@@ -37,36 +37,73 @@ public class SecureService {
     
     static let shared = SecureService()
     private init() {
-        let encryptionKey = RNCryptor.randomData(ofLength: RNCryptor.FormatV3.keySize)
-        let hmacKey = RNCryptor.randomData(ofLength: RNCryptor.FormatV3.keySize)
-        
-        encryptor = RNCryptor.EncryptorV3(encryptionKey: encryptionKey, hmacKey: hmacKey)
-        decryptor = RNCryptor.DecryptorV3(encryptionKey: encryptionKey, hmacKey: hmacKey)
+        let dictionary = Bundle.main.infoDictionary
+        if let simpleAPIDict = dictionary?["SimpleAPIClient-Keys"] as? [String: Any] {
+            key = simpleAPIDict["key"] as? String
+            iv = simpleAPIDict["iv"] as? String
+        } else {
+            debugPrint("  [*] WARNING - If you require secure storage, please ensure that `SimpleAPIClient-Keys` is added to your .plist - see documentation.")
+        }
     }
     
     //==========================================
     // MARK: Helpers
     //==========================================
     
-    public static func encryptToString(_ data: Data) -> String? {
-        let encrypted = shared.encryptor?.encrypt(data: data)
-        return encrypted?.base64EncodedString()
+    public static func AESEncryptToString(_ data: Data) throws -> String? {
+        guard let keyString = shared.key, let ivString = shared.iv, let dataString = data.string else {
+            debugPrint("  [*] WARNING - Encryption has not been used - passing string")
+            return data.string
+        }
+        
+        let key: [UInt8] = Array(keyString.utf8) as [UInt8]
+        let iv: [UInt8] = Array(ivString.utf8) as [UInt8]
+        let aes = try AES(key: key, blockMode: CBC(iv: iv), padding: .pkcs5)
+        let encrypted = try aes.encrypt(Array(dataString.utf8))
+        
+        return encrypted.toBase64()
     }
     
-    public static func encryptToData(_ data: Data) -> Data? {
-        return shared.encryptor?.encrypt(data: data)
+    public static func AESEncryptToData(_ data: Data) throws -> Data? {
+        guard let keyString = shared.key, let ivString = shared.iv, let dataString = data.string else {
+            debugPrint("  [*] WARNING - Encryption has not been used - passing string")
+            return data
+        }
+        
+        let key: [UInt8] = Array(keyString.utf8) as [UInt8]
+        let iv: [UInt8] = Array(ivString.utf8) as [UInt8]
+        let aes = try AES(key: key, blockMode: CBC(iv: iv), padding: .pkcs5)
+        let encrypted = try aes.encrypt(Array(dataString.utf8))
+        
+        return Data(encrypted)
     }
     
-    public static func decrypt(_ string: String) throws -> Data? {
-        guard let data = Data(base64Encoded: string) else {
+    public static func AESDecrypt(_ string: String) throws -> Data? {
+        guard let keyString = shared.key, let ivString = shared.iv else {
             debugPrint("  [*] WARNING - Encryption has not been used - passing data")
             return string.data(using: .utf8)
         }
-        return try shared.decryptor?.decrypt(data: data)
+        
+        let key: [UInt8] = Array(keyString.utf8) as [UInt8]
+        let iv: [UInt8] = Array(ivString.utf8) as [UInt8]
+        let aes = try AES(key: key, blockMode: CBC(iv: iv), padding: .pkcs5)
+        let decrypted = try aes.decrypt(Array(base64: string))
+        
+        return Data(decrypted)
     }
     
-    public static func decrypt(_ data: Data) throws -> Data? {
-        return try shared.decryptor?.decrypt(data: data)
+    public static func AESDecrypt(_ data: Data) throws -> Data? {
+        guard let keyString = shared.key, let ivString = shared.iv, let dataString = data.string else {
+            debugPrint("  [*] WARNING - Encryption has not been used - passing data")
+            return data
+        }
+        
+        let key: [UInt8] = Array(keyString.utf8) as [UInt8]
+        let iv: [UInt8] = Array(ivString.utf8) as [UInt8]
+        let aes = try AES(key: key, blockMode: CBC(iv: iv), padding: .pkcs5)
+        let decrypted = try aes.decrypt(Array(dataString.utf8))
+        
+        return Data(decrypted)
     }
     
 }

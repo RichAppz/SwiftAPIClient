@@ -31,7 +31,9 @@ class StorageTests: XCTestCase {
     //================================================================================
     
     func testMovieExample() {
+        let expectation = self.expectation(description: "fetching movie example")
         let movie: Movie? = try? StorageClient.map(object: movieJson.data(using: .utf8), storageKey: "testing")
+        
         XCTAssertNotNil(movie)
         XCTAssert(movie?.title == "The Green Mile")
         XCTAssert(movie?.year == "1999")
@@ -39,14 +41,22 @@ class StorageTests: XCTestCase {
         XCTAssertTrue(movie?.genre?.contains("Crime") ?? false)
 
         do {
-            let stored: Movie? = try StorageClient.retrieve(storageKey: "testing")
-            XCTAssertTrue(movie?.title == stored?.title)
-            XCTAssertTrue(movie?.year == stored?.year)
-            XCTAssertTrue(movie?.rated == stored?.rated)
-            XCTAssertTrue(movie?.genre == stored?.genre)
+            let completionBlock: ((Movie?) -> Void) = { sMovie in
+                XCTAssertTrue(movie?.title == sMovie?.title)
+                XCTAssertTrue(movie?.year == sMovie?.year)
+                XCTAssertTrue(movie?.rated == sMovie?.rated)
+                XCTAssertTrue(movie?.genre == sMovie?.genre)
+                expectation.fulfill()
+            }
+            
+            try StorageClient.retrieve(storageKey: "testing", completion: completionBlock)
         } catch {
             debugPrint(error.localizedDescription)
             XCTFail("Data retrieval failed")
+        }
+        
+        waitForExpectations(timeout: 30) { error in
+            print(error as Any)
         }
     }
     
@@ -69,19 +79,34 @@ class StorageTests: XCTestCase {
     }
 
     func moviesFetchExample(key: String) {
-        let movies: [Movie]? = try? StorageClient.retrieve(storageKey: key)
-        XCTAssertNotNil(movies)
-        XCTAssert(movies?.count ?? 0 == 2)
+        let expectation = self.expectation(description: "fetching movie example")
+        
+        do {
+            let completionBlock: (([Movie]?) -> Void) = { movies in
+                XCTAssertNotNil(movies)
+                XCTAssert(movies?.count ?? 0 == 2)
 
-        guard let movie = movies?.first(where: { $0.title == "The Green Mile" }) else {
-            XCTFail("No movies returned from storage")
-            return
+                guard let movie = movies?.first(where: { $0.title == "The Green Mile" }) else {
+                    XCTFail("No movies returned from storage")
+                    return
+                }
+
+                XCTAssert(movie.title == "The Green Mile")
+                XCTAssert(movie.year == "1999")
+                XCTAssert(movie.rated == "R")
+                XCTAssertTrue(movie.genre?.contains("Crime") ?? false)
+                expectation.fulfill()
+            }
+            
+            try StorageClient.retrieve(storageKey: key, completion: completionBlock)
+        } catch {
+            debugPrint(error.localizedDescription)
+            XCTFail("Data retrieval failed")
         }
-
-        XCTAssert(movie.title == "The Green Mile")
-        XCTAssert(movie.year == "1999")
-        XCTAssert(movie.rated == "R")
-        XCTAssertTrue(movie.genre?.contains("Crime") ?? false)
+        
+        waitForExpectations(timeout: 30) { error in
+            print(error as Any)
+        }
     }
     
     func testSaveMovies() {
