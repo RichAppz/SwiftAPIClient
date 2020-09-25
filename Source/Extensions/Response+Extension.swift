@@ -40,7 +40,7 @@ extension Response {
                 completion($0)
             })
             #else
-            return nil
+            completion(nil)
             #endif
         } else {
             completion(try StorageClient.map(object: data))
@@ -60,7 +60,7 @@ extension Response {
                 completion($0)
             })
             #else
-            return nil
+            completion(nil)
             #endif
         } else {
             completion(try StorageClient.map(object: data))
