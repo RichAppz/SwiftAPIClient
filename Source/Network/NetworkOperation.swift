@@ -81,7 +81,7 @@ class NetworkOperation: ConcurrentOperation {
         var encoding: ParameterEncoding = URLEncoding.default
         if let type = encodingType {
             encoding = type
-        }else {
+        } else {
             if method == .post || method == .put || method == .patch {
                 encoding = JSONEncoding.default
             }
