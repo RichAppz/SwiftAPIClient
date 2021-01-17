@@ -57,7 +57,12 @@ public class CoderModule {
             let container = try decoder.singleValueContainer()
             
             if let dateTimestamp = try? container.decode(TimeInterval.self) {
-                return Date(timeIntervalSince1970: dateTimestamp)
+                let currentTimestamp = Date().timeIntervalSince1970
+                if dateTimestamp/currentTimestamp > 500 {
+                    return Date(timeIntervalSince1970: dateTimestamp/1000)
+                } else {
+                    return Date(timeIntervalSince1970: dateTimestamp)
+                }
             }
             
             let dateString = try container.decode(String.self)

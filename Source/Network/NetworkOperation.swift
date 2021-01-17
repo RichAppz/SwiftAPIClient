@@ -47,6 +47,7 @@ class NetworkOperation: ConcurrentOperation {
     let parameters: [String: Any]?
     let completion: OperationResponse?
     var method: HTTPMethod = .get
+    var encodingType: ParameterEncoding?
     
     var manager: Session?
     weak var request: Alamofire.Request?
@@ -60,12 +61,14 @@ class NetworkOperation: ConcurrentOperation {
      - Parameter request: URLConvertible - endpoint
      - Parameter config: URLSessionConfiguration - configuration of the request
      - Parameter params: Dictionary<String: Any> - additional parameters
+     - Parameter encoding: ParameterEncoding? - Almofire Parameter Encoding type
      - Parameter completionHandler:  <Optional>OperationResponse
      */
-    init(request: URLConvertible, config: URLSessionConfiguration, params: [String: Any]?, completionHandler: OperationResponse?) {
+    init(request: URLConvertible, config: URLSessionConfiguration, params: [String: Any]?, encoding: ParameterEncoding? = nil, completionHandler: OperationResponse?) {
         networkRequest = request
         completion = completionHandler
         parameters = params
+        encodingType = encoding
         manager = Alamofire.Session(configuration: config)
         super.init()
     }
@@ -76,8 +79,12 @@ class NetworkOperation: ConcurrentOperation {
     
     override func main() {
         var encoding: ParameterEncoding = URLEncoding.default
-        if method == .post || method == .put || method == .patch {
-            encoding = JSONEncoding.default
+        if let type = encodingType {
+            encoding = type
+        } else {
+            if method == .post || method == .put || method == .patch {
+                encoding = JSONEncoding.default
+            }
         }
         
         let queue = DispatchQueue(label: kResponseQueue, qos: .utility, attributes: [.concurrent])

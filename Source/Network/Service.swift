@@ -70,6 +70,7 @@ extension Service {
             request: url,
             config: configuration,
             params: request.parameters,
+            encoding: request.encodingType,
             completionHandler: completion
         )
         operation.method = method
