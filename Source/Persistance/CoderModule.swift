@@ -85,7 +85,9 @@ public class CoderModule {
      - Returns: JSONEncoder
      */
     public static var encoder: JSONEncoder = {
-        return JSONEncoder()
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .secondsSince1970
+        return encoder
     }()
     
 }
