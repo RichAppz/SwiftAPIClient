@@ -55,29 +55,29 @@ A client is required to create the required Gateway - you can create a multitude
 ``` swift
 class ClientExample: Service {
 
-    //==========================================
+    // ==========================================
     // MARK: Properties
-    //==========================================
+    // ==========================================
 
     var rootURL = "<YOUR ENDPOINT>"
     var headers: [String: String] = [:]
     let networkQueue = OperationQueue()
 
-    //==========================================
+    // ==========================================
     // MARK: Singleton
-    //==========================================
+    // ==========================================
 
     static let shared = ClientExample()
 
-    //==========================================
+    // ==========================================
     // MARK: Initialization
-    //==========================================
+    // ==========================================
 
     init() { }
 
-    //==========================================
+    // ==========================================
     // MARK: Helpers
-    //==========================================
+    // ==========================================
 
     func post(_ request: Request, completion: OperationResponse? = nil) {
         makeRequest(.post, request: request, completion: completion)

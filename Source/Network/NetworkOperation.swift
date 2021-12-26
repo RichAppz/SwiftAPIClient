@@ -39,9 +39,9 @@ public enum RequestError: Int, Error {
 
 class NetworkOperation: ConcurrentOperation {
     
-    //==========================================
+    // ==========================================
     // MARK: Properties
-    //==========================================
+    // ==========================================
     
     let networkRequest: URLConvertible
     let parameters: [String: Any]?
@@ -52,9 +52,9 @@ class NetworkOperation: ConcurrentOperation {
     var manager: Session?
     weak var request: Alamofire.Request?
     
-    //==========================================
+    // ==========================================
     // MARK: Initialization
-    //==========================================
+    // ==========================================
     
     /**
      Creates a NetworkOperation with the parameters required for the endpoint.
@@ -73,9 +73,9 @@ class NetworkOperation: ConcurrentOperation {
         super.init()
     }
     
-    //==========================================
+    // ==========================================
     // MARK: Overrides
-    //==========================================
+    // ==========================================
     
     override func main() {
         var encoding: ParameterEncoding = URLEncoding.default

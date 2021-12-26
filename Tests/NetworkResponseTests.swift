@@ -10,9 +10,9 @@ import XCTest
 
 class NetworkResponseTests: XCTestCase {
     
-    //==========================================
+    // ==========================================
     // MARK: Setup
-    //==========================================
+    // ==========================================
     
     override func setUp() {
         super.setUp()
@@ -22,9 +22,9 @@ class NetworkResponseTests: XCTestCase {
         super.tearDown()
     }
     
-    //==========================================
+    // ==========================================
     // MARK: Tests
-    //==========================================
+    // ==========================================
     
     func testFetchMoviesExample() {
         let expectation = self.expectation(description: "fetching movies from omdb")

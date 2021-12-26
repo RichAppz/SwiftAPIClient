@@ -31,9 +31,9 @@ public class SecureService {
     private var key: String?
     private var iv: String?
     
-    //==========================================
+    // ==========================================
     // MARK: Singleton
-    //==========================================
+    // ==========================================
     
     static let shared = SecureService()
     private init() {
@@ -46,9 +46,9 @@ public class SecureService {
         }
     }
     
-    //==========================================
+    // ==========================================
     // MARK: Helpers
-    //==========================================
+    // ==========================================
     
     public static func AESEncryptToString(_ data: Data) throws -> String? {
         guard let keyString = shared.key, let ivString = shared.iv, let dataString = data.string else {

@@ -1,0 +1,4 @@
+framework module SwiftAPIClient {
+  header "SwiftAPIClient-Swift.h"
+  requires objc
+}

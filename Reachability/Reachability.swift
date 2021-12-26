@@ -54,9 +54,9 @@ func callback(
 
 public class Reachability {
 
-    //==========================================
+    // ==========================================
     // MARK: Properties
-    //==========================================
+    // ==========================================
     
     public typealias NetworkReachable = (Reachability) -> Void
     public typealias NetworkUnreachable = (Reachability) -> Void
@@ -104,9 +104,9 @@ public class Reachability {
     
     fileprivate let reachabilitySerialQueue = DispatchQueue(label: "uk.co.ashleymills.reachability")
     
-    //==========================================
+    // ==========================================
     // MARK: Initialization
-    //==========================================
+    // ==========================================
     
     required public init(reachabilityRef: SCNetworkReachability) {
         reachableOnWWAN = true
@@ -141,9 +141,9 @@ public class Reachability {
 
 public extension Reachability {
     
-    //==========================================
+    // ==========================================
     // MARK: Notifier methods
-    //==========================================
+    // ==========================================
     
     func startNotifier() throws {
         guard let reachabilityRef = reachabilityRef, !notifierRunning else { return }

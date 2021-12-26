@@ -1,0 +1,260 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)
+// swift-module-flags: -target arm64-apple-tvos12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SwiftAPIClient
+import Alamofire
+import CommonCrypto
+import CryptoKit
+import CryptoSwift
+import Foundation
+import Swift
+import _Concurrency
+public let kUnauthorisedRequest: Foundation.Notification.Name
+extension Swift.Dictionary {
+  public var jsonString: Swift.String? {
+    get
+  }
+  public var data: Foundation.Data? {
+    get
+  }
+}
+extension Swift.Array {
+  public var data: Foundation.Data? {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class CoderModule {
+  public static var decoder: Foundation.JSONDecoder
+  public static var encoder: Foundation.JSONEncoder
+  @objc deinit
+}
+extension Swift.String {
+  public static func fullPath(endpoint: Swift.String? = nil, endpointParams: [Any]? = nil) -> Swift.String
+  public var ccSHA256: Swift.String? {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class SecureService {
+  public static func AESEncryptToString(_ data: Foundation.Data) throws -> Swift.String?
+  public static func AESEncryptToData(_ data: Foundation.Data) throws -> Foundation.Data?
+  public static func AESDecrypt(_ string: Swift.String) throws -> Foundation.Data?
+  public static func AESDecrypt(_ data: Foundation.Data) throws -> Foundation.Data?
+  @objc deinit
+}
+public typealias ModelObjectCompletionBlock<T> = (T?, Swift.Error?) -> Swift.Void where T : SwiftAPIClient.Model
+public typealias ModelArrayCompletionBlock<T> = ([T]?, Swift.Error?) -> Swift.Void where T : SwiftAPIClient.Model
+public struct Closure<T> : Swift.Equatable where T : SwiftAPIClient.Model {
+  public let id: Swift.String
+  public let blockObj: SwiftAPIClient.ModelObjectCompletionBlock<T>?
+  public let blockArr: SwiftAPIClient.ModelArrayCompletionBlock<T>?
+  public static func == (lhs: SwiftAPIClient.Closure<T>, rhs: SwiftAPIClient.Closure<T>) -> Swift.Bool
+}
+@_hasMissingDesignatedInitializers public class ClosureService {
+  public var store: SwiftAPIClient.ThreadSafeArray<Any>
+  public static let shared: SwiftAPIClient.ClosureService
+  @objc deinit
+}
+public struct RequestModel {
+  public init(endpoint: Swift.String = "", endpointParams: [Any]? = nil, params: [Swift.String : Any] = [:], storageType: SwiftAPIClient.StorageType = .none, storageKeyAddition: Swift.String? = nil, notification: Foundation.Notification.Name? = nil)
+}
+extension SwiftAPIClient.Service {
+  public func stdGetRequest<T>(_ request: SwiftAPIClient.RequestModel, completion: SwiftAPIClient.ModelObjectCompletionBlock<T>? = nil) where T : SwiftAPIClient.Model
+  public func stdGetRequest<T>(_ request: SwiftAPIClient.RequestModel, completion: SwiftAPIClient.ModelArrayCompletionBlock<T>? = nil) where T : SwiftAPIClient.Model
+  public func stdPostRequest<T>(_ request: SwiftAPIClient.RequestModel, completion: SwiftAPIClient.ModelObjectCompletionBlock<T>? = nil) where T : SwiftAPIClient.Model
+  public func stdPostRequest<T>(_ request: SwiftAPIClient.RequestModel, completion: SwiftAPIClient.ModelArrayCompletionBlock<T>? = nil) where T : SwiftAPIClient.Model
+  public func stdDeleteRequest(_ request: SwiftAPIClient.RequestModel, completion: ((Swift.Error?) -> Swift.Void)? = nil)
+  public func stdPutRequest(_ request: SwiftAPIClient.RequestModel, completion: ((Swift.Error?) -> Swift.Void)? = nil)
+}
+public typealias OperationResponse = (SwiftAPIClient.Response) -> Swift.Void
+public enum ServiceRequestError : Swift.Error {
+  case authenticationFailed
+  case authenticationNotRequired
+  case hasNoConnection
+  public static func == (a: SwiftAPIClient.ServiceRequestError, b: SwiftAPIClient.ServiceRequestError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol Service {
+  var rootURL: Swift.String { get }
+  var headers: [Swift.String : Swift.String] { get set }
+  var networkQueue: Foundation.OperationQueue { get }
+  func get(_ request: SwiftAPIClient.Request, completion: SwiftAPIClient.OperationResponse?)
+  func post(_ request: SwiftAPIClient.Request, completion: SwiftAPIClient.OperationResponse?)
+  func delete(_ request: SwiftAPIClient.Request, completion: SwiftAPIClient.OperationResponse?)
+  func put(_ request: SwiftAPIClient.Request, completion: SwiftAPIClient.OperationResponse?)
+  func patch(_ request: SwiftAPIClient.Request, completion: SwiftAPIClient.OperationResponse?)
+}
+extension SwiftAPIClient.Service {
+  public func makeRequest(_ method: Alamofire.HTTPMethod, request: SwiftAPIClient.Request, completion: SwiftAPIClient.OperationResponse? = nil)
+}
+public struct Response {
+  public let data: Foundation.Data?
+  public let headers: [Swift.String : Any]?
+  public let error: Swift.Error?
+  public init(data: Foundation.Data?, headers: [Swift.String : Any]?, error: Swift.Error?)
+}
+public let kPlistFilename: Swift.String
+public let kRequestErrorDomain: Swift.String
+public enum RequestError : Swift.Int, Swift.Error {
+  case badRequest
+  case unauthorised
+  case userDisabled
+  case notFound
+  case methodNotAllowed
+  case serverError
+  case noConnection
+  case timeOutError
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public class ThreadSafeArray<Element> {
+  public init()
+  convenience public init(_ array: [Element])
+  @objc deinit
+}
+extension SwiftAPIClient.ThreadSafeArray {
+  public var first: Element? {
+    get
+  }
+  public var last: Element? {
+    get
+  }
+  public var count: Swift.Int {
+    get
+  }
+  public var isEmpty: Swift.Bool {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+}
+extension SwiftAPIClient.ThreadSafeArray {
+  public func first(where predicate: (Element) -> Swift.Bool) -> Element?
+  public func last(where predicate: (Element) -> Swift.Bool) -> Element?
+  public func filter(_ isIncluded: @escaping (Element) -> Swift.Bool) -> [Element]?
+  public func index(where predicate: (Element) -> Swift.Bool) -> Swift.Int?
+  public func sorted(by areInIncreasingOrder: (Element, Element) -> Swift.Bool) -> [Element]?
+  public func map<ElementOfResult>(_ transform: @escaping (Element) -> ElementOfResult) -> [ElementOfResult]
+  public func compactMap<ElementOfResult>(_ transform: (Element) -> ElementOfResult?) -> [ElementOfResult]
+  public func reduce<ElementOfResult>(_ initialResult: ElementOfResult, _ nextPartialResult: @escaping (ElementOfResult, Element) -> ElementOfResult) -> ElementOfResult
+  public func reduce<ElementOfResult>(into initialResult: ElementOfResult, _ updateAccumulatingResult: @escaping (inout ElementOfResult, Element) -> Swift.Void) -> ElementOfResult
+  public func forEach(_ body: (Element) -> Swift.Void)
+  public func contains(where predicate: (Element) -> Swift.Bool) -> Swift.Bool
+  public func allSatisfy(_ predicate: (Element) -> Swift.Bool) -> Swift.Bool
+}
+extension SwiftAPIClient.ThreadSafeArray {
+  public func append(_ element: Element)
+  public func append(_ elements: [Element])
+  public func insert(_ element: Element, at index: Swift.Int)
+  public func remove(at index: Swift.Int, completion: ((Element) -> Swift.Void)? = nil)
+  public func remove(where predicate: @escaping (Element) -> Swift.Bool, completion: (([Element]) -> Swift.Void)? = nil)
+  public func removeAll(completion: (([Element]) -> Swift.Void)? = nil)
+}
+extension SwiftAPIClient.ThreadSafeArray {
+  public subscript(index: Swift.Int) -> Element? {
+    get
+    set
+  }
+}
+extension SwiftAPIClient.ThreadSafeArray where Element : Swift.Equatable {
+  public func contains(_ element: Element) -> Swift.Bool
+}
+extension SwiftAPIClient.ThreadSafeArray {
+  public static func += (left: inout SwiftAPIClient.ThreadSafeArray<Element>, right: Element)
+  public static func += (left: inout SwiftAPIClient.ThreadSafeArray<Element>, right: [Element])
+}
+public enum FileManagerError : Swift.Error {
+  case documentDirectoryMissing
+  case plistNotSaved
+  case deletionFailed
+  public static func == (a: SwiftAPIClient.FileManagerError, b: SwiftAPIClient.FileManagerError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension Foundation.Data {
+  public var string: Swift.String? {
+    get
+  }
+  public var json: [Swift.String : Any]? {
+    get
+  }
+  public var jsonArray: [[Swift.String : Any]]? {
+    get
+  }
+}
+public protocol Model : Swift.Decodable, Swift.Encodable {
+  static var storageIdentifier: Swift.String { get }
+}
+open class Request {
+  open var rootUrl: Swift.String?
+  open var endpoint: Swift.String
+  open var encodingType: Alamofire.ParameterEncoding?
+  open var parameters: [Swift.String : Any]?
+  open var priority: Foundation.Operation.QueuePriority
+  open var qualityOfService: Foundation.QualityOfService
+  public init(endpoint: Swift.String = "", encodingType: Alamofire.ParameterEncoding? = nil, parameters: [Swift.String : Any]? = nil, priority: Foundation.Operation.QueuePriority? = .high, qualityOfService: Foundation.QualityOfService? = .default)
+  @objc deinit
+}
+public enum StorageType {
+  case userDefaults, fileManager, none
+  public static func == (a: SwiftAPIClient.StorageType, b: SwiftAPIClient.StorageType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum StorageClientError : Swift.Error {
+  case fileManagerFailure
+  case noDataAvailable
+  public static func == (a: SwiftAPIClient.StorageClientError, b: SwiftAPIClient.StorageClientError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class StorageClient {
+  public static func map<T>(object: Foundation.Data?, storageKey: Swift.String? = nil, storageType: SwiftAPIClient.StorageType = .fileManager) throws -> [T]? where T : SwiftAPIClient.Model
+  public static func map<T>(object: Foundation.Data?, storageKey: Swift.String? = nil, storageType: SwiftAPIClient.StorageType = .fileManager) throws -> T? where T : SwiftAPIClient.Model
+  public static func remove(model: SwiftAPIClient.Model.Type, completion: (() -> Swift.Void)? = nil)
+  public static func clear() throws
+  public static func retrieve<T>(storageKey: Swift.String? = nil, completion: (([T]?) -> Swift.Void)) throws where T : SwiftAPIClient.Model
+  public static func retrieve<T>(storageKey: Swift.String? = nil, completion: ((T?) -> Swift.Void)) throws where T : SwiftAPIClient.Model
+  public static func remove<T>(objectType: T?, storageKey: Swift.String? = nil) throws where T : SwiftAPIClient.Model
+  public static func remove<T>(objectType: [T]?, storageKey: Swift.String? = nil) throws where T : SwiftAPIClient.Model
+  @objc deinit
+}
+extension Swift.Array where Element : SwiftAPIClient.Model {
+  public func save(storageKey: Swift.String? = nil, storageType: SwiftAPIClient.StorageType = .fileManager) throws
+}
+extension Swift.Optional where Wrapped : SwiftAPIClient.Model {
+  public func save(storageKey: Swift.String? = nil, storageType: SwiftAPIClient.StorageType = .fileManager) throws
+}
+extension SwiftAPIClient.Model {
+  public func save(storageKey: Swift.String? = nil, storageType: SwiftAPIClient.StorageType = .fileManager) throws
+}
+extension Swift.Error {
+  public var code: Swift.Int {
+    get
+  }
+  public var isConnectionError: Swift.Bool {
+    get
+  }
+}
+extension SwiftAPIClient.ServiceRequestError : Swift.Equatable {}
+extension SwiftAPIClient.ServiceRequestError : Swift.Hashable {}
+extension SwiftAPIClient.RequestError : Swift.Equatable {}
+extension SwiftAPIClient.RequestError : Swift.Hashable {}
+extension SwiftAPIClient.RequestError : Swift.RawRepresentable {}
+extension SwiftAPIClient.FileManagerError : Swift.Equatable {}
+extension SwiftAPIClient.FileManagerError : Swift.Hashable {}
+extension SwiftAPIClient.StorageType : Swift.Equatable {}
+extension SwiftAPIClient.StorageType : Swift.Hashable {}
+extension SwiftAPIClient.StorageClientError : Swift.Equatable {}
+extension SwiftAPIClient.StorageClientError : Swift.Hashable {}

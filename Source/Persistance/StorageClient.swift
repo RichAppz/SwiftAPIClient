@@ -38,9 +38,9 @@ internal let kUserDefaultExtension = "client.store."
 
 public class StorageClient {
     
-    //==========================================
+    // ==========================================
     // MARK: Data
-    //==========================================
+    // ==========================================
     
     var data: [String: String] = [:] {
         didSet {
@@ -50,9 +50,9 @@ public class StorageClient {
         }
     }
     
-    //==========================================
+    // ==========================================
     // MARK: Singleton
-    //==========================================
+    // ==========================================
     
     private static let queue = DispatchQueue(
         label: "com.swiftapiclient.storage.queue",
@@ -71,9 +71,9 @@ public class StorageClient {
         #endif
     }
     
-    //==========================================
+    // ==========================================
     // MARK: Mapping Functions
-    //==========================================
+    // ==========================================
     
     /**
      Maps response data from a network request directly into a Model Array using decodable, during this action the method will also hand  the data persistance.
@@ -146,9 +146,9 @@ public class StorageClient {
         shared.data = [:]
     }
     
-    //==========================================
+    // ==========================================
     // MARK: Retrieve Functions
-    //==========================================
+    // ==========================================
     
     #if os(iOS) || os(macOS) || os(tvOS)
     /**
@@ -213,9 +213,9 @@ public class StorageClient {
     }
     #endif
     
-    //==========================================
+    // ==========================================
     // MARK: Clear Functions
-    //==========================================
+    // ==========================================
     
     public static func remove<T: Model>(objectType: T?, storageKey: String? = nil) throws {
         let additional = storageKey?.isEmpty ?? true ? "" : String(format: ".%@", storageKey!)
@@ -231,9 +231,9 @@ public class StorageClient {
         UserDefaults.standard.removeObject(forKey: storageId)
     }
     
-    //==========================================
+    // ==========================================
     // MARK: Helpers
-    //==========================================
+    // ==========================================
     
     internal static func store(
         _ data: Data?,

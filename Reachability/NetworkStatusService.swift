@@ -25,15 +25,15 @@
 
 import Foundation
 
-public protocol NetworkObserver: class {
+public protocol NetworkObserver: AnyObject {
     func networkAvailabilityChanged()
 }
 
 public class NetworkStatusService {
     
-    //==========================================
+    // ==========================================
     // MARK: Properties
-    //==========================================
+    // ==========================================
     
     fileprivate struct _NetworkObserver {
         
@@ -57,9 +57,9 @@ public class NetworkStatusService {
         return self.reachability?.currentReachabilityStatus != .notReachable
     }
     
-    //==========================================
+    // ==========================================
     // MARK: Singleton
-    //==========================================
+    // ==========================================
     
     internal static let shared = NetworkStatusService()
     internal init() {
@@ -83,9 +83,9 @@ public class NetworkStatusService {
         })
     }
     
-    //==========================================
+    // ==========================================
     // MARK: Helpers
-    //==========================================
+    // ==========================================
     
     /**
      Confirms if the device has a network connection available

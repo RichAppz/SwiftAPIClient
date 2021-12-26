@@ -28,9 +28,9 @@ import Alamofire
 
 open class Request {
     
-    //==========================================
+    // ==========================================
     // MARK: Properties
-    //==========================================
+    // ==========================================
     
     open var rootUrl: String?
     open var endpoint: String
@@ -39,9 +39,9 @@ open class Request {
     open var priority: Operation.QueuePriority
     open var qualityOfService: QualityOfService
     
-    //==========================================
+    // ==========================================
     // MARK: Initialization
-    //==========================================
+    // ==========================================
     
     public init(
         endpoint: String = "",

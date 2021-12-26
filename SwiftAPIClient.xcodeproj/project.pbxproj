@@ -3,14 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		020307CEBA039681CD63718F /* Pods_SwiftAPIClient_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276659AF2A9FE82A4BA80A77 /* Pods_SwiftAPIClient_iOS_Tests.framework */; };
-		5404E015AB68E9CD77F5021B /* Pods_SwiftAPIClient_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63C2655D0ED3529EB19128E /* Pods_SwiftAPIClient_iOS.framework */; };
-		A607013C7322FF56242D69BB /* Pods_SwiftAPIClient_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4694BAEE5BDBE1304075E86E /* Pods_SwiftAPIClient_tvOS.framework */; };
-		C23F6665A1E739593531E377 /* Pods_SwiftAPIClient_watchOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E543FEB6E6FD82D48FCF5372 /* Pods_SwiftAPIClient_watchOS.framework */; };
+		8E52C38E27787C7E005DC7A4 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C38D27787C7E005DC7A4 /* CryptoSwift */; };
+		8E52C39127787CBA005DC7A4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39027787CBA005DC7A4 /* Alamofire */; };
+		8E52C39627788E59005DC7A4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39527788E59005DC7A4 /* Alamofire */; };
+		8E52C39827788E5E005DC7A4 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39727788E5E005DC7A4 /* CryptoSwift */; };
+		8E52C39A27788E63005DC7A4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39927788E63005DC7A4 /* Alamofire */; };
+		8E52C39C27788E68005DC7A4 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39B27788E68005DC7A4 /* CryptoSwift */; };
+		8E52C39E27788E78005DC7A4 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39D27788E78005DC7A4 /* CryptoSwift */; };
+		8E52C3A027788E7B005DC7A4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39F27788E7B005DC7A4 /* Alamofire */; };
 		CB0DFCD624A648B200B9F59A /* ThreadSafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0DFCD524A648B200B9F59A /* ThreadSafeArray.swift */; };
 		CB0DFCD724A648B200B9F59A /* ThreadSafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0DFCD524A648B200B9F59A /* ThreadSafeArray.swift */; };
 		CB0DFCD824A648B200B9F59A /* ThreadSafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0DFCD524A648B200B9F59A /* ThreadSafeArray.swift */; };
@@ -108,7 +112,6 @@
 		CBDE4BA72242D2AA0055E22E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9DAF6222428CDC0024AF0F /* Movie.swift */; };
 		CBDE4BA92242D93A0055E22E /* StorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE4BA82242D93A0055E22E /* StorageTests.swift */; };
 		CBDE4BAB2243AC120055E22E /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDE4BAA2243AC120055E22E /* DateFormatter+Extension.swift */; };
-		FA2F4E682D5D6729111B79A8 /* Pods_SwiftAPIClient_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C613F59B3DBAC7E875CE8EBB /* Pods_SwiftAPIClient_macOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,27 +138,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00A5E26AB5D2551F5AE733BA /* Pods-SwiftAPIClient iOS Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAPIClient iOS Tests.debug.xcconfig"; path = "Target Support Files/Pods-SwiftAPIClient iOS Tests/Pods-SwiftAPIClient iOS Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		02627A792E45DB586F6B41FF /* Pods-SwiftAPIClient macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAPIClient macOS.debug.xcconfig"; path = "Target Support Files/Pods-SwiftAPIClient macOS/Pods-SwiftAPIClient macOS.debug.xcconfig"; sourceTree = "<group>"; };
-		02968B0CE3161E210C5801E5 /* Pods-SimpleAPIClient iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleAPIClient iOS Tests.release.xcconfig"; path = "Target Support Files/Pods-SimpleAPIClient iOS Tests/Pods-SimpleAPIClient iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
-		17D2EFB27CBCB265944D7B3A /* Pods-SimpleAPIClient iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleAPIClient iOS.debug.xcconfig"; path = "Target Support Files/Pods-SimpleAPIClient iOS/Pods-SimpleAPIClient iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		2128C564EA98DDE6A57EB472 /* Pods-SwiftAPIClient iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAPIClient iOS.release.xcconfig"; path = "Target Support Files/Pods-SwiftAPIClient iOS/Pods-SwiftAPIClient iOS.release.xcconfig"; sourceTree = "<group>"; };
-		276659AF2A9FE82A4BA80A77 /* Pods_SwiftAPIClient_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftAPIClient_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		27E0E39984A0674D0D338A4E /* Pods-SimpleAPIClient iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleAPIClient iOS.release.xcconfig"; path = "Target Support Files/Pods-SimpleAPIClient iOS/Pods-SimpleAPIClient iOS.release.xcconfig"; sourceTree = "<group>"; };
-		27F1CCD1C118BFA3FB288145 /* Pods-SimpleAPIClient macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleAPIClient macOS.release.xcconfig"; path = "Target Support Files/Pods-SimpleAPIClient macOS/Pods-SimpleAPIClient macOS.release.xcconfig"; sourceTree = "<group>"; };
-		3B7FF0F9982F090FE5045CBC /* Pods-SwiftAPIClient tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAPIClient tvOS.release.xcconfig"; path = "Target Support Files/Pods-SwiftAPIClient tvOS/Pods-SwiftAPIClient tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		4694BAEE5BDBE1304075E86E /* Pods_SwiftAPIClient_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftAPIClient_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5661317F056CE1BACD74EE80 /* Pods-SwiftAPIClient tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAPIClient tvOS.debug.xcconfig"; path = "Target Support Files/Pods-SwiftAPIClient tvOS/Pods-SwiftAPIClient tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		60837119AE4838D874C360EE /* Pods-SwiftAPIClient macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAPIClient macOS.release.xcconfig"; path = "Target Support Files/Pods-SwiftAPIClient macOS/Pods-SwiftAPIClient macOS.release.xcconfig"; sourceTree = "<group>"; };
-		659C92F717574DC90D9F9D79 /* Pods-SwiftAPIClient iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAPIClient iOS Tests.release.xcconfig"; path = "Target Support Files/Pods-SwiftAPIClient iOS Tests/Pods-SwiftAPIClient iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
-		6B6B8512912B2D7FC0338AA7 /* Pods-SimpleAPIClient tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleAPIClient tvOS.release.xcconfig"; path = "Target Support Files/Pods-SimpleAPIClient tvOS/Pods-SimpleAPIClient tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		82A68FB058797F9A68B2A44B /* Pods-SimpleAPIClient tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleAPIClient tvOS.debug.xcconfig"; path = "Target Support Files/Pods-SimpleAPIClient tvOS/Pods-SimpleAPIClient tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		B55B4917A6EC8B920ADEB653 /* Pods-SwiftAPIClient watchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAPIClient watchOS.release.xcconfig"; path = "Target Support Files/Pods-SwiftAPIClient watchOS/Pods-SwiftAPIClient watchOS.release.xcconfig"; sourceTree = "<group>"; };
-		B738A2C42981D8A42C4A6EC8 /* Pods-SwiftAPIClient iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAPIClient iOS.debug.xcconfig"; path = "Target Support Files/Pods-SwiftAPIClient iOS/Pods-SwiftAPIClient iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		C49D2A4937939D355728FBBE /* Pods-SimpleAPIClient iOS Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleAPIClient iOS Tests.debug.xcconfig"; path = "Target Support Files/Pods-SimpleAPIClient iOS Tests/Pods-SimpleAPIClient iOS Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		C613F59B3DBAC7E875CE8EBB /* Pods_SwiftAPIClient_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftAPIClient_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C63C2655D0ED3529EB19128E /* Pods_SwiftAPIClient_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftAPIClient_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C753558D1C974AF589257C0A /* Pods-SimpleAPIClient watchOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleAPIClient watchOS.debug.xcconfig"; path = "Target Support Files/Pods-SimpleAPIClient watchOS/Pods-SimpleAPIClient watchOS.debug.xcconfig"; sourceTree = "<group>"; };
 		CB0DFCD524A648B200B9F59A /* ThreadSafeArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafeArray.swift; sourceTree = "<group>"; };
 		CB4362E224485681008E93CB /* RequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
 		CB4362E7244856A4008E93CB /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -173,7 +155,7 @@
 		CB9DAF3522427A710024AF0F /* StorageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageClient.swift; sourceTree = "<group>"; };
 		CB9DAF3B22427E9D0024AF0F /* SwiftAPIClient.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = SwiftAPIClient.podspec; sourceTree = "<group>"; };
 		CB9DAF4022427FC20024AF0F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		CB9DAF4F22428A990024AF0F /* SwiftAPIClient iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftAPIClient iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB9DAF4F22428A990024AF0F /* SwiftAPIClient-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftAPIClient-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB9DAF5322428A990024AF0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB9DAF5A22428B100024AF0F /* SimpleAPIClientTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleAPIClientTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		CB9DAF5B22428B100024AF0F /* NetworkResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponseTests.swift; sourceTree = "<group>"; };
@@ -196,10 +178,6 @@
 		CBC83AAE22427816004757BF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CBDE4BA82242D93A0055E22E /* StorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTests.swift; sourceTree = "<group>"; };
 		CBDE4BAA2243AC120055E22E /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
-		D7EE2E0C4BEDBBAC3185BB5B /* Pods-SimpleAPIClient watchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleAPIClient watchOS.release.xcconfig"; path = "Target Support Files/Pods-SimpleAPIClient watchOS/Pods-SimpleAPIClient watchOS.release.xcconfig"; sourceTree = "<group>"; };
-		DF31587ED1C388DDEA8B1EE8 /* Pods-SwiftAPIClient watchOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftAPIClient watchOS.debug.xcconfig"; path = "Target Support Files/Pods-SwiftAPIClient watchOS/Pods-SwiftAPIClient watchOS.debug.xcconfig"; sourceTree = "<group>"; };
-		E543FEB6E6FD82D48FCF5372 /* Pods_SwiftAPIClient_watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftAPIClient_watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8CA92C5D8930FB4CAAC6529 /* Pods-SimpleAPIClient macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleAPIClient macOS.debug.xcconfig"; path = "Target Support Files/Pods-SimpleAPIClient macOS/Pods-SimpleAPIClient macOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,7 +186,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB9DAF5422428A990024AF0F /* SwiftAPIClient.framework in Frameworks */,
-				020307CEBA039681CD63718F /* Pods_SwiftAPIClient_iOS_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +193,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5404E015AB68E9CD77F5021B /* Pods_SwiftAPIClient_iOS.framework in Frameworks */,
+				8E52C39127787CBA005DC7A4 /* Alamofire in Frameworks */,
+				8E52C38E27787C7E005DC7A4 /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +202,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C23F6665A1E739593531E377 /* Pods_SwiftAPIClient_watchOS.framework in Frameworks */,
+				8E52C39627788E59005DC7A4 /* Alamofire in Frameworks */,
+				8E52C39827788E5E005DC7A4 /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +211,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A607013C7322FF56242D69BB /* Pods_SwiftAPIClient_tvOS.framework in Frameworks */,
+				8E52C39A27788E63005DC7A4 /* Alamofire in Frameworks */,
+				8E52C39C27788E68005DC7A4 /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,48 +220,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA2F4E682D5D6729111B79A8 /* Pods_SwiftAPIClient_macOS.framework in Frameworks */,
+				8E52C39E27788E78005DC7A4 /* CryptoSwift in Frameworks */,
+				8E52C3A027788E7B005DC7A4 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B55A57DC7BB6E06C59B084A /* Pods */ = {
+		8E52C39427788E51005DC7A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				17D2EFB27CBCB265944D7B3A /* Pods-SimpleAPIClient iOS.debug.xcconfig */,
-				27E0E39984A0674D0D338A4E /* Pods-SimpleAPIClient iOS.release.xcconfig */,
-				F8CA92C5D8930FB4CAAC6529 /* Pods-SimpleAPIClient macOS.debug.xcconfig */,
-				27F1CCD1C118BFA3FB288145 /* Pods-SimpleAPIClient macOS.release.xcconfig */,
-				82A68FB058797F9A68B2A44B /* Pods-SimpleAPIClient tvOS.debug.xcconfig */,
-				6B6B8512912B2D7FC0338AA7 /* Pods-SimpleAPIClient tvOS.release.xcconfig */,
-				C753558D1C974AF589257C0A /* Pods-SimpleAPIClient watchOS.debug.xcconfig */,
-				D7EE2E0C4BEDBBAC3185BB5B /* Pods-SimpleAPIClient watchOS.release.xcconfig */,
-				C49D2A4937939D355728FBBE /* Pods-SimpleAPIClient iOS Tests.debug.xcconfig */,
-				02968B0CE3161E210C5801E5 /* Pods-SimpleAPIClient iOS Tests.release.xcconfig */,
-				B738A2C42981D8A42C4A6EC8 /* Pods-SwiftAPIClient iOS.debug.xcconfig */,
-				2128C564EA98DDE6A57EB472 /* Pods-SwiftAPIClient iOS.release.xcconfig */,
-				00A5E26AB5D2551F5AE733BA /* Pods-SwiftAPIClient iOS Tests.debug.xcconfig */,
-				659C92F717574DC90D9F9D79 /* Pods-SwiftAPIClient iOS Tests.release.xcconfig */,
-				02627A792E45DB586F6B41FF /* Pods-SwiftAPIClient macOS.debug.xcconfig */,
-				60837119AE4838D874C360EE /* Pods-SwiftAPIClient macOS.release.xcconfig */,
-				5661317F056CE1BACD74EE80 /* Pods-SwiftAPIClient tvOS.debug.xcconfig */,
-				3B7FF0F9982F090FE5045CBC /* Pods-SwiftAPIClient tvOS.release.xcconfig */,
-				DF31587ED1C388DDEA8B1EE8 /* Pods-SwiftAPIClient watchOS.debug.xcconfig */,
-				B55B4917A6EC8B920ADEB653 /* Pods-SwiftAPIClient watchOS.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		4E7D3C56047661EBC7DC76F1 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C63C2655D0ED3529EB19128E /* Pods_SwiftAPIClient_iOS.framework */,
-				276659AF2A9FE82A4BA80A77 /* Pods_SwiftAPIClient_iOS_Tests.framework */,
-				C613F59B3DBAC7E875CE8EBB /* Pods_SwiftAPIClient_macOS.framework */,
-				4694BAEE5BDBE1304075E86E /* Pods_SwiftAPIClient_tvOS.framework */,
-				E543FEB6E6FD82D48FCF5372 /* Pods_SwiftAPIClient_watchOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -395,8 +344,7 @@
 				CBC83AA7224277C7004757BF /* Source */,
 				CB9DAF4A22428A580024AF0F /* Tests */,
 				CBC83A7722427545004757BF /* Products */,
-				0B55A57DC7BB6E06C59B084A /* Pods */,
-				4E7D3C56047661EBC7DC76F1 /* Frameworks */,
+				8E52C39427788E51005DC7A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -407,7 +355,7 @@
 				CBC83A842242755A004757BF /* SwiftAPIClient.framework */,
 				CBC83A912242756F004757BF /* SwiftAPIClient.framework */,
 				CBC83A9E2242757F004757BF /* SwiftAPIClient.framework */,
-				CB9DAF4F22428A990024AF0F /* SwiftAPIClient iOS Tests.xctest */,
+				CB9DAF4F22428A990024AF0F /* SwiftAPIClient-Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -473,11 +421,10 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		CB9DAF4E22428A990024AF0F /* SwiftAPIClient iOS Tests */ = {
+		CB9DAF4E22428A990024AF0F /* SwiftAPIClient-Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CB9DAF5722428A990024AF0F /* Build configuration list for PBXNativeTarget "SwiftAPIClient iOS Tests" */;
+			buildConfigurationList = CB9DAF5722428A990024AF0F /* Build configuration list for PBXNativeTarget "SwiftAPIClient-Tests" */;
 			buildPhases = (
-				251893D3640437D7874D95ED /* [CP] Check Pods Manifest.lock */,
 				CB9DAF4B22428A990024AF0F /* Sources */,
 				CB9DAF4C22428A990024AF0F /* Frameworks */,
 				CB9DAF4D22428A990024AF0F /* Resources */,
@@ -488,16 +435,15 @@
 			dependencies = (
 				CB9DAF5622428A990024AF0F /* PBXTargetDependency */,
 			);
-			name = "SwiftAPIClient iOS Tests";
+			name = "SwiftAPIClient-Tests";
 			productName = "SimpleAPIClient iOS Tests";
-			productReference = CB9DAF4F22428A990024AF0F /* SwiftAPIClient iOS Tests.xctest */;
+			productReference = CB9DAF4F22428A990024AF0F /* SwiftAPIClient-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CBC83A7522427545004757BF /* SwiftAPIClient iOS */ = {
+		CBC83A7522427545004757BF /* SwiftAPIClient-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CBC83A7C22427545004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient iOS" */;
+			buildConfigurationList = CBC83A7C22427545004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient-iOS" */;
 			buildPhases = (
-				1E77438D737F53B85422BE36 /* [CP] Check Pods Manifest.lock */,
 				CBC83A7122427545004757BF /* Headers */,
 				CBC83A7222427545004757BF /* Sources */,
 				CBC83A7322427545004757BF /* Frameworks */,
@@ -508,16 +454,19 @@
 			);
 			dependencies = (
 			);
-			name = "SwiftAPIClient iOS";
+			name = "SwiftAPIClient-iOS";
+			packageProductDependencies = (
+				8E52C38D27787C7E005DC7A4 /* CryptoSwift */,
+				8E52C39027787CBA005DC7A4 /* Alamofire */,
+			);
 			productName = "SimpleAPIClient iOS";
 			productReference = CBC83A7622427545004757BF /* SwiftAPIClient.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		CBC83A832242755A004757BF /* SwiftAPIClient watchOS */ = {
+		CBC83A832242755A004757BF /* SwiftAPIClient-watchOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CBC83A892242755A004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient watchOS" */;
+			buildConfigurationList = CBC83A892242755A004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient-watchOS" */;
 			buildPhases = (
-				A0E592AEA08B60CA3274A46D /* [CP] Check Pods Manifest.lock */,
 				CBC83A7F2242755A004757BF /* Headers */,
 				CBC83A802242755A004757BF /* Sources */,
 				CBC83A812242755A004757BF /* Frameworks */,
@@ -528,16 +477,19 @@
 			);
 			dependencies = (
 			);
-			name = "SwiftAPIClient watchOS";
+			name = "SwiftAPIClient-watchOS";
+			packageProductDependencies = (
+				8E52C39527788E59005DC7A4 /* Alamofire */,
+				8E52C39727788E5E005DC7A4 /* CryptoSwift */,
+			);
 			productName = "SimpleAPIClient watchOS";
 			productReference = CBC83A842242755A004757BF /* SwiftAPIClient.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		CBC83A902242756F004757BF /* SwiftAPIClient tvOS */ = {
+		CBC83A902242756F004757BF /* SwiftAPIClient-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CBC83A962242756F004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient tvOS" */;
+			buildConfigurationList = CBC83A962242756F004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient-tvOS" */;
 			buildPhases = (
-				887BBC9A31192E98F80CDFC8 /* [CP] Check Pods Manifest.lock */,
 				CBC83A8C2242756F004757BF /* Headers */,
 				CBC83A8D2242756F004757BF /* Sources */,
 				CBC83A8E2242756F004757BF /* Frameworks */,
@@ -548,16 +500,19 @@
 			);
 			dependencies = (
 			);
-			name = "SwiftAPIClient tvOS";
+			name = "SwiftAPIClient-tvOS";
+			packageProductDependencies = (
+				8E52C39927788E63005DC7A4 /* Alamofire */,
+				8E52C39B27788E68005DC7A4 /* CryptoSwift */,
+			);
 			productName = "SimpleAPIClient tvOS";
 			productReference = CBC83A912242756F004757BF /* SwiftAPIClient.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		CBC83A9D2242757F004757BF /* SwiftAPIClient macOS */ = {
+		CBC83A9D2242757F004757BF /* SwiftAPIClient-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CBC83AA32242757F004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient macOS" */;
+			buildConfigurationList = CBC83AA32242757F004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient-macOS" */;
 			buildPhases = (
-				40112C5DAFE0C202746C19EB /* [CP] Check Pods Manifest.lock */,
 				CBC83A992242757F004757BF /* Headers */,
 				CBC83A9A2242757F004757BF /* Sources */,
 				CBC83A9B2242757F004757BF /* Frameworks */,
@@ -568,7 +523,11 @@
 			);
 			dependencies = (
 			);
-			name = "SwiftAPIClient macOS";
+			name = "SwiftAPIClient-macOS";
+			packageProductDependencies = (
+				8E52C39D27788E78005DC7A4 /* CryptoSwift */,
+				8E52C39F27788E7B005DC7A4 /* Alamofire */,
+			);
 			productName = "SimpleAPIClient macOS";
 			productReference = CBC83A9E2242757F004757BF /* SwiftAPIClient.framework */;
 			productType = "com.apple.product-type.framework";
@@ -580,7 +539,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = "RichAppz Limited";
 				TargetAttributes = {
 					CB9DAF4E22428A990024AF0F = {
@@ -614,15 +573,19 @@
 				Base,
 			);
 			mainGroup = CBC83A6A22427523004757BF;
+			packageReferences = (
+				8E52C38C27787C7E005DC7A4 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				8E52C38F27787CBA005DC7A4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = CBC83A7722427545004757BF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CBC83A7522427545004757BF /* SwiftAPIClient iOS */,
-				CB9DAF4E22428A990024AF0F /* SwiftAPIClient iOS Tests */,
-				CBC83A832242755A004757BF /* SwiftAPIClient watchOS */,
-				CBC83A902242756F004757BF /* SwiftAPIClient tvOS */,
-				CBC83A9D2242757F004757BF /* SwiftAPIClient macOS */,
+				CBC83A7522427545004757BF /* SwiftAPIClient-iOS */,
+				CBC83A832242755A004757BF /* SwiftAPIClient-watchOS */,
+				CBC83A902242756F004757BF /* SwiftAPIClient-tvOS */,
+				CBC83A9D2242757F004757BF /* SwiftAPIClient-macOS */,
+				CB9DAF4E22428A990024AF0F /* SwiftAPIClient-Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -666,116 +629,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1E77438D737F53B85422BE36 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftAPIClient iOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		251893D3640437D7874D95ED /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftAPIClient iOS Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		40112C5DAFE0C202746C19EB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftAPIClient macOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		887BBC9A31192E98F80CDFC8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftAPIClient tvOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A0E592AEA08B60CA3274A46D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftAPIClient watchOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CB9DAF412242830D0024AF0F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -791,7 +644,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CB9DAF422242831C0024AF0F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -808,7 +661,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CB9DAF43224283250024AF0F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -825,7 +678,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CB9DAF442242832C0024AF0F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -842,7 +695,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -981,7 +834,7 @@
 /* Begin PBXTargetDependency section */
 		CB9DAF5622428A990024AF0F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CBC83A7522427545004757BF /* SwiftAPIClient iOS */;
+			target = CBC83A7522427545004757BF /* SwiftAPIClient-iOS */;
 			targetProxy = CB9DAF5522428A990024AF0F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -989,7 +842,6 @@
 /* Begin XCBuildConfiguration section */
 		CB9DAF5822428A990024AF0F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00A5E26AB5D2551F5AE733BA /* Pods-SwiftAPIClient iOS Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1063,7 +915,6 @@
 		};
 		CB9DAF5922428A990024AF0F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 659C92F717574DC90D9F9D79 /* Pods-SwiftAPIClient iOS Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1144,6 +995,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1177,6 +1029,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1195,9 +1048,9 @@
 		};
 		CBC83A7D22427545004757BF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B738A2C42981D8A42C4A6EC8 /* Pods-SwiftAPIClient iOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1238,6 +1091,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1254,7 +1108,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1279,9 +1133,9 @@
 		};
 		CBC83A7E22427545004757BF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2128C564EA98DDE6A57EB472 /* Pods-SwiftAPIClient iOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1322,6 +1176,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1332,7 +1187,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1340,6 +1195,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.richappz.SimpleAPIClient;
 				PRODUCT_NAME = SwiftAPIClient;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1357,10 +1213,10 @@
 		};
 		CBC83A8A2242755A004757BF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF31587ED1C388DDEA8B1EE8 /* Pods-SwiftAPIClient watchOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1441,10 +1297,10 @@
 		};
 		CBC83A8B2242755A004757BF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B55B4917A6EC8B920ADEB653 /* Pods-SwiftAPIClient watchOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1519,9 +1375,9 @@
 		};
 		CBC83A972242756F004757BF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5661317F056CE1BACD74EE80 /* Pods-SwiftAPIClient tvOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1594,7 +1450,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1602,9 +1458,9 @@
 		};
 		CBC83A982242756F004757BF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B7FF0F9982F090FE5045CBC /* Pods-SwiftAPIClient tvOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1670,7 +1526,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1679,9 +1535,9 @@
 		};
 		CBC83AA42242757F004757BF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 02627A792E45DB586F6B41FF /* Pods-SwiftAPIClient macOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1763,9 +1619,9 @@
 		};
 		CBC83AA52242757F004757BF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60837119AE4838D874C360EE /* Pods-SwiftAPIClient macOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1841,7 +1697,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CB9DAF5722428A990024AF0F /* Build configuration list for PBXNativeTarget "SwiftAPIClient iOS Tests" */ = {
+		CB9DAF5722428A990024AF0F /* Build configuration list for PBXNativeTarget "SwiftAPIClient-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CB9DAF5822428A990024AF0F /* Debug */,
@@ -1859,7 +1715,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CBC83A7C22427545004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient iOS" */ = {
+		CBC83A7C22427545004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBC83A7D22427545004757BF /* Debug */,
@@ -1868,7 +1724,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CBC83A892242755A004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient watchOS" */ = {
+		CBC83A892242755A004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient-watchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBC83A8A2242755A004757BF /* Debug */,
@@ -1877,7 +1733,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CBC83A962242756F004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient tvOS" */ = {
+		CBC83A962242756F004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBC83A972242756F004757BF /* Debug */,
@@ -1886,7 +1742,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CBC83AA32242757F004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient macOS" */ = {
+		CBC83AA32242757F004757BF /* Build configuration list for PBXNativeTarget "SwiftAPIClient-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBC83AA42242757F004757BF /* Debug */,
@@ -1896,6 +1752,68 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8E52C38C27787C7E005DC7A4 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		8E52C38F27787CBA005DC7A4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8E52C38D27787C7E005DC7A4 /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E52C38C27787C7E005DC7A4 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
+		};
+		8E52C39027787CBA005DC7A4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E52C38F27787CBA005DC7A4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		8E52C39527788E59005DC7A4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E52C38F27787CBA005DC7A4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		8E52C39727788E5E005DC7A4 /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E52C38C27787C7E005DC7A4 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
+		};
+		8E52C39927788E63005DC7A4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E52C38F27787CBA005DC7A4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		8E52C39B27788E68005DC7A4 /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E52C38C27787C7E005DC7A4 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
+		};
+		8E52C39D27788E78005DC7A4 /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E52C38C27787C7E005DC7A4 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
+		};
+		8E52C39F27788E7B005DC7A4 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E52C38F27787CBA005DC7A4 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CBC83A6B22427523004757BF /* Project object */;
 }

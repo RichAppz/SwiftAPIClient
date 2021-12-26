@@ -8,7 +8,7 @@ def pods
     pod 'CryptoSwift'
 end
 
-target 'SwiftAPIClient iOS' do
+target 'SwiftAPIClient' do
     platform :ios, '11'
     pods
     
@@ -17,17 +17,17 @@ target 'SwiftAPIClient iOS' do
     end
 end
 
-target 'SwiftAPIClient tvOS' do
+target 'SwiftAPIClient-tvOS' do
     platform :tvos, '11'
     pods
 end
 
-target 'SwiftAPIClient watchOS' do
+target 'SwiftAPIClient-watchOS' do
     platform :watchos, '4'
     pods
 end
 
-target 'SwiftAPIClient macOS' do
+target 'SwiftAPIClient-macOS' do
     platform :osx, '10.14'
     pods
 end
