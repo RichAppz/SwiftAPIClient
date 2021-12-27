@@ -24,7 +24,6 @@
 //
 
 import Foundation
-import Alamofire
 
 public typealias OperationResponse = (Response) -> Void
 
@@ -32,6 +31,14 @@ public enum ServiceRequestError: Error {
     case authenticationFailed
     case authenticationNotRequired
     case hasNoConnection
+}
+
+public enum HTTPMethod: String {
+    case get = "GET"
+    case delete = "DELETE"
+    case post = "POST"
+    case put = "PUT"
+    case patch = "PATCH"
 }
 
 public protocol Service {
@@ -58,25 +65,30 @@ public protocol Service {
 
 extension Service {
     
-    public func makeRequest(_ method: Alamofire.HTTPMethod, request: Request, completion: OperationResponse? = nil) {
-        guard let url = try? "\(request.rootUrl ?? rootURL)\(request.endpoint)".asURL() else { return }
-        
-        let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = headers
-        configuration.timeoutIntervalForRequest = 20
-        configuration.timeoutIntervalForResource = 20
-        
-        let operation = NetworkOperation(
-            request: url,
-            config: configuration,
-            params: request.parameters,
-            encoding: request.encodingType,
-            completionHandler: completion
-        )
-        operation.method = method
-        operation.queuePriority = request.priority
-        operation.qualityOfService = request.qualityOfService
-        networkQueue.addOperation(operation)
-    }
+    public func makeRequest(
+        _ method: HTTPMethod,
+        request: Request,
+        completion: OperationResponse? = nil) {
+            
+            guard
+                let url = "\(request.rootUrl ?? rootURL)\(request.endpoint)".asURL
+                else { return }
+            
+            let configuration = URLSessionConfiguration.default
+            configuration.httpAdditionalHeaders = headers
+            configuration.timeoutIntervalForRequest = 20
+            configuration.timeoutIntervalForResource = 20
+            
+            let operation = NetworkOperation(
+                request: url,
+                config: configuration,
+                params: request.parameters,
+                completionHandler: completion
+            )
+            operation.method = method
+            operation.queuePriority = request.priority
+            operation.qualityOfService = request.qualityOfService
+            networkQueue.addOperation(operation)
+        }
     
 }

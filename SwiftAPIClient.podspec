@@ -17,8 +17,5 @@ Pod::Spec.new do |s|
   s.osx.source_files = 'Reachability/**/*.{swift}'
   s.tvos.source_files = 'Reachability/**/*.{swift}'
   s.swift_versions = '5.0'
-  
-  s.dependency 'Alamofire'
-  s.dependency 'CryptoSwift'
 
 end 

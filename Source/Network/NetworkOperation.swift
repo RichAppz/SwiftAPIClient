@@ -24,7 +24,6 @@
 //
 
 import Foundation
-import Alamofire
 
 public enum RequestError: Int, Error {
     case badRequest = 400
@@ -43,14 +42,12 @@ class NetworkOperation: ConcurrentOperation {
     // MARK: Properties
     // ==========================================
     
-    let networkRequest: URLConvertible
+    let networkRequest: URL
     let parameters: [String: Any]?
     let completion: OperationResponse?
     var method: HTTPMethod = .get
-    var encodingType: ParameterEncoding?
     
-    var manager: Session?
-    weak var request: Alamofire.Request?
+    var session: URLSession?
     
     // ==========================================
     // MARK: Initialization
@@ -64,63 +61,114 @@ class NetworkOperation: ConcurrentOperation {
      - Parameter encoding: ParameterEncoding? - Almofire Parameter Encoding type
      - Parameter completionHandler:  <Optional>OperationResponse
      */
-    init(request: URLConvertible, config: URLSessionConfiguration, params: [String: Any]?, encoding: ParameterEncoding? = nil, completionHandler: OperationResponse?) {
-        networkRequest = request
-        completion = completionHandler
-        parameters = params
-        encodingType = encoding
-        manager = Alamofire.Session(configuration: config)
-        super.init()
-    }
+    init(
+        request: URL,
+        config: URLSessionConfiguration,
+        params: [String: Any]?,
+        completionHandler: OperationResponse?) {
+            networkRequest = request
+            completion = completionHandler
+            parameters = params
+            super.init()
+            
+            session = URLSession(
+                configuration: .default,
+                delegate: self,
+                delegateQueue: OperationQueue.current
+            )
+        }
     
     // ==========================================
     // MARK: Overrides
     // ==========================================
     
     override func main() {
-        var encoding: ParameterEncoding = URLEncoding.default
-        if let type = encodingType {
-            encoding = type
-        } else {
-            if method == .post || method == .put || method == .patch {
-                encoding = JSONEncoding.default
+        var request = URLRequest(url: networkRequest)
+        
+        if
+            let parameters = parameters,
+            let data = try? JSONSerialization.data(
+                withJSONObject: parameters,
+                options: .prettyPrinted) {
+            
+            if
+                var components = URLComponents(string: networkRequest.absoluteString),
+                method == .get {
+                
+                let existingItems = components.queryItems ?? []
+                let mappedItems = parameters.map { (key, value) in
+                    URLQueryItem(name: key, value: value as? String)
+                }
+                let queryItems = existingItems + mappedItems
+                
+                components.queryItems = queryItems
+                components.percentEncodedQuery = components
+                    .percentEncodedQuery?
+                    .replacingOccurrences(
+                        of: "+",
+                        with: "%2B"
+                    )
+                
+                guard let url = components.url else { return }
+                request = URLRequest(url: url)
+            } else {
+                request.httpBody = data
             }
         }
         
-        let queue = DispatchQueue(label: kResponseQueue, qos: .utility, attributes: [.concurrent])
-        request = manager?
-            .request(networkRequest, method: method, parameters: parameters, encoding: encoding)
-            .response(
-                queue: queue,
-                responseSerializer: DataResponseSerializer(),
-                completionHandler: { (response) in
-                    if let statusCode = response.response?.statusCode, statusCode > 200 {
-                        let responseData = response.data
-                        self.completion?(Response.init(
-                            data: responseData,
-                            headers: response.response?.allHeaderFields as? [String: Any],
-                            error: response.error ?? NSError(
-                                domain: kRequestErrorDomain,
-                                code: statusCode,
-                                userInfo: responseData?.json ?? [:]
-                                ) as Error
-                        ))
+        request.httpMethod = method.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        session?.dataTask(with: request) { data, response, error in
+            let response = response as? HTTPURLResponse
+            
+            guard
+                let data = data,
+                response?.statusCode ?? 0 >= 200 &&
+                error == nil else {
+                
+                self.completion?(
+                    Response(
+                        data: data,
+                        headers: response?.allHeaderFields as? [String: Any],
+                        error: error
+                    )
+                )
+                return
+            }
+            
+            let allHeaderFields = response?.allHeaderFields as? [String: Any]
+            func complete(data: Data? = nil) {
+                self.completion?(
+                    Response(
+                        data: data,
+                        headers: allHeaderFields,
+                        error: error
+                    )
+                )
+            }
+            
+            do {
+                guard
+                    let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                    let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                        complete()
                         return
                     }
-                    
-                    self.completion?(Response.init(
-                        data: response.data,
-                        headers: response.response?.allHeaderFields as? [String: Any],
-                        error: response.error
-                    ))
-                    
-                    self.completeOperation()
-            })
+                
+                complete(data: prettyJsonData)
+            } catch {
+                complete()
+            }
+        }.resume()
     }
     
     override func cancel() {
-        request?.cancel()
+        session?.invalidateAndCancel()
         super.cancel()
     }
     
 }
+
+extension NetworkOperation: URLSessionDelegate { }

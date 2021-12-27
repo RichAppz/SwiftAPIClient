@@ -24,7 +24,6 @@
 //
 
 import Foundation
-import Alamofire
 
 open class Request {
     
@@ -34,7 +33,6 @@ open class Request {
     
     open var rootUrl: String?
     open var endpoint: String
-    open var encodingType: ParameterEncoding?
     open var parameters: [String: Any]?
     open var priority: Operation.QueuePriority
     open var qualityOfService: QualityOfService
@@ -45,13 +43,11 @@ open class Request {
     
     public init(
         endpoint: String = "",
-        encodingType: ParameterEncoding? = nil,
         parameters: [String: Any]? = nil,
         priority: Operation.QueuePriority? = .high,
         qualityOfService: QualityOfService? = .default) {
         
         self.endpoint = endpoint
-        self.encodingType = encodingType
         self.parameters = parameters
         self.priority = priority ?? .veryHigh
         self.qualityOfService = qualityOfService ?? .userInitiated

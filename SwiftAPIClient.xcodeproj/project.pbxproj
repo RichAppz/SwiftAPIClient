@@ -3,18 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E52C38E27787C7E005DC7A4 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C38D27787C7E005DC7A4 /* CryptoSwift */; };
-		8E52C39127787CBA005DC7A4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39027787CBA005DC7A4 /* Alamofire */; };
-		8E52C39627788E59005DC7A4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39527788E59005DC7A4 /* Alamofire */; };
-		8E52C39827788E5E005DC7A4 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39727788E5E005DC7A4 /* CryptoSwift */; };
-		8E52C39A27788E63005DC7A4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39927788E63005DC7A4 /* Alamofire */; };
-		8E52C39C27788E68005DC7A4 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39B27788E68005DC7A4 /* CryptoSwift */; };
-		8E52C39E27788E78005DC7A4 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39D27788E78005DC7A4 /* CryptoSwift */; };
-		8E52C3A027788E7B005DC7A4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8E52C39F27788E7B005DC7A4 /* Alamofire */; };
+		8E52C3B52779BC17005DC7A4 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E52C3B42779BC17005DC7A4 /* Crypto.swift */; };
+		8E52C3B62779BC17005DC7A4 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E52C3B42779BC17005DC7A4 /* Crypto.swift */; };
+		8E52C3B72779BC17005DC7A4 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E52C3B42779BC17005DC7A4 /* Crypto.swift */; };
+		8E52C3B82779BC17005DC7A4 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E52C3B42779BC17005DC7A4 /* Crypto.swift */; };
+		8E52C3BA2779BE92005DC7A4 /* CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E52C3B92779BE92005DC7A4 /* CryptoTests.swift */; };
 		CB0DFCD624A648B200B9F59A /* ThreadSafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0DFCD524A648B200B9F59A /* ThreadSafeArray.swift */; };
 		CB0DFCD724A648B200B9F59A /* ThreadSafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0DFCD524A648B200B9F59A /* ThreadSafeArray.swift */; };
 		CB0DFCD824A648B200B9F59A /* ThreadSafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0DFCD524A648B200B9F59A /* ThreadSafeArray.swift */; };
@@ -138,6 +135,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8E52C3B42779BC17005DC7A4 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
+		8E52C3B92779BE92005DC7A4 /* CryptoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
 		CB0DFCD524A648B200B9F59A /* ThreadSafeArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafeArray.swift; sourceTree = "<group>"; };
 		CB4362E224485681008E93CB /* RequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
 		CB4362E7244856A4008E93CB /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -193,8 +192,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E52C39127787CBA005DC7A4 /* Alamofire in Frameworks */,
-				8E52C38E27787C7E005DC7A4 /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,8 +199,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E52C39627788E59005DC7A4 /* Alamofire in Frameworks */,
-				8E52C39827788E5E005DC7A4 /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,8 +206,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E52C39A27788E63005DC7A4 /* Alamofire in Frameworks */,
-				8E52C39C27788E68005DC7A4 /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,8 +213,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E52C39E27788E78005DC7A4 /* CryptoSwift in Frameworks */,
-				8E52C3A027788E7B005DC7A4 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +266,7 @@
 				CB689EC92275FFD40069D63D /* CoderModule.swift */,
 				CB9DAF3522427A710024AF0F /* StorageClient.swift */,
 				CB63B7BB2265C6CE00AEF270 /* SecureService.swift */,
+				8E52C3B42779BC17005DC7A4 /* Crypto.swift */,
 			);
 			path = Persistance;
 			sourceTree = "<group>";
@@ -286,6 +278,7 @@
 				CB9DAF6122428CCB0024AF0F /* Models */,
 				CB9DAF5D22428BE50024AF0F /* ClientExample.swift */,
 				CB9DAF5B22428B100024AF0F /* NetworkResponseTests.swift */,
+				8E52C3B92779BE92005DC7A4 /* CryptoTests.swift */,
 				CBDE4BA82242D93A0055E22E /* StorageTests.swift */,
 				CB9DAF5F22428C0C0024AF0F /* Supporting Files */,
 			);
@@ -456,8 +449,6 @@
 			);
 			name = "SwiftAPIClient-iOS";
 			packageProductDependencies = (
-				8E52C38D27787C7E005DC7A4 /* CryptoSwift */,
-				8E52C39027787CBA005DC7A4 /* Alamofire */,
 			);
 			productName = "SimpleAPIClient iOS";
 			productReference = CBC83A7622427545004757BF /* SwiftAPIClient.framework */;
@@ -479,8 +470,6 @@
 			);
 			name = "SwiftAPIClient-watchOS";
 			packageProductDependencies = (
-				8E52C39527788E59005DC7A4 /* Alamofire */,
-				8E52C39727788E5E005DC7A4 /* CryptoSwift */,
 			);
 			productName = "SimpleAPIClient watchOS";
 			productReference = CBC83A842242755A004757BF /* SwiftAPIClient.framework */;
@@ -502,8 +491,6 @@
 			);
 			name = "SwiftAPIClient-tvOS";
 			packageProductDependencies = (
-				8E52C39927788E63005DC7A4 /* Alamofire */,
-				8E52C39B27788E68005DC7A4 /* CryptoSwift */,
 			);
 			productName = "SimpleAPIClient tvOS";
 			productReference = CBC83A912242756F004757BF /* SwiftAPIClient.framework */;
@@ -525,8 +512,6 @@
 			);
 			name = "SwiftAPIClient-macOS";
 			packageProductDependencies = (
-				8E52C39D27788E78005DC7A4 /* CryptoSwift */,
-				8E52C39F27788E7B005DC7A4 /* Alamofire */,
 			);
 			productName = "SimpleAPIClient macOS";
 			productReference = CBC83A9E2242757F004757BF /* SwiftAPIClient.framework */;
@@ -574,8 +559,6 @@
 			);
 			mainGroup = CBC83A6A22427523004757BF;
 			packageReferences = (
-				8E52C38C27787C7E005DC7A4 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
-				8E52C38F27787CBA005DC7A4 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = CBC83A7722427545004757BF /* Products */;
 			projectDirPath = "";
@@ -708,6 +691,7 @@
 				CB9DAF5E22428BE50024AF0F /* ClientExample.swift in Sources */,
 				CB9DAF6622428F000024AF0F /* Service+Movie.swift in Sources */,
 				CB9DAF6322428CDC0024AF0F /* Movie.swift in Sources */,
+				8E52C3BA2779BE92005DC7A4 /* CryptoTests.swift in Sources */,
 				CBDE4BA92242D93A0055E22E /* StorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -738,6 +722,7 @@
 				CB9DAF17224279460024AF0F /* NetworkOperation.swift in Sources */,
 				CBC83AAF22427816004757BF /* Model.swift in Sources */,
 				CB9DAF2B22427A130024AF0F /* Request.swift in Sources */,
+				8E52C3B52779BC17005DC7A4 /* Crypto.swift in Sources */,
 				CBBE3BC722EF2711001C53F1 /* ClosureService.swift in Sources */,
 				CB9DAF3622427A710024AF0F /* StorageClient.swift in Sources */,
 				CB9DAF0B224278B20024AF0F /* Error+Extension.swift in Sources */,
@@ -760,6 +745,7 @@
 				CB4362E9244856A4008E93CB /* String+Extension.swift in Sources */,
 				CB9DAF18224279460024AF0F /* NetworkOperation.swift in Sources */,
 				CB4362F42448605F008E93CB /* ClosureService.swift in Sources */,
+				8E52C3B62779BC17005DC7A4 /* Crypto.swift in Sources */,
 				CB4362EE2448593B008E93CB /* Service+Extension.swift in Sources */,
 				CBBE3BD722EF294F001C53F1 /* Response+Extension.swift in Sources */,
 				CBBE3BD222EF27CA001C53F1 /* Data+Extension.swift in Sources */,
@@ -783,6 +769,7 @@
 				CBBE3BC922EF2711001C53F1 /* ClosureService.swift in Sources */,
 				CB4362E524485681008E93CB /* RequestModel.swift in Sources */,
 				CB4362EF2448593B008E93CB /* Service+Extension.swift in Sources */,
+				8E52C3B72779BC17005DC7A4 /* Crypto.swift in Sources */,
 				CB9DAF28224279FF0024AF0F /* Service.swift in Sources */,
 				CB9DAF072242788D0024AF0F /* Response.swift in Sources */,
 				CB9DAF13224278E30024AF0F /* References.swift in Sources */,
@@ -803,6 +790,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E52C3B82779BC17005DC7A4 /* Crypto.swift in Sources */,
 				CBBE3BDE22EF2BE5001C53F1 /* NetworkStatusService.swift in Sources */,
 				CB4362EB244856A4008E93CB /* String+Extension.swift in Sources */,
 				CB9DAF1F2242799C0024AF0F /* Notifications.swift in Sources */,
@@ -1752,68 +1740,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		8E52C38C27787C7E005DC7A4 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		8E52C38F27787CBA005DC7A4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.5.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		8E52C38D27787C7E005DC7A4 /* CryptoSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8E52C38C27787C7E005DC7A4 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
-			productName = CryptoSwift;
-		};
-		8E52C39027787CBA005DC7A4 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8E52C38F27787CBA005DC7A4 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		8E52C39527788E59005DC7A4 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8E52C38F27787CBA005DC7A4 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		8E52C39727788E5E005DC7A4 /* CryptoSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8E52C38C27787C7E005DC7A4 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
-			productName = CryptoSwift;
-		};
-		8E52C39927788E63005DC7A4 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8E52C38F27787CBA005DC7A4 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		8E52C39B27788E68005DC7A4 /* CryptoSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8E52C38C27787C7E005DC7A4 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
-			productName = CryptoSwift;
-		};
-		8E52C39D27788E78005DC7A4 /* CryptoSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8E52C38C27787C7E005DC7A4 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
-			productName = CryptoSwift;
-		};
-		8E52C39F27788E7B005DC7A4 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8E52C38F27787CBA005DC7A4 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CBC83A6B22427523004757BF /* Project object */;
 }

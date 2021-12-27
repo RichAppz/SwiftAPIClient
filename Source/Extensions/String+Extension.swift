@@ -28,6 +28,10 @@ public extension String {
         }
     }
     
+    var asURL: URL? {
+        return URL(string: self)
+    }
+    
     #if os(iOS)
     /**
     - Returns: String - SHA256 hash of the string provided

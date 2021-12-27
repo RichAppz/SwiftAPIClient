@@ -261,7 +261,7 @@ public class StorageClient {
         _ data: Data,
         storageIdentifier: String) throws {
         
-        let secureData = try SecureService.AESEncryptToString(data)
+        let secureData = try SecureService.encryptToString(data)
         UserDefaults.standard.set(secureData, forKey: storageIdentifier)
     }
     
@@ -269,7 +269,7 @@ public class StorageClient {
         _ data: Data,
         storageIdentifier: String) throws {
         
-        let secureData = try SecureService.AESEncryptToString(data)
+        let secureData = try SecureService.encryptToString(data)
         queue.sync {
             shared.data[storageIdentifier] = secureData
         }
