@@ -137,7 +137,6 @@
 /* Begin PBXFileReference section */
 		8E52C3B42779BC17005DC7A4 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		8E52C3B92779BE92005DC7A4 /* CryptoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
-		8E9D14D5277B369D0070D075 /* SwiftAPIClient-SDK */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "SwiftAPIClient-SDK"; sourceTree = "<group>"; };
 		CB0DFCD524A648B200B9F59A /* ThreadSafeArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafeArray.swift; sourceTree = "<group>"; };
 		CB4362E224485681008E93CB /* RequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
 		CB4362E7244856A4008E93CB /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -334,7 +333,6 @@
 			children = (
 				CB9DAF3B22427E9D0024AF0F /* SwiftAPIClient.podspec */,
 				CB9DAF4022427FC20024AF0F /* README.md */,
-				8E9D14D5277B369D0070D075 /* SwiftAPIClient-SDK */,
 				CBBE3BDA22EF2BE5001C53F1 /* Reachability */,
 				CBC83AA7224277C7004757BF /* Source */,
 				CB9DAF4A22428A580024AF0F /* Tests */,
