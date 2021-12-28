@@ -20,8 +20,8 @@ let package = Package(
 //        ),
         .binaryTarget(
             name: "SwiftAPIClient",
-            url: "https://github.com/RichAppz/SwiftAPIClient/blob/master/output/SwiftAPIClient.xcframework.zip",
-            checksum: "1bbe7471963cf5b5699d005a00676e241faa7cfbb07b2aece62f917bddbf9105"
+            url: "https://github.com/RichAppz/SwiftAPIClient/blob/master/SwiftAPIClient.xcframework.zip",
+            checksum: "788d0f1095344f8c135e47d0faab6cd90f24bda3b7812a2378aa0da00ee8f918"
         )
     ]
 )
