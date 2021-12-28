@@ -14,10 +14,10 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
-        .binaryTarget(
-            name: "SwiftAPIClient",
-            path: "./output/SwiftAPIClient.xcframework"
-        ),
+//        .binaryTarget(
+//            name: "SwiftAPIClient",
+//            path: "./output/SwiftAPIClient.xcframework"
+//        ),
         .binaryTarget(
             name: "SwiftAPIClient",
             url: "https://github.com/RichAppz/SwiftAPIClient/blob/master/output/SwiftAPIClient.xcframework.zip",
