@@ -1,6 +1,6 @@
-# SwiftAPIClient
+# SwiftAPIClient-SDK
 
-SwiftAPIClient is a network layer that contains Alamofire and enables the ability to quickly implement your API calls.
+SwiftAPIClient is a network layer that enables the ability to quickly implement your server API calls.
 
 The framework includes offline capabilites by storing your json data on the device so recall as and when required. Examples below.
 
@@ -10,10 +10,7 @@ This framework has been developed to help make development faster and more effic
 
 ## Features
 
-The project has been built upon over various projects and includes some basic features and some more advanced. The framework is using a couple of external libraries:
-
-[Alamofire](https://github.com/Alamofire/Alamofire) 
-[CryptoSwift](https://github.com/krzyzanowskim/CryptoSwift)
+The project has been built upon over a long period of time and is used in many projects
 
 - The project uses Swift's Codable Protocols and all models will conform to Codable. 
 - The framework has a mechanism to fetch JSON resource files that should be used for DEMO and testing purposes.
@@ -36,7 +33,7 @@ Sounds like alot to remember! So there are simple helpers that have been setup t
 
 ### CocoaPods
 
-[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Alamofire into your Xcode project using CocoaPods, specify it in your `Podfile`:
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate SwiftAPIClient into your Xcode project using CocoaPods, specify it in your `Podfile`:
  
 ```ruby
 pod 'SwiftAPIClient'
@@ -46,6 +43,18 @@ pod 'SwiftAPIClient'
 
 ```swift
 import SwiftAPIClient
+```
+
+### Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
+
+Once you have your Swift package set up, adding SwiftAPIClient as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/RichAppz/SwiftAPIClient-SDK.git", .upToNextMajor(from: "1.0.3"))
+]
 ```
 
 #### Client 

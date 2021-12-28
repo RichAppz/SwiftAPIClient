@@ -1,10 +1,8 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)
 // swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SwiftAPIClient
-import Alamofire
 import CommonCrypto
 import CryptoKit
-import CryptoSwift
 import Foundation
 import Swift
 import SystemConfiguration
@@ -27,7 +25,7 @@ extension Foundation.Data {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class SecureService {
-  public static func AESEncryptToString(_ data: Foundation.Data) throws -> Swift.String?
+  public static func encryptToString(_ data: Foundation.Data) throws -> Swift.String?
   public static func AESEncryptToData(_ data: Foundation.Data) throws -> Foundation.Data?
   public static func AESDecrypt(_ string: Swift.String) throws -> Foundation.Data?
   public static func AESDecrypt(_ data: Foundation.Data) throws -> Foundation.Data?
@@ -71,6 +69,18 @@ public enum ServiceRequestError : Swift.Error {
     get
   }
 }
+public enum HTTPMethod : Swift.String {
+  case get
+  case delete
+  case post
+  case put
+  case patch
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
 public protocol Service {
   var rootURL: Swift.String { get }
   var headers: [Swift.String : Swift.String] { get set }
@@ -82,7 +92,7 @@ public protocol Service {
   func patch(_ request: SwiftAPIClient.Request, completion: SwiftAPIClient.OperationResponse?)
 }
 extension SwiftAPIClient.Service {
-  public func makeRequest(_ method: Alamofire.HTTPMethod, request: SwiftAPIClient.Request, completion: SwiftAPIClient.OperationResponse? = nil)
+  public func makeRequest(_ method: SwiftAPIClient.HTTPMethod, request: SwiftAPIClient.Request, completion: SwiftAPIClient.OperationResponse? = nil)
 }
 public protocol NetworkObserver : AnyObject {
   func networkAvailabilityChanged()
@@ -170,6 +180,9 @@ extension SwiftAPIClient.ThreadSafeArray {
 }
 extension Swift.String {
   public static func fullPath(endpoint: Swift.String? = nil, endpointParams: [Any]? = nil) -> Swift.String
+  public var asURL: Foundation.URL? {
+    get
+  }
   public var ccSHA256: Swift.String? {
     get
   }
@@ -262,12 +275,30 @@ public protocol Model : Swift.Decodable, Swift.Encodable {
 open class Request {
   open var rootUrl: Swift.String?
   open var endpoint: Swift.String
-  open var encodingType: Alamofire.ParameterEncoding?
   open var parameters: [Swift.String : Any]?
   open var priority: Foundation.Operation.QueuePriority
   open var qualityOfService: Foundation.QualityOfService
-  public init(endpoint: Swift.String = "", encodingType: Alamofire.ParameterEncoding? = nil, parameters: [Swift.String : Any]? = nil, priority: Foundation.Operation.QueuePriority? = .high, qualityOfService: Foundation.QualityOfService? = .default)
+  public init(endpoint: Swift.String = "", parameters: [Swift.String : Any]? = nil, priority: Foundation.Operation.QueuePriority? = .high, qualityOfService: Foundation.QualityOfService? = .default)
   @objc deinit
+}
+public enum CryptoError : Swift.Error {
+  case KeyError((Swift.String, Swift.Int))
+  case IVError((Swift.String, Swift.Int))
+  case CryptorError((Swift.String, Swift.Int))
+}
+@_hasMissingDesignatedInitializers public class Crypto {
+  public class var newKey: Swift.String {
+    get
+  }
+  @objc deinit
+}
+extension Foundation.Data {
+  public func cryptoEncodeToString(key: Swift.String) throws -> Swift.String?
+  public func cryptoEncodeToData(key: Swift.String) throws -> Foundation.Data?
+  public func cryptoDecode(key: Swift.String) throws -> Foundation.Data?
+}
+extension Swift.String {
+  public func cryptoDecode(key: Swift.String) throws -> Foundation.Data?
 }
 public typealias ModelObjectCompletionBlock<T> = (T?, Swift.Error?) -> Swift.Void where T : SwiftAPIClient.Model
 public typealias ModelArrayCompletionBlock<T> = ([T]?, Swift.Error?) -> Swift.Void where T : SwiftAPIClient.Model
@@ -331,6 +362,9 @@ extension SwiftAPIClient.FileManagerError : Swift.Equatable {}
 extension SwiftAPIClient.FileManagerError : Swift.Hashable {}
 extension SwiftAPIClient.ServiceRequestError : Swift.Equatable {}
 extension SwiftAPIClient.ServiceRequestError : Swift.Hashable {}
+extension SwiftAPIClient.HTTPMethod : Swift.Equatable {}
+extension SwiftAPIClient.HTTPMethod : Swift.Hashable {}
+extension SwiftAPIClient.HTTPMethod : Swift.RawRepresentable {}
 extension SwiftAPIClient.Reachability.NetworkStatus : Swift.Equatable {}
 extension SwiftAPIClient.Reachability.NetworkStatus : Swift.Hashable {}
 extension SwiftAPIClient.RequestError : Swift.Equatable {}
