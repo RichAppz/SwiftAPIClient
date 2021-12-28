@@ -16,7 +16,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "SwiftAPIClient",
-            path: "./output/SwiftAPIClient.xcframework"
+            path: "./sources/SwiftAPIClient.xcframework"
         ),
 //        .binaryTarget(
 //            name: "SwiftAPIClient",
