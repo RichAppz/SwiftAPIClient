@@ -33,6 +33,19 @@ public enum FileManagerError: Error {
 
 internal let plistFilename = "SimpleAPIClient"
 
+internal class FileManagerQueue {
+    
+    // ==========================================
+    // MARK: Singleton
+    // ==========================================
+    
+    static let queue = DispatchQueue(
+        label: "com.swiftapiclient.storage.queue",
+        attributes: .concurrent
+    )
+    
+}
+
 #if os(iOS) || os(macOS) || os(tvOS)
 internal extension FileManager {
     
@@ -77,10 +90,12 @@ internal extension FileManager {
             throw FileManagerError.documentDirectoryMissing
         }
         
-        let directoryPath = directory.appendingPathComponent(plistFilename)
-        let path = directoryPath.appendingPathComponent(named).appendingPathExtension("plist")
-        let data = try NSKeyedArchiver.archivedData(withRootObject: dict, requiringSecureCoding: true)
-        try data.write(to: path, options: .atomic)
+        try FileManagerQueue.queue.sync {
+            let directoryPath = directory.appendingPathComponent(plistFilename)
+            let path = directoryPath.appendingPathComponent(named).appendingPathExtension("plist")
+            let data = try NSKeyedArchiver.archivedData(withRootObject: dict, requiringSecureCoding: true)
+            try data.write(to: path, options: .atomic)
+        }
     }
     
     /**
@@ -94,9 +109,11 @@ internal extension FileManager {
             throw FileManagerError.documentDirectoryMissing
         }
         
-        let directoryPath = directory.appendingPathComponent(plistFilename)
-        let path = directoryPath.appendingPathComponent(named).appendingPathExtension("plist")
-        try self.default.removeItem(at: path)
+        try FileManagerQueue.queue.sync {
+            let directoryPath = directory.appendingPathComponent(plistFilename)
+            let path = directoryPath.appendingPathComponent(named).appendingPathExtension("plist")
+            try self.default.removeItem(at: path)
+        }
     }
     
 }

@@ -45,6 +45,7 @@ class NetworkOperation: ConcurrentOperation {
     let networkRequest: URL
     let parameters: [String: Any]?
     let completion: OperationResponse?
+    let allHTTPHeaderFields: [String: String]
     var method: HTTPMethod = .get
     
     var session: URLSession?
@@ -64,10 +65,12 @@ class NetworkOperation: ConcurrentOperation {
     init(
         request: URL,
         config: URLSessionConfiguration,
+        headers: [String: String],
         params: [String: Any]?,
         completionHandler: OperationResponse?) {
             networkRequest = request
             completion = completionHandler
+            allHTTPHeaderFields = headers
             parameters = params
             super.init()
             
@@ -117,6 +120,7 @@ class NetworkOperation: ConcurrentOperation {
         }
         
         request.httpMethod = method.rawValue
+        request.allHTTPHeaderFields = allHTTPHeaderFields
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
