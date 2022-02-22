@@ -19,4 +19,15 @@ public struct FileUpload {
     /// Standard mimeType string that is expected by HTTP Requests
     public let mimeType: String
     
+    public init(
+        data: Data,
+        paramName: String,
+        fullFileName: String,
+        mimeType: String) {
+            self.data = data
+            self.paramName = paramName
+            self.fullFileName = fullFileName
+            self.mimeType = mimeType
+        }
+    
 }
