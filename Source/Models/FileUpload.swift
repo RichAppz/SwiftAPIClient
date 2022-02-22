@@ -16,7 +16,7 @@ public struct FileUpload {
     public let paramName: String
     /// Needs to contain the file extension also eg `filename.png`
     public let fullFileName: String
-    
+    /// Standard mimeType string that is expected by HTTP Requests
     public let mimeType: String
     
 }
