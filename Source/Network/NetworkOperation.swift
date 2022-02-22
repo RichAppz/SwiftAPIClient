@@ -141,6 +141,7 @@ class NetworkOperation: ConcurrentOperation {
             request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
             
             var requestData = Data()
+            requestData.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
             let contentDisposition = "Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n"
             requestData.append(
                 String(
