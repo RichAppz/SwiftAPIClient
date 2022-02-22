@@ -32,6 +32,7 @@ public struct Response {
     // ==========================================
     
     public let data: Data?
+    public let fileStoreUrl: URL?
     public let headers: [String: Any]?
     public let error: Error?
     
@@ -39,8 +40,9 @@ public struct Response {
     // MARK: Initialisation
     // ==========================================
     
-    public init(data: Data?, headers: [String: Any]?, error: Error?) {
+    public init(data: Data?, fileStoreUrl: URL? = nil, headers: [String: Any]?, error: Error?) {
         self.data = data
+        self.fileStoreUrl = fileStoreUrl
         self.headers = headers
         self.error = error
     }

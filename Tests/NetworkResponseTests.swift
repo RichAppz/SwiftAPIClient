@@ -48,7 +48,7 @@ class NetworkResponseTests: XCTestCase {
             }
         }
         
-        waitForExpectations(timeout: 30) { error in
+        waitForExpectations(timeout: 10) { error in
             print(error as Any)
         }
     }
@@ -74,6 +74,32 @@ class NetworkResponseTests: XCTestCase {
                 XCTFail("Data retrieval failed")
             }
         }
+        
+        waitForExpectations(timeout: 10) { error in
+            print(error as Any)
+        }
+    }
+    
+    func testFileDownload() {
+        let expectation = self.expectation(description: "fetching file from speedtest")
+        
+        let filename = "5MB.zip"
+        DownloadClientExample.shared.stdFileDownload(
+            fileName: filename) { url, error in
+                XCTAssertNil(error)
+                XCTAssertNotNil(url)
+                XCTAssert(url?.absoluteString.contains(filename) ?? false)
+                
+                XCTAssert(FileManager.default.fileExists(atPath: url!.path))
+                XCTAssert(FileManager.default.isReadableFile(atPath: url!.path))
+                if let value = try? FileManager.default.attributesOfItem(atPath: url!.path)[FileAttributeKey.size] as? Int {
+                    XCTAssert(value > 5000000)
+                } else {
+                    XCTFail("file size missing")
+                }
+                
+                expectation.fulfill()
+            }
         
         waitForExpectations(timeout: 30) { error in
             print(error as Any)

@@ -81,6 +81,7 @@ extension Service {
             
             let operation = NetworkOperation(
                 request: url,
+                requestType: request.operationType,
                 config: configuration,
                 headers: headers,
                 params: request.parameters,

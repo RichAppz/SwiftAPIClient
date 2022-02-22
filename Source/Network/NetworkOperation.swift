@@ -36,6 +36,10 @@ public enum RequestError: Int, Error {
     case timeOutError = -1001
 }
 
+public enum NetworkOperationType {
+    case standard, fileDownload
+}
+
 class NetworkOperation: ConcurrentOperation {
     
     // ==========================================
@@ -46,6 +50,7 @@ class NetworkOperation: ConcurrentOperation {
     let parameters: [String: Any]?
     let completion: OperationResponse?
     let allHTTPHeaderFields: [String: String]
+    let type: NetworkOperationType
     var method: HTTPMethod = .get
     
     var session: URLSession?
@@ -64,11 +69,13 @@ class NetworkOperation: ConcurrentOperation {
      */
     init(
         request: URL,
+        requestType: NetworkOperationType = .standard,
         config: URLSessionConfiguration,
         headers: [String: String],
         params: [String: Any]?,
         completionHandler: OperationResponse?) {
             networkRequest = request
+            type = requestType
             completion = completionHandler
             allHTTPHeaderFields = headers
             parameters = params
@@ -153,18 +160,56 @@ class NetworkOperation: ConcurrentOperation {
                 )
             }
             
-            do {
-                guard
-                    let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                    let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
-                        complete()
-                        return
-                    }
+            switch self.type {
+            case .standard:
+                do {
+                    guard
+                        let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                        let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                            complete()
+                            return
+                        }
+                    
+                    complete(data: prettyJsonData)
+                } catch {
+                    complete()
+                }
+            case .fileDownload:
+                guard let filename = response?.suggestedFilename else {
+                    self.completion?(
+                        Response(
+                            data: data,
+                            headers: response?.allHeaderFields as? [String: Any],
+                            error: error
+                        )
+                    )
+                    return
+                }
+            
+                let fileStoreUrl = URL(fileURLWithPath: NSTemporaryDirectory())
+                    .appendingPathComponent(filename)
                 
-                complete(data: prettyJsonData)
-            } catch {
-                complete()
+                do {
+                    try data.write(to: fileStoreUrl, options: Data.WritingOptions.atomic)
+                    self.completion?(
+                        Response(
+                            data: data,
+                            fileStoreUrl: fileStoreUrl,
+                            headers: response?.allHeaderFields as? [String: Any],
+                            error: error
+                        )
+                    )
+                } catch {
+                    self.completion?(
+                        Response(
+                            data: data,
+                            headers: response?.allHeaderFields as? [String: Any],
+                            error: error
+                        )
+                    )
+                }
             }
+            
         }.resume()
     }
     

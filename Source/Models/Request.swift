@@ -32,6 +32,7 @@ open class Request {
     // ==========================================
     
     open var rootUrl: String?
+    open var operationType: NetworkOperationType
     open var endpoint: String
     open var parameters: [String: Any]?
     open var priority: Operation.QueuePriority
@@ -43,14 +44,15 @@ open class Request {
     
     public init(
         endpoint: String = "",
+        operationType: NetworkOperationType = .standard,
         parameters: [String: Any]? = nil,
         priority: Operation.QueuePriority? = .high,
         qualityOfService: QualityOfService? = .default) {
-        
-        self.endpoint = endpoint
-        self.parameters = parameters
-        self.priority = priority ?? .veryHigh
-        self.qualityOfService = qualityOfService ?? .userInitiated
-    }
+            self.endpoint = endpoint
+            self.operationType = operationType
+            self.parameters = parameters
+            self.priority = priority ?? .veryHigh
+            self.qualityOfService = qualityOfService ?? .userInitiated
+        }
     
 }
