@@ -161,7 +161,7 @@ class NetworkOperation: ConcurrentOperation {
             
             session?.uploadTask(
                 with: request,
-                from: requestData) { data, response, error in
+                from: requestData) { data, _, error in
                     
                     func complete(data: Data? = nil) {
                         self.completion?(
@@ -174,10 +174,21 @@ class NetworkOperation: ConcurrentOperation {
                     }
                     
                     do {
+                        guard let data = data else {
+                            complete()
+                            return
+                        }
+                        
+                        var jsonObject: Any? = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+                        if jsonObject == nil {
+                            jsonObject = try JSONSerialization.jsonObject(with: data) as? [[String: Any]]
+                        }
+                        
                         guard
-                            let data = data,
-                            let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                            let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                            let jsonObject = jsonObject,
+                            let prettyJsonData = try? JSONSerialization.data(
+                            withJSONObject: jsonObject,
+                            options: .prettyPrinted) else {
                                 complete()
                                 return
                             }
@@ -225,12 +236,19 @@ class NetworkOperation: ConcurrentOperation {
             switch self.type {
             case .standard:
                 do {
+                    var jsonObject: Any? = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+                    if jsonObject == nil {
+                        jsonObject = try JSONSerialization.jsonObject(with: data) as? [[String: Any]]
+                    }
+                    
                     guard
-                        let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                        let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
-                            complete()
-                            return
-                        }
+                        let jsonObject = jsonObject,
+                        let prettyJsonData = try? JSONSerialization.data(
+                            withJSONObject: jsonObject,
+                            options: .prettyPrinted) else {
+                                complete()
+                                return
+                            }
                     
                     complete(data: prettyJsonData)
                 } catch {
