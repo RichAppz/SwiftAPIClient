@@ -37,7 +37,7 @@ public enum RequestError: Int, Error {
 }
 
 public enum NetworkOperationType {
-    /// Standard network requests, this is defaulted so unless you want upload or download you don't need to change
+    /// Standard network requests, this is defaulted so unless you want download you don't need to change
     case standard
     /// Set this and the response will include a `fileStoreUrl` if the file downloaded successfully
     case fileDownload

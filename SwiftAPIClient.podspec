@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'SwiftAPIClient'
-  s.version = '2.1.9'
+  s.version = '3.0.0'
   s.license = 'MIT'
   s.summary = 'SwiftAPIClient for Apple Swift Projects'
   s.homepage = 'https://github.com/RichAppz'

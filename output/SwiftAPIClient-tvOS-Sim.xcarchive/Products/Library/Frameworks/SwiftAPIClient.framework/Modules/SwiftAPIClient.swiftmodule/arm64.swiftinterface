@@ -34,6 +34,12 @@ extension Swift.String {
     get
   }
 }
+public struct FileUpload {
+  public let data: Foundation.Data
+  public let paramName: Swift.String
+  public let fullFileName: Swift.String
+  public let mimeType: Swift.String
+}
 @_hasMissingDesignatedInitializers public class SecureService {
   public static func encryptToString(_ data: Foundation.Data) throws -> Swift.String?
   public static func AESEncryptToData(_ data: Foundation.Data) throws -> Foundation.Data?
@@ -122,9 +128,10 @@ extension SwiftAPIClient.Service {
 }
 public struct Response {
   public let data: Foundation.Data?
+  public let fileStoreUrl: Foundation.URL?
   public let headers: [Swift.String : Any]?
   public let error: Swift.Error?
-  public init(data: Foundation.Data?, headers: [Swift.String : Any]?, error: Swift.Error?)
+  public init(data: Foundation.Data?, fileStoreUrl: Foundation.URL? = nil, headers: [Swift.String : Any]?, error: Swift.Error?)
 }
 public let kPlistFilename: Swift.String
 public let kRequestErrorDomain: Swift.String
@@ -140,6 +147,15 @@ public enum RequestError : Swift.Int, Swift.Error {
   public init?(rawValue: Swift.Int)
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum NetworkOperationType {
+  case standard
+  case fileDownload
+  public static func == (a: SwiftAPIClient.NetworkOperationType, b: SwiftAPIClient.NetworkOperationType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
     get
   }
 }
@@ -226,11 +242,13 @@ public protocol Model : Swift.Decodable, Swift.Encodable {
 }
 open class Request {
   open var rootUrl: Swift.String?
+  open var operationType: SwiftAPIClient.NetworkOperationType
   open var endpoint: Swift.String
   open var parameters: [Swift.String : Any]?
+  open var upload: SwiftAPIClient.FileUpload?
   open var priority: Foundation.Operation.QueuePriority
   open var qualityOfService: Foundation.QualityOfService
-  public init(endpoint: Swift.String = "", parameters: [Swift.String : Any]? = nil, priority: Foundation.Operation.QueuePriority? = .high, qualityOfService: Foundation.QualityOfService? = .default)
+  public init(endpoint: Swift.String = "", operationType: SwiftAPIClient.NetworkOperationType = .standard, parameters: [Swift.String : Any]? = nil, upload: SwiftAPIClient.FileUpload? = nil, priority: Foundation.Operation.QueuePriority? = .high, qualityOfService: Foundation.QualityOfService? = .default)
   @objc deinit
 }
 public enum StorageType {
@@ -286,6 +304,8 @@ extension SwiftAPIClient.HTTPMethod : Swift.RawRepresentable {}
 extension SwiftAPIClient.RequestError : Swift.Equatable {}
 extension SwiftAPIClient.RequestError : Swift.Hashable {}
 extension SwiftAPIClient.RequestError : Swift.RawRepresentable {}
+extension SwiftAPIClient.NetworkOperationType : Swift.Equatable {}
+extension SwiftAPIClient.NetworkOperationType : Swift.Hashable {}
 extension SwiftAPIClient.FileManagerError : Swift.Equatable {}
 extension SwiftAPIClient.FileManagerError : Swift.Hashable {}
 extension SwiftAPIClient.StorageType : Swift.Equatable {}
