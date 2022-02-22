@@ -85,6 +85,7 @@ extension Service {
                 config: configuration,
                 headers: headers,
                 params: request.parameters,
+                fileUpload: request.upload,
                 completionHandler: completion
             )
             operation.method = method
