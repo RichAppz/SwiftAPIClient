@@ -37,7 +37,10 @@ public enum RequestError: Int, Error {
 }
 
 public enum NetworkOperationType {
-    case standard, fileDownload
+    /// Standard network requests, this is defaulted so unless you want upload or download you don't need to change
+    case standard
+    /// Set this and the response will include a `fileStoreUrl` if the file downloaded successfully
+    case fileDownload
 }
 
 class NetworkOperation: ConcurrentOperation {
@@ -51,6 +54,7 @@ class NetworkOperation: ConcurrentOperation {
     let completion: OperationResponse?
     let allHTTPHeaderFields: [String: String]
     let type: NetworkOperationType
+    let upload: FileUpload?
     var method: HTTPMethod = .get
     
     var session: URLSession?
@@ -62,6 +66,7 @@ class NetworkOperation: ConcurrentOperation {
     /**
      Creates a NetworkOperation with the parameters required for the endpoint.
      - Parameter request: URLConvertible - endpoint
+     - Parameter requestType: NetworkOperationType = .standard
      - Parameter config: URLSessionConfiguration - configuration of the request
      - Parameter params: Dictionary<String: Any> - additional parameters
      - Parameter encoding: ParameterEncoding? - Almofire Parameter Encoding type
@@ -73,12 +78,14 @@ class NetworkOperation: ConcurrentOperation {
         config: URLSessionConfiguration,
         headers: [String: String],
         params: [String: Any]?,
+        fileUpload: FileUpload? = nil,
         completionHandler: OperationResponse?) {
             networkRequest = request
             type = requestType
             completion = completionHandler
             allHTTPHeaderFields = headers
             parameters = params
+            upload = fileUpload
             super.init()
             
             session = URLSession(
@@ -128,6 +135,60 @@ class NetworkOperation: ConcurrentOperation {
         
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = allHTTPHeaderFields
+        
+        if let upload = upload {
+            let boundary = UUID().uuidString
+            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+            
+            var requestData = Data()
+            let contentDisposition = "Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n"
+            requestData.append(
+                String(
+                    format: contentDisposition,
+                    upload.paramName,
+                    upload.fullFileName).data(using: .utf8)!
+            )
+            
+            let contentType = "Content-Type: %@\r\n\r\n"
+            requestData.append(
+                String(
+                    format: contentType,
+                    upload.mimeType).data(using: .utf8)!
+            )
+            requestData.append(upload.data)
+            requestData.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+            
+            session?.uploadTask(
+                with: request,
+                from: requestData) { data, response, error in
+                    
+                    func complete(data: Data? = nil) {
+                        self.completion?(
+                            Response(
+                                data: data,
+                                headers: nil,
+                                error: error
+                            )
+                        )
+                    }
+                    
+                    do {
+                        guard
+                            let data = data,
+                            let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                            let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                                complete()
+                                return
+                            }
+                        
+                        complete(data: prettyJsonData)
+                    } catch {
+                        complete()
+                    }
+            }.resume()
+            return
+        }
+        
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         

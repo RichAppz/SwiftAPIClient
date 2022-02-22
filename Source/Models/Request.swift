@@ -35,6 +35,7 @@ open class Request {
     open var operationType: NetworkOperationType
     open var endpoint: String
     open var parameters: [String: Any]?
+    open var upload: FileUpload?
     open var priority: Operation.QueuePriority
     open var qualityOfService: QualityOfService
     
@@ -46,11 +47,13 @@ open class Request {
         endpoint: String = "",
         operationType: NetworkOperationType = .standard,
         parameters: [String: Any]? = nil,
+        upload: FileUpload? = nil,
         priority: Operation.QueuePriority? = .high,
         qualityOfService: QualityOfService? = .default) {
             self.endpoint = endpoint
             self.operationType = operationType
             self.parameters = parameters
+            self.upload = upload
             self.priority = priority ?? .veryHigh
             self.qualityOfService = qualityOfService ?? .userInitiated
         }
