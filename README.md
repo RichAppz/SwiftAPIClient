@@ -191,6 +191,8 @@ let accounts: [Account]? = try? StorageClient.retrieve()
 
 ## Extras
 
+### Shorthand
+
 The feature list is rather big and writing your requests can be time consuming so try out the extensions that have been created that allow you to do this:
 
 ```swift
@@ -229,7 +231,7 @@ All the parameters are optional or have defaults you can check the code to see t
 
 Both `stdGetRequest` and `stdPostRequest` handles all the features that was mentioned above and should be used over a manual route.
 
-#### Download files
+### Download files
 
 If you use the `operationType`, which can be found in the `Request`, set the value to `.fileDownload` then if a file is downloaded you will be provided with a temporary filestore URL.
 
@@ -247,7 +249,7 @@ If you use the `operationType`, which can be found in the `Request`, set the val
     }
 ```
 
-#### Uploading files
+### Uploading files
 
 To upload a file the request can take `FileUpload` model and this contains a few required items:
 
