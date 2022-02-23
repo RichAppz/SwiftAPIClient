@@ -42,7 +42,7 @@ pod 'SwiftAPIClient'
 *NOTE*: If you would like to still use the older version with `Alamofire` please lock your pod - this is no long supported
 
 ```ruby
-pod 'SwiftAPIClient', '2.1.6'
+pod 'SwiftAPIClient', '2.1.3'
 ```
 
 ### Implementation
