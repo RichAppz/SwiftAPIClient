@@ -223,6 +223,63 @@ All the parameters are optional or have defaults you can check the code to see t
 
 Both `stdGetRequest` and `stdPostRequest` handles all the features that was mentioned above and should be used over a manual route.
 
+#### Download files
+
+If you use the `operationType`, which can be found in the `Request`, set the value to `.fileDownload` then if a file is downloaded you will be provided with a temporary filestore URL.
+
+```swift
+    get(
+        Request(
+            endpoint: "/your-filename.csv",
+            operationType: .fileDownload,
+            priority: .high,
+            qualityOfService: .default)
+    ) { (response) in
+        DispatchQueue.main.async {
+            completion(response.fileStoreUrl, response.error)
+        }
+    }
+```
+
+#### Uploading files
+
+To upload a file the request can take `FileUpload` model and this contains a few required items:
+
+```swift
+public struct FileUpload {
+    
+    /// If you are converting images you can use `jpegData(compressionQuality: 0.5)`
+    public let data: Data
+    /// This is the parameter expected by your server
+    public let paramName: String
+    /// Needs to contain the file extension also eg `filename.png`
+    public let fullFileName: String
+    /// Standard mimeType string that is expected by HTTP Requests
+    public let mimeType: String
+    
+}
+```
+
+Example:
+
+```swift
+    put(
+        Request(
+            endpoint: "your-endpoint",
+            upload: FileUpload(
+                data: data,
+                paramName: "file",
+                fullFileName: "filename.jpg",
+                mimeType: "image/jpg"
+            ),
+            priority: .high,
+            qualityOfService: .default
+        )
+    ) { (response) in
+        // Handle response
+    }
+```
+
 ## Licence (Mit)
 
 Copyright (c) 2017-2020 RichAppz Limited (https://richappz.com)
