@@ -27,7 +27,7 @@ import Foundation
 
 // MARK: Public References
 public let kPlistFilename: String = "com_richappz_swiftapiclient"
-public let kRequestErrorDomain: String = "com.richappz.request.error"
+public let kRequestErrorDomain: String = "com.swiftapiclient.request.error"
 
 // MARK: Library References
-var kResponseQueue = "com.richappz.queue"
+var kResponseQueue = "com.swiftapiclient.queue"

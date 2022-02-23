@@ -27,7 +27,7 @@ import Foundation
 
 public class ThreadSafeArray<Element> {
     
-    private let queue = DispatchQueue(label: "com.richappz.threadsafe.queue", attributes: .concurrent)
+    private let queue = DispatchQueue(label: "com.swiftapiclient.threadsafe.queue", attributes: .concurrent)
     private var array = [Element]()
     
     public init() { }

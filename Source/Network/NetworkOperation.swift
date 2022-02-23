@@ -161,7 +161,9 @@ class NetworkOperation: ConcurrentOperation {
             
             session?.uploadTask(
                 with: request,
-                from: requestData) { data, _, error in
+                from: requestData) { data, response, error in
+                    let response = response as? HTTPURLResponse
+                    let allHeaderFields = response?.allHeaderFields as? [String: Any]
                     
                     func complete(data: Data? = nil) {
                         self.completion?(
@@ -171,6 +173,21 @@ class NetworkOperation: ConcurrentOperation {
                                 error: error
                             )
                         )
+                    }
+                    
+                    if let statusCode = response?.statusCode, statusCode >= 400 {
+                        self.completion?(
+                            Response(
+                                data: data,
+                                headers: allHeaderFields,
+                                error: NSError(
+                                    domain: "com.swiftapiclient.network.error",
+                                    code: statusCode,
+                                    userInfo: data?.json
+                                )
+                            )
+                        )
+                        return
                     }
                     
                     do {
@@ -206,6 +223,7 @@ class NetworkOperation: ConcurrentOperation {
         
         session?.dataTask(with: request) { data, response, error in
             let response = response as? HTTPURLResponse
+            let allHeaderFields = response?.allHeaderFields as? [String: Any]
             
             guard
                 let data = data,
@@ -222,7 +240,21 @@ class NetworkOperation: ConcurrentOperation {
                 return
             }
             
-            let allHeaderFields = response?.allHeaderFields as? [String: Any]
+            if let statusCode = response?.statusCode, statusCode >= 400 {
+                self.completion?(
+                    Response(
+                        data: data,
+                        headers: allHeaderFields,
+                        error: NSError(
+                            domain: "com.swiftapiclient.network.error",
+                            code: statusCode,
+                            userInfo: data.json
+                        )
+                    )
+                )
+                return
+            }
+            
             func complete(data: Data? = nil) {
                 self.completion?(
                     Response(
