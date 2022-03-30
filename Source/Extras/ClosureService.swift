@@ -113,7 +113,7 @@ public class ClosureService {
     /**
      Clears the Singleton store
      */
-    static func clear() {
+    public static func clear() {
         shared.store = ThreadSafeArray<Any>()
     }
 
