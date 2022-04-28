@@ -29,6 +29,8 @@ public class SecureService {
     
     private var key = Crypto.newKey
     
+    static var useEncryption = false
+    
     // ==========================================
     // MARK: Singleton
     // ==========================================
@@ -40,19 +42,35 @@ public class SecureService {
     // ==========================================
     
     public static func encryptToString(_ data: Data) throws -> String? {
-        return try? data.cryptoEncodeToString(key: shared.key)
+        if useEncryption {
+            return try? data.cryptoEncodeToString(key: shared.key)
+        } else {
+            return String(data: data, encoding: .utf8)
+        }
     }
     
     public static func AESEncryptToData(_ data: Data) throws -> Data? {
-        return try? data.cryptoEncodeToData(key: shared.key)
+        if useEncryption {
+            return try? data.cryptoEncodeToData(key: shared.key)
+        } else {
+            return data
+        }
     }
     
     public static func AESDecrypt(_ string: String) throws -> Data? {
-        return try? string.cryptoDecode(key: shared.key)
+        if useEncryption {
+            return try? string.cryptoDecode(key: shared.key)
+        } else {
+            return string.data(using: .utf8)
+        }
     }
     
     public static func AESDecrypt(_ data: Data) throws -> Data? {
-        return try? data.cryptoDecode(key: shared.key)
+        if useEncryption {
+            return try? data.cryptoDecode(key: shared.key)
+        } else {
+            return data
+        }
     }
     
 }

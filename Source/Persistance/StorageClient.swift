@@ -76,6 +76,14 @@ public class StorageClient {
     // ==========================================
     
     /**
+     Setup to enable/disable encryption on the service
+     - Parameter useEncryption: Bool
+     */
+    public static func setup(useEncryption: Bool = false) {
+        SecureService.useEncryption = useEncryption
+    }
+    
+    /**
      Maps response data from a network request directly into a Model Array using decodable, during this action the method will also hand  the data persistance.
      - Parameter object: Data
      - Parameter storageKey: <Optional>String - this is only required if a non default location needs to be used
