@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import Accessibility
 
 public enum RequestError: Int, Error {
     case badRequest = 400
@@ -113,9 +114,23 @@ class NetworkOperation: ConcurrentOperation {
                 method == .get {
                 
                 let existingItems = components.queryItems ?? []
-                let mappedItems = parameters.map { (key, value) in
-                    URLQueryItem(name: key, value: value as? String)
+                let mappedItems: [URLQueryItem] = parameters.compactMap { (key, value) in
+                    switch value {
+                    case let value as String:
+                        return URLQueryItem(name: key, value: value)
+                    case let value as Int:
+                        return URLQueryItem(name: key, value: "\(value)")
+                    case let value as [String]:
+                        if let string = jsonString(from: value), !value.isEmpty {
+                            return URLQueryItem(name: key, value: string)
+                        }
+                    default:
+                        break
+                    }
+                    
+                    return nil
                 }
+                
                 let queryItems = existingItems + mappedItems
                 
                 components.queryItems = queryItems
@@ -323,6 +338,17 @@ class NetworkOperation: ConcurrentOperation {
             }
             
         }.resume()
+    }
+    
+    private func jsonString(from value: [Any]) -> String? {
+        if
+            JSONSerialization.isValidJSONObject(value),
+            let data = try? JSONSerialization.data(withJSONObject: value, options: .withoutEscapingSlashes),
+            let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String {
+            return string
+        }
+    
+        return nil
     }
     
     override func cancel() {
