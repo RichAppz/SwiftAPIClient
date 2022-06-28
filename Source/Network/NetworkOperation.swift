@@ -100,6 +100,7 @@ class NetworkOperation: ConcurrentOperation {
     // MARK: Overrides
     // ==========================================
     
+    // swiftlint:disable cyclomatic_complexity function_body_length
     override func main() {
         var request = URLRequest(url: networkRequest)
         
@@ -343,7 +344,7 @@ class NetworkOperation: ConcurrentOperation {
     private func jsonString(from value: [Any]) -> String? {
         if
             JSONSerialization.isValidJSONObject(value),
-            let data = try? JSONSerialization.data(withJSONObject: value, options: .withoutEscapingSlashes),
+            let data = try? JSONSerialization.data(withJSONObject: value, options: .fragmentsAllowed),
             let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String {
             return string
         }
