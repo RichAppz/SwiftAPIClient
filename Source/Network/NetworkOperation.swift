@@ -115,21 +115,27 @@ class NetworkOperation: ConcurrentOperation {
                 method == .get {
                 
                 let existingItems = components.queryItems ?? []
-                let mappedItems: [URLQueryItem] = parameters.compactMap { (key, value) in
+                var mappedItems: [URLQueryItem] = []
+                
+                parameters.forEach { (key, value) in
                     switch value {
                     case let value as String:
-                        return URLQueryItem(name: key, value: value)
+                        mappedItems.append(
+                            URLQueryItem(name: key, value: value)
+                        )
                     case let value as Int:
-                        return URLQueryItem(name: key, value: "\(value)")
-                    case let value as [String]:
-                        if let string = jsonString(from: value), !value.isEmpty {
-                            return URLQueryItem(name: key, value: string)
-                        }
+                        mappedItems.append(
+                            URLQueryItem(name: key, value: "\(value)")
+                        )
+                    case let values as [String]:
+                        mappedItems.append(
+                            contentsOf: values.compactMap {
+                                return URLQueryItem(name: String(format: "%@[]", key), value: $0)
+                            }
+                        )
                     default:
                         break
                     }
-                    
-                    return nil
                 }
                 
                 let queryItems = existingItems + mappedItems
