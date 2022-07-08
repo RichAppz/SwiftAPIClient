@@ -292,7 +292,7 @@ extension Service {
     }
     
     /**
-     Standard `Put` response to the server
+     Standard `PUT` response to the server
      - Parameter request: ErrRequestModel
      */
     public func stdPutRequest(
@@ -318,6 +318,120 @@ extension Service {
         ) { (response) in
             DispatchQueue.main.async {
                 completion?(response.error)
+            }
+        }
+    }
+    
+    /**
+     Standard `PUT` response to the server
+     - Parameter request: ObjRequestModel<T>
+     */
+    public func stdPutRequest<T: Model>(
+        _ request: RequestModel,
+        completion: ModelObjectCompletionBlock<T>? = nil) {
+        
+        let path: String = request.fullPath
+        
+        // Create closure
+        let closure = Closure(url: path, params: request.params, blockObj: completion)
+        let hasRequested = ClosureService.contains(closure)
+        if hasRequested && !request.isRetry {
+            return
+        }
+        
+        #if os(iOS) || os(macOS)
+        // Check network connection
+        let hasConnection = checkConnection(
+            storageKeyAddition: request.storageKeyAddition,
+            notification: request.notification,
+            requiresConnection: request.storageType == .none,
+            arrayResponse: false,
+            closure: closure)
+        if !hasConnection { return }
+        #endif
+        
+        put(
+            Request(
+                endpoint: path,
+                parameters: request.params
+            )
+        ) { (response) in
+            var mappingError: Error?
+            var object: T?
+            do {
+                object = try StorageClient.map(
+                    object: response.data,
+                    storageKey: request.storageKeyAddition,
+                    storageType: request.storageType
+                )
+            } catch {
+                mappingError = response.error ?? error
+            }
+            
+            DispatchQueue.main.async {
+                ClosureService.closures(closure).forEach({
+                    $0.blockObj?(object, mappingError ?? response.error)
+                })
+                
+                if let notification = request.notification {
+                    NotificationCenter.default.post(name: notification, object: object)
+                }
+            }
+        }
+    }
+    
+    /**
+     Standard `PUT` response to the server
+     - Parameter request: ArrRequestModel<T>
+     */
+    public func stdPutRequest<T: Model>(
+        _ request: RequestModel,
+        completion: ModelArrayCompletionBlock<T>? = nil) {
+        
+        let path: String = request.fullPath
+        
+        let closure = Closure(url: path, params: request.params, blockArr: completion)
+        let hasRequested = ClosureService.contains(closure)
+        if hasRequested && !request.isRetry {
+            return
+        }
+        
+        #if os(iOS) || os(macOS)
+        // Check network connection
+        let hasConnection = checkConnection(
+            storageKeyAddition: request.storageKeyAddition,
+            notification: request.notification,
+            requiresConnection: request.storageType == .none,
+            arrayResponse: true,
+            closure: closure)
+        if !hasConnection { return }
+        #endif
+        
+        put(
+            Request(
+                endpoint: path,
+                parameters: request.params
+            )
+        ) { (response) in
+            var mappingError: Error?
+            var object: [T]?
+            do {
+                object = try StorageClient.map(
+                    object: response.data,
+                    storageKey: request.storageKeyAddition,
+                    storageType: request.storageType)
+            } catch {
+                mappingError = response.error ?? error
+            }
+            
+            DispatchQueue.main.async {
+                ClosureService.closures(closure).forEach({
+                    $0.blockArr?(object, mappingError ?? response.error)
+                })
+                
+                if let notification = request.notification {
+                    NotificationCenter.default.post(name: notification, object: object)
+                }
             }
         }
     }
