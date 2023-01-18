@@ -37,12 +37,23 @@ enum DateType: String {
 
 public class CoderModule {
     
+    // ==================================================
+    // MARK: Private Properties
+    // ==================================================
+    
+    private static let jsonDecoder = JSONDecoder()
+    private static let jsonEncoder = JSONEncoder()
+    
     private static let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         return formatter
     }()
+    
+    // ==================================================
+    // MARK: Public Properties
+    // ==================================================
     
     /**
      Custom decoder that will help map the response data to a specific set of rules: 5 optional date strings, snakeCase > Camel if required
@@ -51,9 +62,8 @@ public class CoderModule {
      - Returns: JSONDecoder
      */
     public static var decoder: JSONDecoder = {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        decoder.dateDecodingStrategy = .custom { decoder in
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+        jsonDecoder.dateDecodingStrategy = .custom { decoder in
             let container = try decoder.singleValueContainer()
             
             if let dateTimestamp = try? container.decode(TimeInterval.self) {
@@ -75,7 +85,7 @@ public class CoderModule {
             
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateString)")
         }
-        return decoder
+        return jsonDecoder
     }()
     
     /**
@@ -85,9 +95,8 @@ public class CoderModule {
      - Returns: JSONEncoder
      */
     public static var encoder: JSONEncoder = {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .secondsSince1970
-        return encoder
+        jsonEncoder.dateEncodingStrategy = .secondsSince1970
+        return jsonEncoder
     }()
     
 }
