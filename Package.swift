@@ -21,5 +21,8 @@ let package = Package(
         .target(
             name: "SwiftAPIClient",
             dependencies: []),
+        .testTarget(
+            name: "Tests",
+            dependencies: ["SwiftAPIPackage"]),
     ]
 )
