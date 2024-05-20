@@ -1,18 +1,10 @@
-//
-//  Package.swift
-//  SwiftAPIClient
-//
-//  Created by Rich Mucha on 20/05/2024.
-//  Copyright © 2024 RichAppz Limited. All rights reserved.
-//
-
-// swift-tools-version:5.5.0
+// swift-tools-version:5.3
 import PackageDescription
 
 let package = Package(
     name: "SwiftAPIClient",
     platforms: [
-        .macOS(.v10_14), .iOS(.v13), .tvOS(.v13)
+        .macOS(.v10_14), .iOS(.v13), .tvOS(.v13),
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
