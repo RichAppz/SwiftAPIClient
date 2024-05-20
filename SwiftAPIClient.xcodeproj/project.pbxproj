@@ -346,8 +346,7 @@
 				CB917D7B2BFBEA9B002C6336 /* Package.swift */,
 				CB9DAF3B22427E9D0024AF0F /* SwiftAPIClient.podspec */,
 				CB9DAF4022427FC20024AF0F /* README.md */,
-				CBBE3BDA22EF2BE5001C53F1 /* Reachability */,
-				CBC83AA7224277C7004757BF /* Source */,
+				CBC83AA7224277C7004757BF /* Sources */,
 				CB9DAF4A22428A580024AF0F /* Tests */,
 				CBC83A7722427545004757BF /* Products */,
 				8E52C39427788E51005DC7A4 /* Frameworks */,
@@ -366,7 +365,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CBC83AA7224277C7004757BF /* Source */ = {
+		CBC83AA7224277C7004757BF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				CB9DAF0F224278C00024AF0F /* Consts */,
@@ -375,10 +374,11 @@
 				CBC83AA8224277D8004757BF /* Models */,
 				CB9DAF15224279330024AF0F /* Network */,
 				CB9DAF2F22427A4A0024AF0F /* Persistance */,
+				CBBE3BDA22EF2BE5001C53F1 /* Reachability */,
 				CBC83AA02242757F004757BF /* SimpleAPIClient.h */,
 				CBC83AA12242757F004757BF /* Info.plist */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		CBC83AA8224277D8004757BF /* Models */ = {
