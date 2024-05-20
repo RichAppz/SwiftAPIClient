@@ -152,6 +152,7 @@
 		CB4362EC2448593B008E93CB /* Service+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Service+Extension.swift"; sourceTree = "<group>"; };
 		CB63B7BB2265C6CE00AEF270 /* SecureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureService.swift; sourceTree = "<group>"; };
 		CB689EC92275FFD40069D63D /* CoderModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoderModule.swift; sourceTree = "<group>"; };
+		CB917D7B2BFBEA9B002C6336 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		CB9DAF042242788D0024AF0F /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		CB9DAF0A224278B20024AF0F /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
 		CB9DAF10224278E30024AF0F /* References.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = References.swift; sourceTree = "<group>"; };
@@ -342,6 +343,7 @@
 		CBC83A6A22427523004757BF = {
 			isa = PBXGroup;
 			children = (
+				CB917D7B2BFBEA9B002C6336 /* Package.swift */,
 				CB9DAF3B22427E9D0024AF0F /* SwiftAPIClient.podspec */,
 				CB9DAF4022427FC20024AF0F /* README.md */,
 				CBBE3BDA22EF2BE5001C53F1 /* Reachability */,
