@@ -236,6 +236,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CB917D7C2BFBF5F7002C6336 /* SwiftAPIClient */ = {
+			isa = PBXGroup;
+			children = (
+				CB9DAF0F224278C00024AF0F /* Consts */,
+				CB9DAF092242789E0024AF0F /* Extensions */,
+				CBBE3BC522EF2711001C53F1 /* Extras */,
+				CBC83AA8224277D8004757BF /* Models */,
+				CB9DAF15224279330024AF0F /* Network */,
+				CB9DAF2F22427A4A0024AF0F /* Persistance */,
+				CBBE3BDA22EF2BE5001C53F1 /* Reachability */,
+				CBC83AA02242757F004757BF /* SimpleAPIClient.h */,
+				CBC83AA12242757F004757BF /* Info.plist */,
+			);
+			path = SwiftAPIClient;
+			sourceTree = "<group>";
+		};
 		CB9DAF092242789E0024AF0F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,15 +384,7 @@
 		CBC83AA7224277C7004757BF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				CB9DAF0F224278C00024AF0F /* Consts */,
-				CB9DAF092242789E0024AF0F /* Extensions */,
-				CBBE3BC522EF2711001C53F1 /* Extras */,
-				CBC83AA8224277D8004757BF /* Models */,
-				CB9DAF15224279330024AF0F /* Network */,
-				CB9DAF2F22427A4A0024AF0F /* Persistance */,
-				CBBE3BDA22EF2BE5001C53F1 /* Reachability */,
-				CBC83AA02242757F004757BF /* SimpleAPIClient.h */,
-				CBC83AA12242757F004757BF /* Info.plist */,
+				CB917D7C2BFBF5F7002C6336 /* SwiftAPIClient */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1114,7 +1122,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Sources/SwiftAPIClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1193,7 +1201,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Sources/SwiftAPIClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1279,7 +1287,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Sources/SwiftAPIClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1357,7 +1365,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Sources/SwiftAPIClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1440,7 +1448,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Sources/SwiftAPIClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1517,7 +1525,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Sources/SwiftAPIClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1602,7 +1610,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Sources/SwiftAPIClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1680,7 +1688,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Sources/SwiftAPIClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
