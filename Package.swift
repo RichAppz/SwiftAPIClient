@@ -23,6 +23,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "SwiftAPIClient-Tests",
-            dependencies: ["SwiftAPIPackage"]),
+            dependencies: ["SwiftAPIClient"]),
     ]
 )
