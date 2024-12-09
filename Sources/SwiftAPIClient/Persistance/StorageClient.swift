@@ -36,6 +36,8 @@ public enum StorageClientError: Error {
 
 internal let kUserDefaultExtension = "client.store."
 
+internal let KLocalStorageDateDict = "client.store.storage.date"
+
 public class StorageClient {
     
     // ==========================================
@@ -47,6 +49,19 @@ public class StorageClient {
             DispatchQueue.global(qos: .background).async {
                 StorageClient.save()
             }
+        }
+    }
+    
+    private static var storageDateDict: [String: Date]? {
+        get {
+            return UserDefaults.standard.value(
+                forKey: KLocalStorageDateDict) as? [String: Date] ?? [:]
+        }
+        set {
+            UserDefaults.standard.set(
+                newValue,
+                forKey: KLocalStorageDateDict
+            )
         }
     }
     
@@ -96,6 +111,12 @@ public class StorageClient {
         let models: [T]? = try CoderModule.decoder.decode([T].self, from: object)
         try store(object, storageIdentifier: T.storageIdentifier, storageKey: storageKey, storageType: storageType)
         
+        if storageDateDict == nil {
+            storageDateDict = [T.storageIdentifier : Date()]
+        } else {
+            storageDateDict?[T.storageIdentifier] = Date()
+        }
+        
         return models
     }
     
@@ -111,6 +132,12 @@ public class StorageClient {
         guard let object = object else { return nil }
         let model: T? = try CoderModule.decoder.decode(T.self, from: object)
         try store(object, storageIdentifier: T.storageIdentifier, storageKey: storageKey, storageType: storageType)
+        
+        if storageDateDict == nil {
+            storageDateDict = [T.storageIdentifier : Date()]
+        } else {
+            storageDateDict?[T.storageIdentifier] = Date()
+        }
         
         return model
     }
@@ -152,6 +179,7 @@ public class StorageClient {
         let storageItems = UserDefaults.standard.dictionaryRepresentation().filter({ $0.key.contains(kUserDefaultExtension) })
         storageItems.forEach({ UserDefaults.standard.removeObject(forKey: $0.key) })
         shared.data = [:]
+        storageDateDict = nil
     }
     
     // ==========================================
