@@ -35,7 +35,6 @@ public enum StorageClientError: Error {
 }
 
 internal let kUserDefaultExtension = "client.store."
-
 internal let KLocalStorageDateDict = "client.store.storage.date"
 
 public class StorageClient {
@@ -98,6 +97,25 @@ public class StorageClient {
         SecureService.useEncryption = useEncryption
     }
     
+    static func modelSavedInStorage(storageIdentifier: String) {
+        if var savedStorage = storageDateDict {
+            savedStorage[storageIdentifier] = Date()
+            storageDateDict = savedStorage
+        } else {
+            let savedStorage = [
+                storageIdentifier: Date()
+            ]
+            storageDateDict = savedStorage
+        }
+    }
+    
+    public static func getDateFor(storageIdentifier: String) -> Date? {
+        if var savedStorage = storageDateDict {
+            return savedStorage[storageIdentifier]
+        }
+        return nil
+    }
+    
     /**
      Maps response data from a network request directly into a Model Array using decodable, during this action the method will also hand  the data persistance.
      - Parameter object: Data
@@ -110,13 +128,7 @@ public class StorageClient {
         guard let object = object else { return nil }
         let models: [T]? = try CoderModule.decoder.decode([T].self, from: object)
         try store(object, storageIdentifier: T.storageIdentifier, storageKey: storageKey, storageType: storageType)
-        
-        if storageDateDict == nil {
-            storageDateDict = [T.storageIdentifier : Date()]
-        } else {
-            storageDateDict?[T.storageIdentifier] = Date()
-        }
-        
+        modelSavedInStorage(storageIdentifier: T.storageIdentifier)
         return models
     }
     
@@ -132,13 +144,7 @@ public class StorageClient {
         guard let object = object else { return nil }
         let model: T? = try CoderModule.decoder.decode(T.self, from: object)
         try store(object, storageIdentifier: T.storageIdentifier, storageKey: storageKey, storageType: storageType)
-        
-        if storageDateDict == nil {
-            storageDateDict = [T.storageIdentifier : Date()]
-        } else {
-            storageDateDict?[T.storageIdentifier] = Date()
-        }
-        
+        modelSavedInStorage(storageIdentifier: T.storageIdentifier)
         return model
     }
     
