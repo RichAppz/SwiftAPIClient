@@ -12,10 +12,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '11.0'
   s.watchos.deployment_target = '3.0'
   
-  s.source_files = 'Sources/**/*.{swift}'
-  s.ios.source_files = 'Reachability/**/*.{swift}'
-  s.osx.source_files = 'Reachability/**/*.{swift}'
-  s.tvos.source_files = 'Reachability/**/*.{swift}'
+  s.source_files = 'Sources/SwiftAPIClient/**/*.{swift}'
   s.swift_versions = '5.0'
 
 end
